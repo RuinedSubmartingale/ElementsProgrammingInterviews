@@ -97,5 +97,6 @@ public class MyTests {
   @Test // 5.12
   public void UnifRandomNumberGenerator() { UnifRandomNumberGenerator.main(ARGS); }
 
-
+  @Test // 6.1
+  public void DutchFlagPartition() { DutchFlagPartition.main(ARGS); }
 }
