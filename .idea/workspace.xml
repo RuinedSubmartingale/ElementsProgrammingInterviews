@@ -10,359 +10,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="babfc752-b8d3-4a6f-8052-bfa270a8ec66" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ApproximateSort.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreePreorderTraversalIterative.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ClosestStars.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ClosestToMedian.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxSubmatrixRectangleImproved.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/QueueWithMax.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SlidingWindow.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SmallestSubarrayCoveringSetStream.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StableAssignment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ThreeSum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/md_notes/notes.md" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ApproximateSort.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreePreorderTraversalIterative.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ClosestStars.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ClosestToMedian.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxSubmatrixRectangleImproved.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/QueueWithMax.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReconstructBinaryTreePostInOrders.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReconstructBinaryTreePreInOrders.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SlidingWindow.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SmallestSubarrayCoveringSetStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StableAssignment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ThreeSum.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/test/test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/src/ch5.PrimitiveTypes/Parity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solutions/src/ch5.PrimitiveTypes/Parity.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/AddOperatorsInString.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/AddOperatorsInString.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/AddTwoNumberList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/AddTwoNumberList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/AddingCredits.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/AddingCredits.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Anagrams.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Anagrams.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/AnonymousLetter.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/AnonymousLetter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Arbitrage.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Arbitrage.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/AverageTop3Scores.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/AverageTop3Scores.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BSTLowestCommonAncestor.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BSTLowestCommonAncestor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BSTSortedOrder.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BSTSortedOrder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BSTToSortedDoublyList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BSTToSortedDoublyList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BalancedBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BalancedBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BentleyBsearch.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BentleyBsearch.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BigNumberMultiplication.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BigNumberMultiplication.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BiggestProductNMinus1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BiggestProductNMinus1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BiggestProductNMinus1Math.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BiggestProductNMinus1Math.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchAiEqI.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchAiEqI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchCircularArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchCircularArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchCircularArrayWithDuplicates.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchCircularArrayWithDuplicates.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchFirstK.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchFirstK.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchLargerK.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchLargerK.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchTreePrototypeTemplate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchTreePrototypeTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinarySearchUnknownLength.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinarySearchUnknownLength.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreeLevelOrder.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreeLevelOrder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreeLock.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreeLock.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreePostorderTraversalIterative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreePostorderTraversalIterative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreePostorderTraversalIterativeAlternative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreePostorderTraversalIterativeAlternative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreePrototypeTemplate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreePrototypeTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreeUtils.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreeUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BinaryTreeWithParentPrototype.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BinaryTreeWithParentPrototype.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Bonus.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Bonus.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BonusImproved.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BonusImproved.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BuildBSTFromSortedArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BuildBSTFromSortedArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BuyAndSellStock.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BuyAndSellStock.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/BuyAndSellStockTwice.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/BuyAndSellStockTwice.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CanStringBePalindrome.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CanStringBePalindrome.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CanStringBePalindromeHash.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CanStringBePalindromeHash.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CanStringBePalindromeSorting.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CanStringBePalindromeSorting.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CelebrityFinding.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CelebrityFinding.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CheckingCycle.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CheckingCycle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CheckingCycleAlternative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CheckingCycleAlternative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CircularQueue.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CircularQueue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CloneGraph.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CloneGraph.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CloseSearch.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CloseSearch.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ClosestIntSameBits.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ClosestIntSameBits.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ClosestPairPoints.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ClosestPairPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ClosestPalindrome.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ClosestPalindrome.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CollatzConjecture.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CollatzConjecture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Combinations.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Combinations.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CompareKthLargestInHeap.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CompareKthLargestInHeap.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CompletionSearch.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CompletionSearch.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ComputeRandomPermutation.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ComputeRandomPermutation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ComputingBinomialCoefficients.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ComputingBinomialCoefficients.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ComputingXPowN.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ComputingXPowN.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ConnectLeavesBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ConnectLeavesBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ContainerWithMostWater.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ContainerWithMostWater.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ConvertBase.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ConvertBase.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CopyingPostingsList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CopyingPostingsList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CountInversions.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CountInversions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CountOccurrencesInSentence.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CountOccurrencesInSentence.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/CyclicRightShift.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/CyclicRightShift.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DeletionList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DeletionList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DescendantAndAncestor.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DescendantAndAncestor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Division.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Division.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Doors.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Doors.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DoublyLinkedListPrototypeTemplate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DoublyLinkedListPrototypeTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DrawingSkylines.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DrawingSkylines.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DutchNationalFlag.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DutchNationalFlag.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DutchNationalFlagSlowInplace.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DutchNationalFlagSlowInplace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/DutchNationalFlagTwoPasses.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/DutchNationalFlagTwoPasses.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/EliasCoding.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/EliasCoding.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/EliminateDuplicate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/EliminateDuplicate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/EquivClasses.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/EquivClasses.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/EvenOddMergeLinkedList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/EvenOddMergeLinkedList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ExteriorBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ExteriorBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindElementAppearsOnce.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindElementAppearsOnce.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindKLargestBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindKLargestBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindKthElementInTwoSortedArrays.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindKthElementInTwoSortedArrays.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindMissingAndDuplicate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindMissingAndDuplicate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindMissingAndDuplicateXOR.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindMissingAndDuplicateXOR.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FindingMinMax.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FindingMinMax.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/FirstMissingPositive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/FirstMissingPositive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GCD.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GCD.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GassingUp.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GassingUp.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GaussianElimination.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GaussianElimination.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GaussianPrimes.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GaussianPrimes.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GenerateParentheses.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GenerateParentheses.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GeneratingABSqrt2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GeneratingABSqrt2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GeneratingABSqrt2Improved.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GeneratingABSqrt2Improved.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GrayCode.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GrayCode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/GrayCodeBacktrack.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/GrayCodeBacktrack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/HashDictionary.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/HashDictionary.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/HeightDetermination.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/HeightDetermination.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/HighestAffinityPairs.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/HighestAffinityPairs.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/HouseMajority.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/HouseMajority.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/HuffmanEncoding.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/HuffmanEncoding.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ImageCompression.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ImageCompression.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IndirectSort.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IndirectSort.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InorderTraversalNoStack.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InorderTraversalNoStack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InorderTraversalWithParent.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InorderTraversalWithParent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InsertInterval.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InsertInterval.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InsertionDeletionBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InsertionDeletionBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InsertionSortList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InsertionSortList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InterconvertingStringInteger.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InterconvertingStringInteger.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/InterleavingString.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/InterleavingString.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IntersectRectangle.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IntersectRectangle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IntersectSortedArrays.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IntersectSortedArrays.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IntersectSortedArrays1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IntersectSortedArrays1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IntersectSortedArrays2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IntersectSortedArrays2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IntersectSortedArrays3.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IntersectSortedArrays3.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IsBinaryTreeABST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IsBinaryTreeABST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IsBinaryTreeABSTBFS.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IsBinaryTreeABSTBFS.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/IsBinaryTreeABSTConstSpace.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/IsBinaryTreeABSTConstSpace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/JobAssignment.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/JobAssignment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/JumpGame.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/JumpGame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/JustifyText.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/JustifyText.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/KBalancedBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/KBalancedBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/KLargestElementsBinaryHeap.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/KLargestElementsBinaryHeap.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/KThNodeBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/KThNodeBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/KthElementStreaming.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/KthElementStreaming.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/KthLargestElementLargeN.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/KthLargestElementLargeN.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LRUCache.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LRUCache.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LargeArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LargeArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LargestRectangleUnderSkyline.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LargestRectangleUnderSkyline.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LazyInit.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LazyInit.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LevenshteinDistance.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LevenshteinDistance.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LineMostPoints.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LineMostPoints.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LinkedListPrototypeTemplate.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LinkedListPrototypeTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ListPivoting.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ListPivoting.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LoadBalancing.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LoadBalancing.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestContainedRange.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestContainedRange.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestIncreasingSubarray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestIncreasingSubarray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestNondecreasingSubsequenceN2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestNondecreasingSubsequenceN2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestNondecreasingSubsequenceNlogn.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestNondecreasingSubsequenceNlogn.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestSubarrayK.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestSubarrayK.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestSubarrayKImproved.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestSubarrayKImproved.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestSubarrayWithDistinctEntries.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestSubarrayWithDistinctEntries.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LongestValidParentheses.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LongestValidParentheses.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LookAndSay.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LookAndSay.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LowestCommonAncestor.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LowestCommonAncestor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LowestCommonAncestorHash.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LowestCommonAncestorHash.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/LowestCommonAncestorNoParent.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/LowestCommonAncestorNoParent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MatrixRotation.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MatrixRotation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MatrixRotationConstant.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MatrixRotationConstant.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MatrixRotationNaive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MatrixRotationNaive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MatrixSearch.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MatrixSearch.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxDifferenceKPairs.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxDifferenceKPairs.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxDifferenceUnlimitedPairs.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxDifferenceUnlimitedPairs.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxSubmatrixRectangle.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxSubmatrixRectangle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxSubmatrixRectangleBruteForce.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxSubmatrixRectangleBruteForce.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxSubmatrixSquare.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxSubmatrixSquare.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaxSumSubarray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaxSumSubarray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaximumSubarrayInCircularArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaximumSubarrayInCircularArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MaximumSubarrayInCircularArrayConstantSpace.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MaximumSubarrayInCircularArrayConstantSpace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MedianSortedCircularLinkedList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MedianSortedCircularLinkedList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MergeSortedArrays.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MergeSortedArrays.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MergeSortedLists.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MergeSortedLists.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MergeTwoBSTs.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MergeTwoBSTs.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MergeTwoSortedArraysInPlace.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MergeTwoSortedArraysInPlace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MinimumDistance3SortedArrays.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MinimumDistance3SortedArrays.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MinimumSubarrayDifference.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MinimumSubarrayDifference.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MinimumWaitingTime.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MinimumWaitingTime.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MissingElement.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MissingElement.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MultibetCardColorGame.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MultibetCardColorGame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/MultiplyShiftAdd.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/MultiplyShiftAdd.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NQueens.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NQueens.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NearestRepetition.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NearestRepetition.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NearestRestaurant.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NearestRestaurant.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NextPermutation.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NextPermutation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NonUniformRandomNumberGeneration.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NonUniformRandomNumberGeneration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NonconstructibleChange.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NonconstructibleChange.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NormalizedPathnames.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NormalizedPathnames.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NumberSteps.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NumberSteps.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NumberWays.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NumberWays.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/NumberWaysObstacles.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/NumberWaysObstacles.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OfflineMinimum.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OfflineMinimum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OfflineSampling.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OfflineSampling.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OnlineMedian.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OnlineMedian.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OnlineSampling.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OnlineSampling.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OrderStatistic.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OrderStatistic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OverlappingLists.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OverlappingLists.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/OverlappingListsNoCycle.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/OverlappingListsNoCycle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PaintingIterative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PaintingIterative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PaintingRecursive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PaintingRecursive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PalindromeLinkedList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PalindromeLinkedList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PalindromeNumber.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PalindromeNumber.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PalindromePartitioning.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PalindromePartitioning.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PalindromePartitioningMinCuts.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PalindromePartitioningMinCuts.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Parity.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Parity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Parity1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Parity1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Parity2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Parity2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Parity3.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Parity3.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Parity4.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Parity4.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PartitionArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PartitionArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PascalTriangle1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PascalTriangle1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PathSumBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PathSumBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PermutationArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PermutationArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PermutationArray1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PermutationArray1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PermutationArray2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PermutationArray2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Permutations.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Permutations.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PermutationsAlternative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PermutationsAlternative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PhoneMnemonic.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PhoneMnemonic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PickingUpCoins.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PickingUpCoins.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PickingUpCoinsDontLose.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PickingUpCoinsDontLose.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PlanningFishing.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PlanningFishing.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PlusOne.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PlusOne.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PointsCoveringIntervals.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PointsCoveringIntervals.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PointsCoveringIntervalsAlternative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PointsCoveringIntervalsAlternative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PopulatingNextRightPointers.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PopulatingNextRightPointers.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PostingListNode.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PostingListNode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PowerSet.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PowerSet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PowerSetAlternative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PowerSetAlternative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PowerXY.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PowerXY.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PrettyPrinting.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PrettyPrinting.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PrimeSieve.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PrimeSieve.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/PrimeSieveBasic.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/PrimeSieveBasic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/QueueFromStacks.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/QueueFromStacks.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/QueueUsingTwoIntegers.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/QueueUsingTwoIntegers.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RPN.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RPN.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RabinKarp.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RabinKarp.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RangeLookupBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RangeLookupBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Rearrange.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Rearrange.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RebuildBSTPreorder.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RebuildBSTPreorder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RebuildBSTPreorderBetter.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RebuildBSTPreorderBetter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReconstructAlmostBst.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReconstructAlmostBst.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReconstructPreorderWithNull.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReconstructPreorderWithNull.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RegularExpression.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RegularExpression.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RemoveDuplicatesFromSortedArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RemoveDuplicatesFromSortedArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RemoveDuplicatesSortedList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RemoveDuplicatesSortedList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RemoveElement.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RemoveElement.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RemoveKthLastList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RemoveKthLastList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RenderingCalendar.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RenderingCalendar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReplaceAndRemove.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReplaceAndRemove.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReservoirSampling.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReservoirSampling.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseBits.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseBits.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseInteger.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseInteger.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseLinkedListFromSToF.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseLinkedListFromSToF.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseLinkedListIterative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseLinkedListIterative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseLinkedListRecursive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseLinkedListRecursive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseListInKGroup.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseListInKGroup.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ReverseWords.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ReverseWords.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RoadNetwork.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RoadNetwork.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RomanToInteger.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RomanToInteger.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RookAttack.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RookAttack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RotateArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RotateArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RotateArrayPermutation.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RotateArrayPermutation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RotateArrayTest.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RotateArrayTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/RunLengthCompression.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/RunLengthCompression.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ScoreCombination.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ScoreCombination.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ScorePermutation.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ScorePermutation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchAPairSortedArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchAPairSortedArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchBSTFirstLargerK.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchBSTFirstLargerK.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchBSTForFirstOccurrenceIterative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchBSTForFirstOccurrenceIterative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchBSTForFirstOccurrenceRecursive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchBSTForFirstOccurrenceRecursive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchFrequentItems.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchFrequentItems.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchMajority.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchMajority.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchMaze.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchMaze.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchMinFirstBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchMinFirstBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchPostingsListIterative.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchPostingsListIterative.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SearchPostingsListRecursive.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SearchPostingsListRecursive.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ShortestPathFewestEdges.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ShortestPathFewestEdges.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ShortestUniquePrefix.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ShortestUniquePrefix.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SmallestSubarrayCoveringSet.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SmallestSubarrayCoveringSet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SnakeString.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SnakeString.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SortKIncreasingDecreasingArray.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SortKIncreasingDecreasingArray.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SortList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SortList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SortedListToBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SortedListToBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SpiralMatrix.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SpiralMatrix.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SpiralMatrixClockwise.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SpiralMatrixClockwise.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SpreadsheetEncoding.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SpreadsheetEncoding.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SquareRoot.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SquareRoot.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SquareRootInt.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SquareRootInt.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StackQueueUsingHeap.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StackQueueUsingHeap.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StackSorting.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StackSorting.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StackWithMax.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StackWithMax.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StackWithMaxImproved.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StackWithMaxImproved.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/StringInMatrix.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/StringInMatrix.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SubseqCover.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SubseqCover.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SubstringWithConcatenationOfAllWords.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SubstringWithConcatenationOfAllWords.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Successor.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Successor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SudokuCheck.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SudokuCheck.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SudokuSolve.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SudokuSolve.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SumRootToLeafBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SumRootToLeafBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SurroundedRegions.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SurroundedRegions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SwapBits.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SwapBits.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/SymmetricBinaryTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/SymmetricBinaryTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TODO.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TODO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Tail.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Tail.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TailCoin.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TailCoin.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TaskAssignment.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TaskAssignment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TeamPhoto1.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TeamPhoto1.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TeamPhoto2.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TeamPhoto2.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TheoryOfEquality.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TheoryOfEquality.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ThreeJugs.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ThreeJugs.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TiesElection.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TiesElection.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TournamentTree.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TournamentTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TowerHanoi.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TowerHanoi.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TransformStringToOther.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TransformStringToOther.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TransitiveClosure.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TransitiveClosure.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TrappingRainWater.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TrappingRainWater.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TreeDiameter.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TreeDiameter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/Triangle.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/Triangle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TwoExists.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TwoExists.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/TwoForAll.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/TwoForAll.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/UniformRandomNumberGeneration.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/UniformRandomNumberGeneration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/UnionIntervals.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/UnionIntervals.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/UniqueBinaryTreesAll.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/UniqueBinaryTreesAll.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/UpdateBST.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/UpdateBST.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ValidIPAddress.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ValidIPAddress.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ValidPalindrome.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ValidPalindrome.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ValidParentheses.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ValidParentheses.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ViewFromAbove.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ViewFromAbove.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ViewSunset.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ViewSunset.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/WiringCircuitBoard.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/WiringCircuitBoard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/WordBreaking.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/WordBreaking.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ZeroOneKnapsack.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ZeroOneKnapsack.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ZeroSumSubset.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ZeroSumSubset.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/ZippingList.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/ZippingList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/java/com/epi/utils/Utils.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/main/com/epi/utils/Utils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/test/java/com/epi/TestAll.java" afterPath="$PROJECT_DIR$/epibook.github.io/solutions/java/src/test/com/epi/TestAll.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solutions/solutions.iml" afterPath="$PROJECT_DIR$/solutions/solutions.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/MultiplyShiftAdd.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity$Parity1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity$Parity2.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity$Parity3.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity$Parity4.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/Parity.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/PowerXY.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/SwapBits.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/UnifRandomNumberGenerator.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/helper/ReferenceToInstanceMethodExample$Person.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/helper/ReferenceToInstanceMethodExample.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/helper/TestInterface.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/helper/TimeTests.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/classes/epi/solutions/isPalindrome.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/test-classes/epi/solutions/MyTests$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/test-classes/epi/solutions/MyTests.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/my_solutions.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/DutchFlagPartition.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/MultiplyShiftAdd.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/Parity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/PowerXY.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/SwapBits.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/UnifRandomNumberGenerator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/helper/ReferenceToInstanceMethodExample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/helper/TestInterface.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/helper/TimeTests.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/isPalindrome.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/src/test/java/epi/solutions/MyTests.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_solutions/target/MANIFEST.MF" />
     </list>
     <list id="2b73bc78-ddc3-4b9a-b140-59ea5911188c" name="New changelist" comment="" />
     <ignored path="ElementsProgrammingInterviews.iws" />
@@ -402,7 +80,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MyTests.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="MyTests.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/my_solutions/src/test/java/epi/solutions/MyTests.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-740">
@@ -414,7 +92,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="isPalindrome.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="isPalindrome.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/isPalindrome.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="352">
@@ -1549,7 +1227,7 @@
       <workItem from="1460337622206" duration="14000" />
       <workItem from="1460506265889" duration="1503000" />
       <workItem from="1463090715975" duration="11649000" />
-      <workItem from="1463102924685" duration="19444000" />
+      <workItem from="1463102924685" duration="19666000" />
     </task>
     <servers />
   </component>
@@ -1586,7 +1264,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33289000" />
+    <option name="totallyTimeSpent" value="33511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2053,16 +1731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_solutions/src/test/java/epi/solutions/MyTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-740">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my_solutions/src/main/java/epi/solutions/UnifRandomNumberGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -2106,6 +1774,16 @@
         <state relative-caret-position="399">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_solutions/src/test/java/epi/solutions/MyTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-740">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
