@@ -17,8 +17,8 @@ import java.util.function.Supplier;
  */
 public class DutchFlagPartition {
 
-  private static final int NUM_TESTS = (int) Math.pow(10, 7);
-  private static final int FLAG_LENGTH = 10;
+  private static final int NUM_TESTS = (int) Math.pow(10, 6);
+  private static final int FLAG_LENGTH = 20;
 
   private static enum Color { RED, WHITE, BLUE }
   private static enum MyBoolean {FALSE, TRUE};
@@ -60,9 +60,15 @@ public class DutchFlagPartition {
     return result;
   }
 
-  private static <T extends Enum<T>> void unitTest(T pivot, List<T> A, PartitionFunction<T> partitionMethod) {
+  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, List<T> A, PartitionFunction<T> partitionMethod) {
     List<T> Adup = new ArrayList<>(A);
     partitionMethod.apply(pivot, A);
+    assert(check(pivot, A, Adup));
+  }
+
+  private static <T extends Enum<T>> void unitTestBiConsumer(T pivot, List<T> A, BiConsumer<T, List<T>> partitionMethod) {
+    List<T> Adup = new ArrayList<>(A);
+    partitionMethod.accept(pivot, A);
     assert(check(pivot, A, Adup));
   }
 
@@ -87,27 +93,22 @@ public class DutchFlagPartition {
       for (int times = 0; times < NUM_TESTS1; ++times) {
         List<Color> A = randFlagArray(() -> Color.values()[rgen.nextInt(3)], FLAG_LENGTH);
         // PartitionFunction<Color> partitionColors = DutchFlagPartition::partition;
-        unitTest(Color.WHITE, A, DutchFlagPartition::partition);
+        // unitTestFuncInterface(Color.WHITE, A, DutchFlagPartition::partition);
+        unitTestBiConsumer(Color.WHITE, A, DutchFlagPartition::partition);
       }
       }, NUM_TESTS, "DutchFlagPartition");
     TimeTests.test((NUM_TESTS1) -> {
       for (int times = 0; times < NUM_TESTS1; ++times) {
         List<MyBoolean> A = randFlagArray(() -> MyBoolean.values()[rgen.nextInt(2)], FLAG_LENGTH);
         // PartitionFunction<MyBoolean> partitionBooleans = DutchFlagPartition::partitionBooleans;
-        unitTest(MyBoolean.TRUE, A, DutchFlagPartition::partitionBooleans);
+        // unitTestFuncInterface(MyBoolean.TRUE, A, DutchFlagPartition::partitionBooleans);
+        unitTestBiConsumer(MyBoolean.TRUE, A, DutchFlagPartition::partitionBooleans);
       }
     }, NUM_TESTS, "DutchFlagPartition variant (inplace stable sort of Booleans)");
   }
 
-  @FunctionalInterface
-  private interface PartitionFunction<T> {
-    void apply(T pivot, List<T> A);
-  }
-
-//  private class PartFunc<T> implements BiConsumer<T, List<T>> {
-//    @Override
-//    public void accept(T t, List<T> l) {
-//
-//    }
+//  @FunctionalInterface
+//  private interface PartitionFunction<T> {
+//    void apply(T pivot, List<T> A);
 //  }
 }
