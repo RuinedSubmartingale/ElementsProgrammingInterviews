@@ -1,3 +1,7 @@
+# http://davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
+# https://gist.github.com/kenlimmj/11064956
+
 .gitattributes !filter !diff
 solutions/** filter=git-crypt diff=git-crypt
 epibook.github.io/** filter=git-crypt diff=git-crypt
+# my_solutions/** filter=git-crypt diff=git-crypt
