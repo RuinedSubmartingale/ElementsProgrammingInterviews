@@ -7,9 +7,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+//import java.util.function.Consumer;
+//import java.util.function.Function;
 import java.util.function.Supplier;
+//import static com.google.common.base.Preconditions.*;
 
 /**
  * Created by psingh on 5/13/16.
@@ -60,11 +61,11 @@ public class DutchFlagPartition {
     return result;
   }
 
-  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, List<T> A, PartitionFunction<T> partitionMethod) {
-    List<T> Adup = new ArrayList<>(A);
-    partitionMethod.apply(pivot, A);
-    assert(check(pivot, A, Adup));
-  }
+//  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, List<T> A, PartitionFunction<T> partitionMethod) {
+//    List<T> Adup = new ArrayList<>(A);
+//    partitionMethod.apply(pivot, A);
+//    assert(check(pivot, A, Adup));
+//  }
 
   private static <T extends Enum<T>> void unitTestBiConsumer(T pivot, List<T> A, BiConsumer<T, List<T>> partitionMethod) {
     List<T> Adup = new ArrayList<>(A);
