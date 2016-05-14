@@ -1,7 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Joiner;
-import epi.solutions.helper.CloneableList;
+import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInput;
 import epi.solutions.helper.TimeTests;
 
@@ -25,7 +25,7 @@ public class PlusOne {
   private static final int ARR_LENGTH = (int) Math.pow(10, 2);
 
   @SuppressWarnings("Duplicates")
-  private static List<Integer> plusOne(List<Integer> A) {
+  private static ArrayList<Integer> plusOne(ArrayList<Integer> A) {
     int n = A.size() - 1;
     A.set(n, A.get(n) + 1);
     for (int i = n; i > 0 && A.get(i) == 10; --i) {
@@ -40,11 +40,10 @@ public class PlusOne {
     return A;
   }
 
-  private static List<Integer> randArray(int len) {
-    if (len == 0)
-      return Arrays.asList(0);
+  private static ArrayList<Integer> randArray(int len) {
+    ArrayList<Integer> A = new ArrayList<>();
+    if (len == 0) return A;
     Random rgen = new Random();
-    List<Integer> A = new ArrayList<>();
     A.add(rgen.nextInt(9) + 1);
     --len;
     while (len != 0) {
@@ -55,20 +54,20 @@ public class PlusOne {
   }
 
   public static void main(String[] args) {
-    Callable<CloneableTestInput> formInput = () -> new CloneableList(randArray(ARR_LENGTH));
-    Function<CloneableTestInput, List<Integer>> runAlgorithm = (input) -> plusOne((List<Integer>) input);
-    Function<CloneableTestInput, List<Integer>> getKnownOutput = (orig_input) -> {
-      BigInteger B = new BigInteger(Joiner.on("").join((List<Integer>) orig_input));
+    Callable<CloneableTestInput> formInput = () -> new CloneableArrayList(randArray(ARR_LENGTH));
+    Function<CloneableTestInput, ArrayList<Integer>> runAlgorithm = (input) -> plusOne((ArrayList<Integer>) input);
+    Function<CloneableTestInput, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
+      BigInteger B = new BigInteger(Joiner.on("").join((ArrayList<Integer>) orig_input));
       B = B.add(BigInteger.valueOf(1));
-      List<Integer> expectedOutput = new ArrayList<>();
+      ArrayList<Integer> expectedOutput = new ArrayList<>();
       while (B.compareTo(BigInteger.valueOf(0)) > 0) {
         expectedOutput.add(0, B.mod(BigInteger.valueOf(10)).intValue());
         B = B.divide(BigInteger.valueOf(10));
       }
       return expectedOutput;
     };
-    BiFunction<List<Integer>, List<Integer>, Boolean> checkResults = List::equals;
-    TimeTests<List<Integer>> algTimer = new TimeTests<>();
+    BiFunction<ArrayList<Integer>, ArrayList<Integer>, Boolean> checkResults = List::equals;
+    TimeTests<ArrayList<Integer>> algTimer = new TimeTests<>();
     algTimer.test(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "PlusOne");
   }
 }

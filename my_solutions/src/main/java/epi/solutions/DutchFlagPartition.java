@@ -1,19 +1,17 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableList;
+import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInput;
 import epi.solutions.helper.TimeTests;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import static com.google.common.base.Preconditions.*;
 
 /**
  * Created by psingh on 5/13/16.
@@ -27,7 +25,7 @@ public class DutchFlagPartition {
   private static enum Color {RED, WHITE, BLUE}
   private static enum MyBoolean {FALSE, TRUE}
 
-  private static void partition(Color pivot, List<Color> A) {
+  private static void partition(Color pivot, ArrayList<Color> A) {
     /**
      * Keep the following invariants during partitioning:
      * bottom group: A.subList(0, smaller).
@@ -46,7 +44,7 @@ public class DutchFlagPartition {
     }
   }
 
-  private static void partitionBooleans(MyBoolean pivot, List<MyBoolean> A) {
+  private static void partitionBooleans(MyBoolean pivot, ArrayList<MyBoolean> A) {
     int false_idx = 0, true_idx = A.size();
     while (false_idx < true_idx) {
       if (A.get(false_idx).ordinal() < pivot.ordinal())
@@ -56,8 +54,8 @@ public class DutchFlagPartition {
     }
   }
 
-  private static <T> List<T> randFlagArray(Supplier<T> randSupplier, int len) {
-    List<T> result = new ArrayList<>(len);
+  private static <T> ArrayList<T> randFlagArray(Supplier<T> randSupplier, int len) {
+    ArrayList<T> result = new ArrayList<>(len);
     for (int i = 0; i < len; ++i) {
       result.add(randSupplier.get());
     }
@@ -66,10 +64,10 @@ public class DutchFlagPartition {
 
 //  @FunctionalInterface
 //  private interface PartitionFunction<T> {
-//    void apply(T pivot, List<T> A);
+//    void apply(T pivot, ArrayList<T> A);
 //  }
-//  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, List<T> A, PartitionFunction<T> partitionMethod) {
-//    List<T> Adup = new ArrayList<>(A);
+//  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, ArrayList<T> A, PartitionFunction<T> partitionMethod) {
+//    ArrayList<T> Adup = new ArrayArrayList<>(A);
 //    partitionMethod.apply(pivot, A);
 //    assert(check(pivot, A, Adup));
 //  }
@@ -79,24 +77,24 @@ public class DutchFlagPartition {
     runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans);
   }
 
-  public static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, List<T>> partitionMethod) {
+  public static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod) {
     Callable<CloneableTestInput> formInput = () -> {
       Random rgen = new Random();
-      return new CloneableList(randFlagArray(() ->
+      return new CloneableArrayList(randFlagArray(() ->
               enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH));
     };
-    Function<CloneableTestInput, List<T>> runAlgorithm = (input) -> {
-      partitionMethod.accept(pivot, (List<T>) input);
-//      System.out.println(String.format("%-20s %s", "Observed output: ", (List<Color>) input));
-      return (List<T>) input;
+    Function<CloneableTestInput, ArrayList<T>> runAlgorithm = (input) -> {
+      partitionMethod.accept(pivot, (ArrayList<T>) input);
+//      System.out.println(String.format("%-20s %s", "Observed output: ", (ArrayList<Color>) input));
+      return (ArrayList<T>) input;
     };
-    Function<CloneableTestInput, List<T>> getKnownOutput = (orig_input) -> {
-      ((List<T>) orig_input).sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
-//      System.out.println(String.format("%-20s %s", "Expected output: ", (List<Color>) orig_input));
-      return (List<T>) orig_input;
+    Function<CloneableTestInput, ArrayList<T>> getKnownOutput = (orig_input) -> {
+      ((ArrayList<T>) orig_input).sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
+//      System.out.println(String.format("%-20s %s", "Expected output: ", (ArrayList<Color>) orig_input));
+      return (ArrayList<T>) orig_input;
     };
-    BiFunction<List<T>, List<T>, Boolean> checkResults = List::equals;
-    TimeTests<List<T>> algTimer = new TimeTests<>();
+    BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
+    TimeTests<ArrayList<T>> algTimer = new TimeTests<>();
     algTimer.test(formInput, runAlgorithm, getKnownOutput, checkResults
             , NUM_TESTS, "DutchFlagPartition (colors - inplace)");
   }
