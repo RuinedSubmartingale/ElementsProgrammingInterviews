@@ -1,9 +1,11 @@
 package epi.solutions.helper;
 
+import java.util.function.BiConsumer;
+
 /**
  * Created by psingh on 5/13/16.
  */
 @FunctionalInterface
-public interface TestInterface {
-  void test(final int NUM_TESTS);
+public interface TestInterface<T> {
+  void test();
 }
