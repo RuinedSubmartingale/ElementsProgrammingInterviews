@@ -2,6 +2,7 @@ package epi.solutions;
 
 import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInput;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.ArrayList;
@@ -73,29 +74,32 @@ public class DutchFlagPartition {
 //  }
 
   public static void main(String[] args) {
-    runTest(Color.values(), Color.WHITE, DutchFlagPartition::partition);
-    runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans);
+    runTest(Color.values(), Color.WHITE, DutchFlagPartition::partition, "DutchFlagPartition (colors - inplace)");
+    runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans, "DutchFlagPartition (Booleans - inplace and stable)");
   }
 
-  public static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod) {
-    Callable<CloneableTestInput> formInput = () -> {
+  public static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) {
+    Callable<CloneableTestInputsMap> formInput = () -> {
+      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
-      return new CloneableArrayList(randFlagArray(() ->
-              enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH));
+      CloneableArrayList A = new CloneableArrayList(
+              randFlagArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH)
+      );
+      inputs.put("A", A);
+      return inputs;
     };
-    Function<CloneableTestInput, ArrayList<T>> runAlgorithm = (input) -> {
-      partitionMethod.accept(pivot, (ArrayList<T>) input);
+    Function<CloneableTestInputsMap, ArrayList<T>> runAlgorithm = (input) -> {
+      partitionMethod.accept(pivot, (ArrayList<T>) input.get("A"));
 //      System.out.println(String.format("%-20s %s", "Observed output: ", (ArrayList<Color>) input));
-      return (ArrayList<T>) input;
+      return (ArrayList<T>) input.get("A");
     };
-    Function<CloneableTestInput, ArrayList<T>> getKnownOutput = (orig_input) -> {
-      ((ArrayList<T>) orig_input).sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
+    Function<CloneableTestInputsMap, ArrayList<T>> getKnownOutput = (orig_input) -> {
+      ((ArrayList<T>) orig_input.get("A")).sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
 //      System.out.println(String.format("%-20s %s", "Expected output: ", (ArrayList<Color>) orig_input));
-      return (ArrayList<T>) orig_input;
+      return (ArrayList<T>) orig_input.get("A");
     };
     BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
-    TimeTests<ArrayList<T>> algTimer = new TimeTests<>();
-    algTimer.test(formInput, runAlgorithm, getKnownOutput, checkResults
-            , NUM_TESTS, "DutchFlagPartition (colors - inplace)");
+    TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, testDesc);
+    algTimer.testAndCheck();
   }
 }

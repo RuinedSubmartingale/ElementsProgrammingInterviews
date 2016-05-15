@@ -1,8 +1,14 @@
 package epi.solutions;
 
+import epi.solutions.helper.CloneableDouble;
+import epi.solutions.helper.CloneableInteger;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -28,21 +34,28 @@ public class PowerXY {
   }
 
   public static void main(String[] args) {
-    TimeTests.test(PowerXY::runTests, NUM_TESTS, "PowerXY");
+    Callable<CloneableTestInputsMap> formInput = () -> {
+      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      Random rgen = new Random();
+      inputs.put("x", new CloneableDouble(rgen.nextDouble() * 10));
+      inputs.put("y", new CloneableInteger(rgen.nextInt(257) - 128));
+      return inputs;
+    };
+    Function<CloneableTestInputsMap, Double> runAlgorithm = (inputs) ->
+            power(((CloneableDouble) inputs.get("x")).data
+                    , ((CloneableInteger) inputs.get("y")).data);
+    Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) ->
+            Math.pow(((CloneableDouble) inputs.get("x")).data
+                    , ((CloneableInteger) inputs.get("y")).data);
+    BiFunction<Double, Double, Boolean> checkResults = (observed, expected) -> {
+      final Double diff = (observed - expected) / expected;
+      return ((diff < -1.0E-9) ? 1 : (diff > 1.0e-9) ? 1 : 0) == 0;
+    };
+
+    TimeTests<Double> algTimer =
+            new TimeTests<>(formInput, runAlgorithm, getKnownOutput
+                            , checkResults, NUM_TESTS, "PowerXY");
+    algTimer.testAndCheck();
   }
 
-  private static void runTests(final int NUM_TESTS) {
-    Random rgen = new Random();
-    double x; int y;
-    for (int times = 0; times < NUM_TESTS; ++times) {
-      x = rgen.nextDouble() * 10;
-      y = rgen.nextInt(257) - 128;
-      final Double answer = Math.pow(x,y);
-      Predicate<Double> approxCorrect = (Double result) -> {
-        final Double diff = (result - answer) / answer;
-        return ((diff < -1.0E-9) ? 1 : (diff > 1.0e-9) ? 1 : 0) == 0;
-      };
-      assert(approxCorrect.test(power(x,y)));
-    }
-  }
 }

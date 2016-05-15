@@ -3,6 +3,7 @@ package epi.solutions;
 import com.google.common.base.Joiner;
 import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInput;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.math.BigInteger;
@@ -54,10 +55,15 @@ public class PlusOne {
   }
 
   public static void main(String[] args) {
-    Callable<CloneableTestInput> formInput = () -> new CloneableArrayList(randArray(ARR_LENGTH));
-    Function<CloneableTestInput, ArrayList<Integer>> runAlgorithm = (input) -> plusOne((ArrayList<Integer>) input);
-    Function<CloneableTestInput, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
-      BigInteger B = new BigInteger(Joiner.on("").join((ArrayList<Integer>) orig_input));
+    Callable<CloneableTestInputsMap> formInput = () -> {
+      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      inputs.put("A", new CloneableArrayList(randArray(ARR_LENGTH)));
+      return inputs;
+    };
+    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlgorithm =
+            (input) -> plusOne((ArrayList<Integer>) input.get("A"));
+    Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
+      BigInteger B = new BigInteger(Joiner.on("").join((ArrayList<Integer>) orig_input.get("A")));
       B = B.add(BigInteger.valueOf(1));
       ArrayList<Integer> expectedOutput = new ArrayList<>();
       while (B.compareTo(BigInteger.valueOf(0)) > 0) {
@@ -67,7 +73,8 @@ public class PlusOne {
       return expectedOutput;
     };
     BiFunction<ArrayList<Integer>, ArrayList<Integer>, Boolean> checkResults = List::equals;
-    TimeTests<ArrayList<Integer>> algTimer = new TimeTests<>();
-    algTimer.test(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "PlusOne");
+    TimeTests<ArrayList<Integer>> algTimer =
+            new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "PlusOne");
+    algTimer.testAndCheck();
   }
 }

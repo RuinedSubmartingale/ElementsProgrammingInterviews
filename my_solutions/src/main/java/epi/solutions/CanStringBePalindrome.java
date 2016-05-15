@@ -1,7 +1,7 @@
 package epi.solutions;
 
 import epi.solutions.helper.CloneableString;
-import epi.solutions.helper.CloneableTestInput;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Arrays;
@@ -68,14 +68,18 @@ public class CanStringBePalindrome {
   }
 
   public static void main(String[] args) {
-    Callable<CloneableTestInput> formInput = () -> new CloneableString(randString(INPUT_STRING_LENGTH));
-    Function<CloneableTestInput, Boolean > runAlgorithm =
-            (input) -> canFormPalindromeHash(((CloneableString)input).data);
-    Function<CloneableTestInput, Boolean> getKnownOutput =
-            (orig_input) -> canFormPalindromeSorting(((CloneableString)orig_input).data);
+    Callable<CloneableTestInputsMap> formInput = () -> {
+      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      inputs.put("s", new CloneableString(randString(INPUT_STRING_LENGTH)));
+      return inputs;
+    };
+    Function<CloneableTestInputsMap, Boolean > runAlgorithm =
+            (inputs) -> canFormPalindromeHash(((CloneableString) inputs.get("s")).data);
+    Function<CloneableTestInputsMap, Boolean> getKnownOutput =
+            (orig_inputs) -> canFormPalindromeSorting(((CloneableString) orig_inputs.get("s")).data);
     BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
-    TimeTests<Boolean> algTimer = new TimeTests<>();
-    algTimer.test(formInput, runAlgorithm, getKnownOutput, checkResults
-            , NUM_TESTS, "CanStringBePalindrome");
+    TimeTests<Boolean> algTimer =
+            new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "CanStringBePalindrome");
+    algTimer.testAndCheck();
   }
 }
