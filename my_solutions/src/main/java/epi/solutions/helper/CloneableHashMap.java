@@ -10,5 +10,5 @@ public class CloneableHashMap extends HashMap implements CloneableTestInput<Clon
   public CloneableHashMap(HashMap input) {this.putAll(input);}
 
   @Override
-  public CloneableHashMap clone() { return new CloneableHashMap(this); }
+  public CloneableHashMap cloneInput() { return new CloneableHashMap(this); }
 }

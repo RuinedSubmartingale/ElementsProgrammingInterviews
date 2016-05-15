@@ -1,40 +1,76 @@
 package epi.solutions.helper;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-/**
- * Created by psingh on 5/12/16.
- */
+public class TimeTests<outputType> implements TimeTestsInterface {
+  private Callable<CloneableTestInputsMap> _formInput;
+  private Function<CloneableTestInputsMap, outputType> _runAlgorithm;
+  private Function<CloneableTestInputsMap, outputType> _getKnownOutput;
+  private BiFunction<outputType, outputType, Boolean> _checkResults;
+  private int _numTests;
+  private String _testDescription;
 
-public class TimeTests<outputType> implements TimeTestsInterface<outputType> {
-  public void test(Callable<CloneableTestInput> formInput
-          , Function<CloneableTestInput, outputType> runAlgorithm
-          , Function<CloneableTestInput, outputType> getKnownOutput
-          , BiFunction<outputType, outputType, Boolean> checkResults
-          , final int NUM_TESTS, String testName) {
+
+  public TimeTests(Callable<CloneableTestInputsMap> formInput
+                  , Function<CloneableTestInputsMap, outputType> runAlgorithm
+                  , Function<CloneableTestInputsMap, outputType> getKnownOutput
+                  , BiFunction<outputType, outputType, Boolean> checkResults
+                  , final int NUM_TESTS, String testName) {
+    _formInput = formInput;
+    _runAlgorithm = runAlgorithm;
+    _getKnownOutput = getKnownOutput;
+    _checkResults = checkResults;
+    _numTests = NUM_TESTS;
+    _testDescription = testName;
+  }
+
+  public void testAndCheck() {
     try {
       DecimalFormat df = new DecimalFormat("#.####");
       long total = 0, start;
-      for (int i=0; i < NUM_TESTS; ++i) {
-        CloneableTestInput input = formInput.call();
-        CloneableTestInput orig_input = input.clone();
+      for (int i=0; i < _numTests; ++i) {
+        CloneableTestInputsMap input = _formInput.call();
+        CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
+        input.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
         start = System.nanoTime();
-        outputType algorithmResult = runAlgorithm.apply(input);
+        outputType algorithmResult = _runAlgorithm.apply(input);
         total += System.nanoTime() - start;
-        outputType expectedResult = getKnownOutput.apply(orig_input);
-        assert(checkResults.apply(algorithmResult, expectedResult));
+        outputType expectedResult = _getKnownOutput.apply(orig_input);
+        assert(_checkResults.apply(algorithmResult, expectedResult));
       }
-      System.out.println("DEBUG: " + testName + " took "
-              + df.format(total * 1.0 / NUM_TESTS)
-              + " nanoseconds on average for " + NUM_TESTS + " tests");
+      System.out.println(String.format("%s %50s %s", "DEBUG: ", _testDescription, " took "
+              + df.format(total * 1.0 / _numTests)
+              + " nanoseconds on average for " + _numTests + " tests"));
     } catch (Exception|AssertionError e) {
       System.out.println(e.toString() + " - " + e.getMessage() + " - ");
       e.printStackTrace();
     }
+  }
 
+  public void test() {
+//    try {
+//      DecimalFormat df = new DecimalFormat("#.####");
+//      long total = 0, start;
+//      for (int i=0; i < _numTests; ++i) {
+//        CloneableTestInputsMap input = _formInput.call();
+//        CloneableTestInputsMap orig_input = (CloneableTestInputsMap) input.cloneInput();
+//        start = System.nanoTime();
+//        outputType algorithmResult = _runAlgorithm.apply(input);
+//        total += System.nanoTime() - start;
+//        assert(_checkResults.apply(algorithmResult, algorithmResult));
+//      }
+//      System.out.println(String.format("%s %50s %s", "DEBUG: ", _testDescription, " took "
+//              + df.format(total * 1.0 / _numTests)
+//              + " nanoseconds on average for " + _numTests + " tests"));
+//    } catch (Exception|AssertionError e) {
+//      System.out.println(e.toString() + " - " + e.getMessage() + " - ");
+//      e.printStackTrace();
+//    }
   }
 
   public void main(String[] args) {

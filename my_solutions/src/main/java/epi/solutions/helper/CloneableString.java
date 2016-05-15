@@ -8,5 +8,5 @@ public class CloneableString implements CloneableTestInput<CloneableString> {
   public CloneableString() {}
   public CloneableString(String input) { data = input; }
 
-  public CloneableString clone() { return new CloneableString(String.valueOf(data)); }
+  public CloneableString cloneInput() { return new CloneableString(String.valueOf(data)); }
 }

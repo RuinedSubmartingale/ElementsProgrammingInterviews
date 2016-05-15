@@ -1,7 +1,6 @@
 package epi.solutions.helper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CloneableArrayList extends ArrayList implements CloneableTestInput<CloneableArrayList> {
 
@@ -11,14 +10,14 @@ public class CloneableArrayList extends ArrayList implements CloneableTestInput<
   }
 
   @Override
-  public CloneableArrayList clone() {
+  public CloneableArrayList cloneInput() {
     return new CloneableArrayList(this);
   }
 
   public static void main(String[] args) {
     CloneableArrayList testInput = new CloneableArrayList();
     testInput.add(1);
-    CloneableArrayList clonedInput = testInput.clone();
+    CloneableArrayList clonedInput = testInput.cloneInput();
     clonedInput.add(2);
     System.out.println("testInput: " + testInput);
     System.out.println("clonedInput: " + clonedInput);
