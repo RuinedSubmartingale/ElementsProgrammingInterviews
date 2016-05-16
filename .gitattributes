@@ -3,5 +3,5 @@
 
 .gitattributes !filter !diff
 solutions/** filter=git-crypt diff=git-crypt
-epibook.github.io/** filter=git-crypt diff=git-crypt
+epibook-solutions/** filter=git-crypt diff=git-crypt
 # my_solutions/** filter=git-crypt diff=git-crypt

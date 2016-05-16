@@ -1,0 +1,3 @@
+[submodule "epibook-git-repo"]
+	path = epibook.github.io
+	url = https://github.com/epibook/epibook.github.io
