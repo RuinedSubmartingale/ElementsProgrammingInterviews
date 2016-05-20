@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/13/16.
@@ -51,11 +52,11 @@ public class PowerXY {
       final Double diff = (observed - expected) / expected;
       return ((diff < -1.0E-9) ? 1 : (diff > 1.0e-9) ? 1 : 0) == 0;
     };
+    Supplier<Double> emptyOutput = () -> 0.0;
 
     TimeTests<Double> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, getKnownOutput
-                            , checkResults, NUM_TESTS, "PowerXY");
-    algTimer.testAndCheck();
+            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PowerXY");
+    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 
 }

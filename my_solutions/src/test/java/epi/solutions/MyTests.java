@@ -101,4 +101,11 @@ public class MyTests {
 
   @Test // 6.1
   public void DutchFlagPartition() { DutchFlagPartition.main(ARGS); }
+
+  @Test // 6.2
+  public void PlusOne() { PlusOne.main(ARGS); }
+
+  @Test // 13.2
+  public void CanStringBePalindrome() { CanStringBePalindrome.main(ARGS); }
+
 }

@@ -1,16 +1,12 @@
 package epi.solutions;
 
-import epi.solutions.helper.Checker1;
 import epi.solutions.helper.CloneableInteger;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
-import java.util.function.BooleanSupplier;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 /**
  * Created by psingh on 5/12/16.
@@ -38,6 +34,8 @@ public class UnifRandomNumberGenerator {
       int a, b;
       a = Integer.parseInt(args[0]);
       b = Integer.parseInt(args[1]);
+      int x = UnifRandom(a, b);
+      assert(a <= x && x <= b);
     } else {
       Callable<CloneableTestInputsMap> formInput = () -> {
         Random rgen = new Random();
@@ -50,24 +48,12 @@ public class UnifRandomNumberGenerator {
       };
       Function<CloneableTestInputsMap, Integer> runAlg = (inputs) ->
         UnifRandom( ((CloneableInteger) inputs.get("a")).data, ((CloneableInteger) inputs.get("b")).data);
-      Function<CloneableTestInputsMap, Integer> doNothing = (orig_input) -> 0;
-      BiFunction<Integer, Integer, Boolean> fakeCheck = Integer::equals;
       BiFunction<CloneableTestInputsMap, Integer, Boolean> checkResults = (orig_input, observed) ->
               ((CloneableInteger) orig_input.get("a")).data <= observed && observed <= ((CloneableInteger) orig_input.get("b")).data;
-      TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, doNothing, fakeCheck, NUM_TESTS, "UnifRandomNumberGenerator");
-      algTimer.testAndCheck(checkResults);
+      Supplier<Integer> emptyOutput = () -> 0;
+      TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "UnifRandomNumberGenerator");
+      algTimer.testAndCheck(NUM_TESTS, checkResults);
     }
 
-  }
-
-  private static void runTests(final int NUM_TESTS) {
-    int a, b;
-    Random rgen = new Random();
-    for (int times = 0; times < NUM_TESTS; ++times) {
-      a = rgen.nextInt(100);
-      b = rgen.nextInt(100) + a + 1;
-      int x = UnifRandom(a,b);
-      assert (x >= a && x <= b);
-    }
   }
 }

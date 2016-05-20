@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/12/16.
@@ -63,9 +64,10 @@ public class MultiplyShiftAdd {
               ((long) ((CloneableInteger) orig_inputs.get("x")).data) *
               ((CloneableInteger) orig_inputs.get("y")).data;
       BiFunction<Long, Long, Boolean> checkResults = Long::equals;
+      Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer =
-              new TimeTests<>(formInput, runAlg, getKnownOutput, checkResults, NUM_TESTS, "MultiplyShiftAdd");
-      algTimer.testAndCheck();
+              new TimeTests<>(formInput, runAlg, emptyOutput, "MultiplyShiftAdd");
+      algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
     }
   }
 }

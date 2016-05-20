@@ -9,13 +9,14 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /*
 * Problem 5.1 from EPI
 */
 public abstract class Parity {
 
-  private static final int NUM_TESTS = (int) Math.pow(10, 8);
+  private static final int NUM_TESTS = (int) Math.pow(10, 6);
   private static final int WORD_SIZE = 16;
   protected static short[] preComputedParity;
   protected static long[] testValues;
@@ -119,21 +120,23 @@ public abstract class Parity {
         inputs.put("x", new CloneableLong(rgen.nextLong()));
         return inputs;
       };
+      Function<CloneableTestInputsMap, Short> runParity1 = (inputs) ->
+              p1.compute(((CloneableLong) inputs.get("x")).data);
       Function<CloneableTestInputsMap, Short> runParity2 = (inputs) ->
               p2.compute(((CloneableLong) inputs.get("x")).data);
       Function<CloneableTestInputsMap, Short> runParity3 = (inputs) ->
               p3.compute(((CloneableLong) inputs.get("x")).data);
       Function<CloneableTestInputsMap, Short> runParity4 = (inputs) ->
               p4.compute(((CloneableLong) inputs.get("x")).data);
-      Function<CloneableTestInputsMap, Short> getKnownOutput = (inputs) ->
-              p1.compute(((CloneableLong) inputs.get("x")).data);
-      BiFunction<Short, Short, Boolean> checkResults = Short::equals;
-      TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, getKnownOutput, checkResults, NUM_TESTS, "Parity2");
-      TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, getKnownOutput, checkResults, NUM_TESTS, "Parity3");
-      TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, getKnownOutput, checkResults, NUM_TESTS, "Parity4");
-      algTimer2.testAndCheck();
-      algTimer3.testAndCheck();
-      algTimer4.testAndCheck();
+      Supplier<Short> emptyOutput = () -> (short) 0;
+      TimeTests<Short> algTimer1 = new TimeTests<>(formInput, runParity1, emptyOutput, "Parity1");
+      TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, emptyOutput, "Parity2");
+      TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, emptyOutput, "Parity3");
+      TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, emptyOutput, "Parity4");
+      algTimer1.test(NUM_TESTS);
+      algTimer2.test(NUM_TESTS);
+      algTimer3.test(NUM_TESTS);
+      algTimer4.test(NUM_TESTS);
     }
   }
 }

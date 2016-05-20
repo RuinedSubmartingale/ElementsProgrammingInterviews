@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/14/16.
@@ -78,8 +79,9 @@ public class CanStringBePalindrome {
     Function<CloneableTestInputsMap, Boolean> getKnownOutput =
             (orig_inputs) -> canFormPalindromeSorting(((CloneableString) orig_inputs.get("s")).data);
     BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
+    Supplier<Boolean> emptyOutput = () -> true;
     TimeTests<Boolean> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "CanStringBePalindrome");
-    algTimer.testAndCheck();
+            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "CanStringBePalindrome");
+    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/12/16.
@@ -69,9 +70,10 @@ public class IsPalindrome {
       Function<CloneableTestInputsMap, Boolean> getKnownOutput =
               (orig_input) -> slowSolution(((CloneableInteger) orig_input.get("x")).data);
       BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
+      Supplier<Boolean> emptyOutput = () -> true;
       TimeTests<Boolean> algTimer =
-              new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "IsPalindrome");
-      algTimer.testAndCheck();
+              new TimeTests<>(formInput, runAlgorithm, emptyOutput, "IsPalindrome");
+      algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
     }
   }
 }

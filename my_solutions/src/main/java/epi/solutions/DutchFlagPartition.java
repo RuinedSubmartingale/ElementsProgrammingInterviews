@@ -5,6 +5,7 @@ import epi.solutions.helper.CloneableTestInput;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -63,22 +64,12 @@ public class DutchFlagPartition {
     return result;
   }
 
-//  @FunctionalInterface
-//  private interface PartitionFunction<T> {
-//    void apply(T pivot, ArrayList<T> A);
-//  }
-//  private static <T extends Enum<T>> void unitTestFuncInterface(T pivot, ArrayList<T> A, PartitionFunction<T> partitionMethod) {
-//    ArrayList<T> Adup = new ArrayArrayList<>(A);
-//    partitionMethod.apply(pivot, A);
-//    assert(check(pivot, A, Adup));
-//  }
-
   public static void main(String[] args) {
     runTest(Color.values(), Color.WHITE, DutchFlagPartition::partition, "DutchFlagPartition (colors - inplace)");
     runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans, "DutchFlagPartition (Booleans - inplace and stable)");
   }
 
-  public static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) {
+  private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) {
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
@@ -99,7 +90,8 @@ public class DutchFlagPartition {
       return (ArrayList<T>) orig_input.get("A");
     };
     BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
-    TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, testDesc);
-    algTimer.testAndCheck();
+    Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
+    TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlgorithm, emptyOutput, testDesc);
+    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 }

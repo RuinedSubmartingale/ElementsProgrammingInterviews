@@ -7,6 +7,7 @@ import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.math.BigInteger;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/13/16.
@@ -73,8 +75,9 @@ public class PlusOne {
       return expectedOutput;
     };
     BiFunction<ArrayList<Integer>, ArrayList<Integer>, Boolean> checkResults = List::equals;
+    Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
     TimeTests<ArrayList<Integer>> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, getKnownOutput, checkResults, NUM_TESTS, "PlusOne");
-    algTimer.testAndCheck();
+            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PlusOne");
+    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 }
