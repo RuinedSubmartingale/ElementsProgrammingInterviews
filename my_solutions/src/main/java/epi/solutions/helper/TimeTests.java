@@ -1,5 +1,7 @@
 package epi.solutions.helper;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
@@ -13,7 +15,7 @@ public class TimeTests<outputType> implements TimeTestsInterface {
   private BiFunction<outputType, outputType, Boolean> _checkResults;
   private int _numTests;
   private String _testDescription;
-
+  Function<AlgCompleteData<outputType>, Boolean> algChecker; // TODO: abstract all testAndCheck methods to use this
 
   public TimeTests(Callable<CloneableTestInputsMap> formInput
                   , Function<CloneableTestInputsMap, outputType> runAlgorithm
@@ -53,6 +55,16 @@ public class TimeTests<outputType> implements TimeTestsInterface {
 
   // TODO: Abstract out algorithm checking code. use intfc that takes in all availble data inputs, and chooses which method to use to check results.
   public void testAndCheck(BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) {
+    Function<AlgCompleteData<outputType>, Boolean> algChecker = new Function<AlgCompleteData<outputType>, Boolean>() {
+      @Override
+      public Boolean apply(AlgCompleteData<outputType> algCompleteData) {
+        return checkResults.apply(algCompleteData._orig_inputs, algCompleteData._observedResults);
+      }
+    };
+    testAndCheck2(algChecker);
+  }
+
+  public void testAndCheck2(Function<AlgCompleteData<outputType>, Boolean> algChecker) {
     try {
       DecimalFormat df = new DecimalFormat("#.####");
       long total = 0, start;
@@ -63,8 +75,9 @@ public class TimeTests<outputType> implements TimeTestsInterface {
         start = System.nanoTime();
         outputType algorithmResult = _runAlgorithm.apply(input);
         total += System.nanoTime() - start;
-        Checker1<outputType> resultChecker = new Checker1<>(checkResults, orig_input, algorithmResult);
-        assert(resultChecker.check());
+        outputType expectedResult = _getKnownOutput.apply(orig_input);
+        AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_input, expectedResult, algorithmResult);
+        assert(algChecker.apply(completeData));
       }
       System.out.println(String.format("%s %50s %s", "DEBUG: ", _testDescription, " took "
               + df.format(total * 1.0 / _numTests)
