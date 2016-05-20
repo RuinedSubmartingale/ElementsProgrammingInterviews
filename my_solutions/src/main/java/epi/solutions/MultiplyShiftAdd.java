@@ -2,15 +2,22 @@ package epi.solutions;
 
 //import epi.solutions.helper.TimeTests;
 
+import epi.solutions.helper.CloneableInteger;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Created by psingh on 5/12/16.
  * Problem 5.5
  */
 public class MultiplyShiftAdd {
-  private static long multiply(long x, long y) {
+  private static final int NUM_TESTS = (int) Math.pow(10, 6);
+  private static final int MAX_INT_INPUT = (1 << 16) - 1;
+  private static long multiply(int x, int y) {
     long sum = 0;
     while (x != 0) {
       // Examine each bit of x
@@ -42,23 +49,23 @@ public class MultiplyShiftAdd {
       long res = multiply(x,y);
       assert(res == (long)x*y);
     } else {
-      final int NUM_TESTS = (int) Math.pow(10, 6);
-      TimeTests.test(MultiplyShiftAdd::runTests, NUM_TESTS, "MultiplyShiftAdd");
-    }
-  }
-
-  public static void runTests(final int NUM_TESTS) {
-    Random rgen = new Random();
-    int x, y;
-    final int MAX_XY = (1 << 16) - 1;
-    // MAX_XY needed because random test only works if product
-    // is not greater than 2^32 - 1
-    for (int i = 0; i < NUM_TESTS; ++i) {
-      x = rgen.nextInt(MAX_XY);
-      y = rgen.nextInt(MAX_XY);
-      long prod = (long) multiply(x,y);
-      assert(prod == (long)x*y);
-      // System.out.println("PASS: x = " + x + ", y = " + y + "; prod = " + prod);
+      Callable<CloneableTestInputsMap> formInput = () -> {
+        Random rgen = new Random();
+        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        inputs.put("x", new CloneableInteger(rgen.nextInt(MAX_INT_INPUT)));
+        inputs.put("y", new CloneableInteger(rgen.nextInt(MAX_INT_INPUT)));
+        return inputs;
+      };
+      Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
+              multiply(((CloneableInteger) inputs.get("x")).data
+                      , ((CloneableInteger) inputs.get("y")).data);
+      Function<CloneableTestInputsMap, Long> getKnownOutput = (orig_inputs) ->
+              ((long) ((CloneableInteger) orig_inputs.get("x")).data) *
+              ((CloneableInteger) orig_inputs.get("y")).data;
+      BiFunction<Long, Long, Boolean> checkResults = Long::equals;
+      TimeTests<Long> algTimer =
+              new TimeTests<>(formInput, runAlg, getKnownOutput, checkResults, NUM_TESTS, "MultiplyShiftAdd");
+      algTimer.testAndCheck();
     }
   }
 }

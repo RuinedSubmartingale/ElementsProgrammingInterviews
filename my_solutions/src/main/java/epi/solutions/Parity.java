@@ -1,9 +1,14 @@
 package epi.solutions;
 
+import epi.solutions.helper.CloneableLong;
+import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /*
 * Problem 5.1 from EPI
@@ -108,26 +113,27 @@ public abstract class Parity {
       assert(p1.compute(x) == p4.compute(x));
       System.out.println("x = " + x + ", parity = " + p1.compute(x));
     } else {
-      TimeTests.test((NUM_TESTS) -> p1.compute(), NUM_TESTS, "Parity1.compute");
-      TimeTests.test((NUM_TESTS) -> p2.compute(), NUM_TESTS, "Parity2.compute");
-      TimeTests.test((NUM_TESTS) -> p3.compute(), NUM_TESTS, "Parity3.compute");
-      TimeTests.test((NUM_TESTS) -> p4.compute(), NUM_TESTS, "Parity4.compute");
-
-      for (int i = 0; i < NUM_TESTS; i++) {
-        try {
-          assert(p1.testResults[i] == p2.testResults[i]);
-          assert(p1.testResults[i] == p3.testResults[i]);
-          assert(p1.testResults[i] == p4.testResults[i]);
-//                    if (testResults1[i] != testResults4[i]) {
-//                        System.out.println("Error at (" + i + ", " + testValues[i] + ") - expected: " + testResults1[i] + " - output: " + testResults4[i]);
-//                    }
-        } catch (AssertionError e) {
-//                    System.out.println(e.toString() + " - " + e.getMessage() + " - ");
-//                    e.printStackTrace();
-        }
-
-      }
-//          System.out.println("x = " + x + ", parity = " + Parity3(x));
+      Callable<CloneableTestInputsMap> formInput = () -> {
+        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        Random rgen = new Random();
+        inputs.put("x", new CloneableLong(rgen.nextLong()));
+        return inputs;
+      };
+      Function<CloneableTestInputsMap, Short> runParity2 = (inputs) ->
+              p2.compute(((CloneableLong) inputs.get("x")).data);
+      Function<CloneableTestInputsMap, Short> runParity3 = (inputs) ->
+              p3.compute(((CloneableLong) inputs.get("x")).data);
+      Function<CloneableTestInputsMap, Short> runParity4 = (inputs) ->
+              p4.compute(((CloneableLong) inputs.get("x")).data);
+      Function<CloneableTestInputsMap, Short> getKnownOutput = (inputs) ->
+              p1.compute(((CloneableLong) inputs.get("x")).data);
+      BiFunction<Short, Short, Boolean> checkResults = Short::equals;
+      TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, getKnownOutput, checkResults, NUM_TESTS, "Parity2");
+      TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, getKnownOutput, checkResults, NUM_TESTS, "Parity3");
+      TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, getKnownOutput, checkResults, NUM_TESTS, "Parity4");
+      algTimer2.testAndCheck();
+      algTimer3.testAndCheck();
+      algTimer4.testAndCheck();
     }
   }
 }

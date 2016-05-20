@@ -72,6 +72,8 @@ public class MyTests {
 
   @Before
   public void setup() {
+    Logger logger = Logger.getLogger("MyLog");
+//    FileHandler fh;
     String timeoutString = System.getProperty("timeout");
     if (timeoutString != null) {
       globalTimeout = new Timeout(new Long(timeoutString), TimeUnit.MILLISECONDS);
@@ -92,7 +94,7 @@ public class MyTests {
   public void PowerXY() { PowerXY.main(ARGS); }
 
   @Test // 5.11
-  public void isPalindrome() { isPalindrome.main(ARGS); }
+  public void isPalindrome() { IsPalindrome.main(ARGS); }
 
   @Test // 5.12
   public void UnifRandomNumberGenerator() { UnifRandomNumberGenerator.main(ARGS); }
