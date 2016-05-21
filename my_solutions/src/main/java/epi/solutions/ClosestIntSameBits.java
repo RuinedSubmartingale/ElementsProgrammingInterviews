@@ -23,7 +23,7 @@ public class ClosestIntSameBits {
   static final int NUM_UNSIGN_BITS = 63;
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
-  public static long closestIntSameBitCount(long x) {
+  private static long closestIntSameBitCount(long x) {
     for (int i = 0; i < NUM_UNSIGN_BITS - 1; ++i) {
       if(((x >>> i) & 1) != ((x >>> (i + 1)) & 1)) {
         x ^= (1L << i) | (1L << (i+1));
@@ -34,7 +34,7 @@ public class ClosestIntSameBits {
     throw new IllegalArgumentException("All bits are 0 or 1");
   }
 
-  public static void smallTest() {
+  private static void smallTest() {
     assert(closestIntSameBitCount(6) == 5);
     assert(closestIntSameBitCount(7) == 11);
     assert(closestIntSameBitCount(2) == 1);
@@ -53,7 +53,7 @@ public class ClosestIntSameBits {
     Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
             closestIntSameBitCount(((CloneableLong) inputs.get("x")).data);
     Supplier<Long> emptyOutput = () -> 0L;
-    TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "CloestIntegerSameBits");
+    TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "ClosestIntegerSameBits");
     algTimer.test(NUM_TESTS);
   }
 

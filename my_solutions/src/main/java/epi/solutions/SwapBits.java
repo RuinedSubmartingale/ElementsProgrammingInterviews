@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 public class SwapBits {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
-  public static long swapBits(long x, int i, int j) {
+  private static long swapBits(long x, int i, int j) {
     // Check if i-th and j-th bits differ
     if (((x >> i) & 1) != ((x >> j) & 1)) {
       // They differ. So swap them by flipping their values.

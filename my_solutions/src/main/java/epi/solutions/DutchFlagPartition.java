@@ -74,7 +74,7 @@ public class DutchFlagPartition {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
       CloneableArrayList A = new CloneableArrayList(
-              randFlagArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH)
+              MiscHelperMethods.randArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH)
       );
       inputs.put("A", A);
       return inputs;

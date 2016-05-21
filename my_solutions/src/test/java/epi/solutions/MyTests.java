@@ -108,6 +108,9 @@ public class MyTests {
   @Test // 6.2
   public void PlusOne() { PlusOne.main(ARGS); }
 
+  @Test // 6.4
+  public void JumpBoardGame() { JumpBoardGame.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() { CanStringBePalindrome.main(ARGS); }
 
