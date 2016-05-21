@@ -87,6 +87,9 @@ public class MyTests {
   @Test // 5.2
   public void SwapBits() { SwapBits.main(ARGS); }
 
+  @Test // 5.4
+  public void ClosestIntSameBits() { ClosestIntSameBits.main(ARGS); }
+
   @Test // 5.5
   public void MultiplyShiftAdd() { MultiplyShiftAdd.main(ARGS); }
 
