@@ -111,6 +111,9 @@ public class MyTests {
   @Test // 6.4
   public void JumpBoardGame() { JumpBoardGame.main(ARGS); }
 
+  @Test // 6.5
+  public void RemoveElement() { RemoveElement.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() { CanStringBePalindrome.main(ARGS); }
 
