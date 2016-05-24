@@ -26,11 +26,6 @@ public class RemoveElement {
     return writeIdx;
   }
 
-  private static <T extends Comparable> void checkResults(T key, ArrayList<T> A) {
-    for(int i=0; i < A.size(); ++i)
-      assert(!A.get(i).equals(key));
-  }
-
   public static void main(String[] args) {
     Callable<CloneableTestInputsMap> formInput = () -> {
       Random rgen = new Random();
