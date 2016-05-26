@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/25/16.
- * Problem 6.9 - Variant 1
+ * Problem 6.9
  */
 public class MaxDifferenceKPairs {
   private static final int ARR_LEN = 20;
@@ -73,6 +73,19 @@ public class MaxDifferenceKPairs {
     return maxAns;
   }
 
+  // Simpler variant of problem: unlimited # of buy-sell transactions
+  // O(n) time
+  // O(1) space
+  private static double maxProfitUnlimitedPairs(List<Double> A) {
+    double profit = 0;
+    for (int i = 0; i < A.size(); ++i) {
+      double delta = A.get(i) - A.get(i-1);
+      if (delta > 0)
+        profit += delta;
+    }
+    return profit;
+  }
+
   public static void main(String[] args) {
     Callable<CloneableTestInputsMap> formInput = () -> {
       Random rgen = new Random();
@@ -88,5 +101,9 @@ public class MaxDifferenceKPairs {
     TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
     algTimer.testAndCheck(100, checkAns, getKnownOutput); // checking is O(n^k) expensive
     algTimer.test(NUM_TESTS);
+
+    Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs((List<Double>) inputs.get("A"));
+    TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
+    simpleAlgTimer.test(NUM_TESTS);
   }
 }
