@@ -44,7 +44,7 @@ public class RemoveDuplicatesFromSortedArrayList {
 
   }
 
-  private static <T extends Comparable<T>> void runTests(Supplier<T> randSupplier, String testDesc) {
+  private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) {
     Callable<CloneableTestInputsMap> formInput = () -> {
       ArrayList<T> A = MiscHelperMethods.randArray(randSupplier, ARR_LEN);
       Collections.sort(A);
