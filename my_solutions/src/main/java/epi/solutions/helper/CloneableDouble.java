@@ -2,11 +2,22 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/14/16.
+ * A CloneableTestInput wrapper for Doubles.
  */
-public class CloneableDouble implements CloneableTestInput<CloneableDouble> {
-  public Double data;
-  public CloneableDouble() {}
-  public CloneableDouble(Double input) { data = input; }
+class CloneableDouble implements CloneableTestInput<CloneableDouble> {
+  private Double data;
+  CloneableDouble(Double input) { data = input; }
 
-  public CloneableDouble cloneInput() { return new CloneableDouble(Double.valueOf(data)); }
+  @Override
+  public Class getType() {
+    return CloneableDouble.class;
+  }
+
+  @Override
+  public Double getInput() {
+    return data;
+  }
+
+  @Override
+  public CloneableDouble cloneInput() { return new CloneableDouble(data); }
 }

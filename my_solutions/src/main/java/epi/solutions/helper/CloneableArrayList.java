@@ -2,24 +2,29 @@ package epi.solutions.helper;
 
 import java.util.ArrayList;
 
-public class CloneableArrayList extends ArrayList implements CloneableTestInput<CloneableArrayList> {
-
-  public CloneableArrayList() {  }
-  public CloneableArrayList(ArrayList input) {
-    this.addAll(input);
+/**
+ * Created by psingh on 5/14/16.
+ * A CloneableTestInput wrapper for ArrayLists.
+ */
+class CloneableArrayList<T> implements CloneableTestInput<CloneableArrayList<T>> {
+  private ArrayList<T> data;
+  CloneableArrayList() {}
+  CloneableArrayList(ArrayList<T> input) {
+    data = new ArrayList<>(input);
   }
 
   @Override
-  public CloneableArrayList cloneInput() {
-    return new CloneableArrayList(this);
+  public Class getType() {
+    return this.getClass();
   }
 
-  public static void main(String[] args) {
-    CloneableArrayList testInput = new CloneableArrayList();
-    testInput.add(1);
-    CloneableArrayList clonedInput = testInput.cloneInput();
-    clonedInput.add(2);
-    System.out.println("testInput: " + testInput);
-    System.out.println("clonedInput: " + clonedInput);
+  @Override
+  public ArrayList<T> getInput() {
+    return data;
+  }
+
+  @Override
+  public CloneableArrayList<T> cloneInput() {
+    return new CloneableArrayList<>(data);
   }
 }

@@ -2,11 +2,22 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/14/16.
+ * A CloneableTestInput wrapper for Integers.
  */
-public class CloneableInteger implements CloneableTestInput<CloneableInteger> {
-  public Integer data;
-  public CloneableInteger() {}
-  public CloneableInteger(Integer input) { data = input; }
+class CloneableInteger implements CloneableTestInput<CloneableInteger> {
+  private Integer data;
+  CloneableInteger(Integer input) { data = input; }
 
-  public CloneableInteger cloneInput() { return new CloneableInteger(Integer.valueOf(data)); }
+  @Override
+  public Class getType() {
+    return this.getClass();
+  }
+
+  @Override
+  public Integer getInput() {
+    return data;
+  }
+
+  @Override
+  public CloneableInteger cloneInput() { return new CloneableInteger(data); }
 }
