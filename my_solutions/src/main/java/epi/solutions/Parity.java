@@ -12,8 +12,7 @@ import java.util.function.Supplier;
 * Problem 5.1 from EPI
 */
 @SuppressWarnings("unused")
-public abstract class Parity {
-
+public class Parity {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
   private static final int WORD_SIZE = 16;
   private static short[] preComputedParity;
@@ -30,7 +29,7 @@ public abstract class Parity {
 
   static {
     preComputedParity = new short[1 << WORD_SIZE];
-    for (int i=0; i < (1 << WORD_SIZE); ++i) {
+    for (int i = 0; i < (1 << WORD_SIZE); ++i) {
       preComputedParity[i] = defaultCompute(i);
     }
 
@@ -41,50 +40,52 @@ public abstract class Parity {
     }
   }
 
-  protected short[] compute() {
-    short[] testResults = new short[NUM_TESTS];
-    for (int i = 0; i < NUM_TESTS; ++i) {
-      testResults[i] = compute(testValues[i]);
+  private static abstract class AbstractParity {
+    protected short[] compute() {
+      short[] testResults = new short[NUM_TESTS];
+      for (int i = 0; i < NUM_TESTS; ++i) {
+        testResults[i] = compute(testValues[i]);
+      }
+      return testResults;
     }
-    return testResults;
+
+    abstract short compute(long value);
   }
 
-  abstract short compute(long value);
-
-  private static class Parity1 extends Parity {
+  private static class Parity1 extends AbstractParity {
     @Override
     short compute(long x) {
       return defaultCompute(x);
     }
   }
 
-  private static class Parity2 extends Parity {
+  private static class Parity2 extends AbstractParity {
     @Override
     short compute(long x) {
       short result = 0;
       while (x != 0) {
-        x = x & (x-1);
+        x = x & (x - 1);
         result ^= 1;
       }
       return result;
     }
   }
 
-  private static class Parity3 extends Parity {
+  private static class Parity3 extends AbstractParity {
     private static final int BIT_MASK = 0xFFFF;
 
     @Override
     short compute(long x) {
       return (short) (
-              preComputedParity[(int)  ((x >>> (3*WORD_SIZE)) & BIT_MASK)] ^
-                      preComputedParity[(int)  ((x >>> (2*WORD_SIZE)) & BIT_MASK)] ^
-                      preComputedParity[(int)  ((x >>> WORD_SIZE) & BIT_MASK)] ^
-                      preComputedParity[(int)  (x  & BIT_MASK)]
+              preComputedParity[(int) ((x >>> (3 * WORD_SIZE)) & BIT_MASK)] ^
+                      preComputedParity[(int) ((x >>> (2 * WORD_SIZE)) & BIT_MASK)] ^
+                      preComputedParity[(int) ((x >>> WORD_SIZE) & BIT_MASK)] ^
+                      preComputedParity[(int) (x & BIT_MASK)]
       );
     }
   }
 
-  private static class Parity4 extends Parity {
+  private static class Parity4 extends AbstractParity {
     private static final int FOUR_BIT_PARITY = 0b0110100110010110;
 
     @Override
@@ -94,7 +95,7 @@ public abstract class Parity {
       x ^= x >>> 8;
       x ^= x >>> 4;
       x &= 0xf;
-      return (short)((FOUR_BIT_PARITY >> x) & 1);
+      return (short) ((FOUR_BIT_PARITY >> x) & 1);
     }
   }
 
@@ -106,9 +107,9 @@ public abstract class Parity {
 
     if (args.length == 1) {
       long x = Long.parseLong(args[0]);
-      assert(p1.compute(x) == p2.compute(x));
-      assert(p1.compute(x) == p3.compute(x));
-      assert(p1.compute(x) == p4.compute(x));
+      assert (p1.compute(x) == p2.compute(x));
+      assert (p1.compute(x) == p3.compute(x));
+      assert (p1.compute(x) == p4.compute(x));
       System.out.println("x = " + x + ", parity = " + p1.compute(x));
     } else {
       Callable<CloneableTestInputsMap> formInput = () -> {

@@ -114,7 +114,7 @@ public class TimeTests<outputType> {
     System.out.println(String.format("%s %50s %s", "DEBUG: ", _algDescription, " took "
             + df.format(totalExecTime * 1.0 / _numTests)
             + " nanoseconds on average for " + _numTests * 1.0 / Math.pow(10, 6) + " million tests"));
-
+    execService.shutdown();
   }
 
   private boolean check(CloneableTestInputsMap orig_input, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
