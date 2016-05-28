@@ -81,7 +81,7 @@ public class TimeTests<outputType> {
   private void testAndCheck() throws Exception {
     DecimalFormat df = new DecimalFormat("#.####");
     Runtime javaApp = Runtime.getRuntime();
-    int nProcs = Math.max(javaApp.availableProcessors() - 1, 1);
+    int nProcs = Math.max(javaApp.availableProcessors(), 1);
     ExecutorService execService = Executors.newFixedThreadPool(nProcs);
     int numTestPerThread = _numTests / nProcs;
     Callable<Long> task  = () -> {

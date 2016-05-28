@@ -158,6 +158,7 @@ public class BiggestNMinus1Product {
     alg1Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
     alg2Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
 
+    System.out.println("\n\n");
     alg1Timer.test(NUM_TESTS);
     alg2Timer.test(NUM_TESTS);
   }
