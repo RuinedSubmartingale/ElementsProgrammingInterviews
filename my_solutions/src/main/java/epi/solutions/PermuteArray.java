@@ -51,11 +51,6 @@ public class PermuteArray {
           currPos = next;
         }
       }
-
-      // Restore perm.
-      for (int i = 0; i < n; ++i) {
-        perm.set(i, perm.get(i) + n);
-      }
     }
   }
 
