@@ -1,28 +1,25 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableLong;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
-import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 /*
 * Problem 5.1 from EPI
 */
+@SuppressWarnings("unused")
 public abstract class Parity {
 
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
   private static final int WORD_SIZE = 16;
-  protected static short[] preComputedParity;
-  protected static long[] testValues;
-  protected short[] testResults;
+  private static short[] preComputedParity;
+  private static long[] testValues;
 
-  protected static short defaultCompute(long value) {
+  private static short defaultCompute(long value) {
     short result = 0;
     while (value != 0) {
       result ^= (value & 1);
@@ -45,7 +42,7 @@ public abstract class Parity {
   }
 
   protected short[] compute() {
-    testResults = new short[NUM_TESTS];
+    short[] testResults = new short[NUM_TESTS];
     for (int i = 0; i < NUM_TESTS; ++i) {
       testResults[i] = compute(testValues[i]);
     }
@@ -101,7 +98,7 @@ public abstract class Parity {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Parity1 p1 = new Parity1();
     Parity2 p2 = new Parity2();
     Parity3 p3 = new Parity3();
@@ -117,17 +114,17 @@ public abstract class Parity {
       Callable<CloneableTestInputsMap> formInput = () -> {
         CloneableTestInputsMap inputs = new CloneableTestInputsMap();
         Random rgen = new Random();
-        inputs.put("x", new CloneableLong(rgen.nextLong()));
+        inputs.addLong("x", rgen.nextLong());
         return inputs;
       };
       Function<CloneableTestInputsMap, Short> runParity1 = (inputs) ->
-              p1.compute(((CloneableLong) inputs.get("x")).data);
+              p1.compute(inputs.getLong("x"));
       Function<CloneableTestInputsMap, Short> runParity2 = (inputs) ->
-              p2.compute(((CloneableLong) inputs.get("x")).data);
+              p2.compute(inputs.getLong("x"));
       Function<CloneableTestInputsMap, Short> runParity3 = (inputs) ->
-              p3.compute(((CloneableLong) inputs.get("x")).data);
+              p3.compute(inputs.getLong("x"));
       Function<CloneableTestInputsMap, Short> runParity4 = (inputs) ->
-              p4.compute(((CloneableLong) inputs.get("x")).data);
+              p4.compute(inputs.getLong("x"));
       Supplier<Short> emptyOutput = () -> (short) 0;
       TimeTests<Short> algTimer1 = new TimeTests<>(formInput, runParity1, emptyOutput, "Parity1");
       TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, emptyOutput, "Parity2");

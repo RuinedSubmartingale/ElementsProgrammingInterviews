@@ -1,6 +1,9 @@
 package epi.solutions;
 
-import epi.solutions.helper.*;
+
+import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.MiscHelperMethods;
+import epi.solutions.helper.TimeTests;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -10,14 +13,16 @@ import java.util.function.Supplier;
 /**
  * Created by psingh on 5/20/16.
  * Problem 6.5
- * @input key - element of which all occurrences are to be removed
- * @input A - array of elements
  */
 public class RemoveElement {
   private static final int ARRAY_LENGTH = 100;
   private static final int ELEMS_BUCKET_SIZE = 20;
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
+  /*
+  *@param key - element of which all occurrences are to be removed
+ * @param A - array of elements
+  */
   private static <T extends Comparable> int removeElement(T key, ArrayList<T> A) {
     int writeIdx= 0;
     for(int i=0; i < A.size(); ++i)
@@ -26,37 +31,33 @@ public class RemoveElement {
     return writeIdx;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       Random rgen = new Random();
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      CloneableArrayList A = new CloneableArrayList(
-              MiscHelperMethods.randArray(() -> rgen.nextInt(ELEMS_BUCKET_SIZE), ARRAY_LENGTH)
-      );
-      CloneableInteger key = new CloneableInteger(rgen.nextInt(ELEMS_BUCKET_SIZE));
-      inputs.put("A", A);
-      inputs.put("key", key);
+      inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(ELEMS_BUCKET_SIZE), ARRAY_LENGTH));
+      inputs.addInteger("key", rgen.nextInt(ELEMS_BUCKET_SIZE));
       return inputs;
     };
     Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
-      int elemsLeft = removeElement(((CloneableInteger) inputs.get("key")).data, (ArrayList<Integer>) inputs.get("A"));
-      inputs.put("elemsLeft", new CloneableInteger(elemsLeft));
-      return (ArrayList<Integer>) inputs.get("A");
+      int elemsLeft = removeElement(inputs.getInteger("key"), inputs.getArrayList("A"));
+      inputs.addInteger("elemsLeft", elemsLeft);
+      return inputs.getArrayList("A");
     };
     Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
     Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
       // TODO: Try .... while(A.remove(key)) {} .... or ... A.removeAll(Collections.singleton(key))... instead of removeIf?
-      ((ArrayList<Integer>) inputs.get("A")).removeIf(((CloneableInteger) inputs.get("key")).data::equals);
-      return (ArrayList<Integer>) inputs.get("A");
+      inputs.getArrayList("A").removeIf(inputs.getInteger("key")::equals);
+      return inputs.getArrayList("A");
     };
-    Function<CloneableTestInputsMap, HashMap<String, Object>> saveExtraResults = (inputs) -> {
-      HashMap<String, Object> algExtraResults = new HashMap<>();
-      algExtraResults.put("elemsLeft", inputs.get("elemsLeft"));
+    Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraResults = (inputs) -> {
+      CloneableTestInputsMap algExtraResults = new CloneableTestInputsMap();
+      algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
       return algExtraResults;
     };
-    TimeTests.TriFunction<ArrayList<Integer>, ArrayList<Integer>, HashMap, Boolean> checkResults =
+    TimeTests.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableTestInputsMap, Boolean> checkResults =
             (observedResults, expectedResults, algExtraResults) -> {
-              List<Integer> truncatedObservedResults = observedResults.subList(0, ((CloneableInteger) algExtraResults.get("elemsLeft")).data);
+              List<Integer> truncatedObservedResults = observedResults.subList(0, algExtraResults.getInteger("elemsLeft"));
               // TODO: Implement equality comparison for two generic lists
               return truncatedObservedResults.equals(expectedResults);
             };

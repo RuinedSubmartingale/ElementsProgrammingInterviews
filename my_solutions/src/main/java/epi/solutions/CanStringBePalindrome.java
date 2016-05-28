@@ -1,6 +1,5 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableString;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
@@ -68,16 +67,16 @@ public class CanStringBePalindrome {
     return sb.toString();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      inputs.put("s", new CloneableString(randString(INPUT_STRING_LENGTH)));
+      inputs.addString("s", randString(INPUT_STRING_LENGTH));
       return inputs;
     };
     Function<CloneableTestInputsMap, Boolean > runAlgorithm =
-            (inputs) -> canFormPalindromeHash(((CloneableString) inputs.get("s")).data);
+            (inputs) -> canFormPalindromeHash(inputs.getString("s"));
     Function<CloneableTestInputsMap, Boolean> getKnownOutput =
-            (orig_inputs) -> canFormPalindromeSorting(((CloneableString) orig_inputs.get("s")).data);
+            (orig_inputs) -> canFormPalindromeSorting(orig_inputs.getString("s"));
     BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
     Supplier<Boolean> emptyOutput = () -> true;
     TimeTests<Boolean> algTimer =

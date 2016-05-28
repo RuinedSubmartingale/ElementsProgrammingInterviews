@@ -1,8 +1,7 @@
 package epi.solutions;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
 import java.util.ArrayList;
@@ -15,15 +14,17 @@ import java.util.function.Supplier;
 /**
  * Created by psingh on 5/20/16.
  * Problem 6.4
- * @input Array A of nonnegative integers, where A[i] represents the maximum
- *        you can advance forward from that position
- * @output Boolean: true if you can advancce from start to end of array. false otherwise.
  */
 public class JumpBoardGame {
   private static final int BOARD_LENGTH = 20;
   private static final int MAX_ADVANCE_PER_STEP = 5;
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
+  /**
+   * @param A Array A of nonnegative integers, where A[i] represents the maximum
+   *        you can advance forward from that position
+   * @return Boolean: true if you can advance from start to end of array. false otherwise.
+   */
   private static boolean isWinnable(final ArrayList<Integer> A) {
     int furthest_reach = 0;
     for (int i = 0; i <= furthest_reach && furthest_reach < A.size() - 1; ++i) {
@@ -40,19 +41,16 @@ public class JumpBoardGame {
     assert(!isWinnable(new ArrayList<>(Arrays.asList(2, 2, -1, -1, 100))));
 
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     smallTest();
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
-      CloneableArrayList A = new CloneableArrayList(
-              MiscHelperMethods.randArray(() -> rgen.nextInt(MAX_ADVANCE_PER_STEP), BOARD_LENGTH)
-      );
-      inputs.put("A", A);
+      inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(MAX_ADVANCE_PER_STEP), BOARD_LENGTH));
       return inputs;
     };
     Function<CloneableTestInputsMap, Boolean> runAlg = (inputs) ->
-            isWinnable((ArrayList<Integer>) inputs.get("A"));
+            isWinnable(inputs.getArrayList("A"));
     Supplier<Boolean> emptyOutput = () -> false;
     TimeTests<Boolean> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "JumpBoardGame");
     algTimer.test(NUM_TESTS);

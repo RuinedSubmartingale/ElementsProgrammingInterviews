@@ -2,7 +2,6 @@ package epi.solutions;
 
 //import epi.solutions.helper.TimeTests;
 
-import epi.solutions.helper.CloneableInteger;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 import java.util.Random;
@@ -15,6 +14,7 @@ import java.util.function.Supplier;
  * Created by psingh on 5/12/16.
  * Problem 5.5
  */
+@SuppressWarnings("UnusedAssignment")
 public class MultiplyShiftAdd {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
   private static final int MAX_INT_INPUT = (1 << 16) - 1;
@@ -44,7 +44,7 @@ public class MultiplyShiftAdd {
     return sum | carryin;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     if (args.length == 2) {
       int x = Integer.parseInt(args[0]), y = Integer.parseInt(args[1]);
       long res = multiply(x,y);
@@ -53,16 +53,15 @@ public class MultiplyShiftAdd {
       Callable<CloneableTestInputsMap> formInput = () -> {
         Random rgen = new Random();
         CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-        inputs.put("x", new CloneableInteger(rgen.nextInt(MAX_INT_INPUT)));
-        inputs.put("y", new CloneableInteger(rgen.nextInt(MAX_INT_INPUT)));
+        inputs.addInteger("x", rgen.nextInt(MAX_INT_INPUT));
+        inputs.addInteger("y", rgen.nextInt(MAX_INT_INPUT));
         return inputs;
       };
       Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
-              multiply(((CloneableInteger) inputs.get("x")).data
-                      , ((CloneableInteger) inputs.get("y")).data);
+              multiply(inputs.getInteger("x"), inputs.getInteger("y"));
       Function<CloneableTestInputsMap, Long> getKnownOutput = (orig_inputs) ->
-              ((long) ((CloneableInteger) orig_inputs.get("x")).data) *
-              ((CloneableInteger) orig_inputs.get("y")).data;
+              ((long) orig_inputs.getInteger("x")) *
+              orig_inputs.getInteger("y");
       BiFunction<Long, Long, Boolean> checkResults = Long::equals;
       Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer =

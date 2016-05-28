@@ -1,7 +1,5 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableDouble;
-import epi.solutions.helper.CloneableInteger;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
@@ -9,7 +7,6 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -34,20 +31,18 @@ public class PowerXY {
     return result;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
-      inputs.put("x", new CloneableDouble(rgen.nextDouble() * 10));
-      inputs.put("y", new CloneableInteger(rgen.nextInt(257) - 128));
+      inputs.addDouble("x", rgen.nextDouble() * 10);
+      inputs.addInteger("y", rgen.nextInt(257) - 128);
       return inputs;
     };
     Function<CloneableTestInputsMap, Double> runAlgorithm = (inputs) ->
-            power(((CloneableDouble) inputs.get("x")).data
-                    , ((CloneableInteger) inputs.get("y")).data);
+            power(inputs.getDouble("x"), inputs.getInteger("y"));
     Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) ->
-            Math.pow(((CloneableDouble) inputs.get("x")).data
-                    , ((CloneableInteger) inputs.get("y")).data);
+            Math.pow(inputs.getDouble("x"), inputs.getInteger("y"));
     BiFunction<Double, Double, Boolean> checkResults = (observed, expected) -> {
       final Double diff = (observed - expected) / expected;
       return ((diff < -1.0E-9) ? 1 : (diff > 1.0e-9) ? 1 : 0) == 0;

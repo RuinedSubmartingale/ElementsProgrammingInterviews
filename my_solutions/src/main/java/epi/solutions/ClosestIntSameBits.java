@@ -1,6 +1,5 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableLong;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
@@ -14,15 +13,17 @@ import java.util.function.Supplier;
  * Problem 5.4
  * Define the weight of a nonnegative integer to be the number of bits
  * that are set to 1 in its binary representation.
- * @input   A nonnegative integer x (whose binary representation is not all 0s or 1s)
- * @output  A nonnegative integer y \neq x, s.t. y has the same weight as x
- *          and the difference of x and y is as small as possible.
  */
 public class ClosestIntSameBits {
   // We restrict our attention to 63 LSBs
-  static final int NUM_UNSIGN_BITS = 63;
+  private static final int NUM_UNSIGN_BITS = 63;
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
+/**
+ * @param x A nonnegative integer x (whose binary representation is not all 0s or 1s)
+ * @return  A nonnegative integer y \neq x, s.t. y has the same weight as x
+ *          and the difference of x and y is as small as possible.
+ */
   private static long closestIntSameBitCount(long x) {
     for (int i = 0; i < NUM_UNSIGN_BITS - 1; ++i) {
       if(((x >>> i) & 1) != ((x >>> (i + 1)) & 1)) {
@@ -42,16 +43,16 @@ public class ClosestIntSameBits {
     assert(closestIntSameBitCount(Long.MAX_VALUE - 1) == Long.MAX_VALUE - 2);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     smallTest();
     Callable<CloneableTestInputsMap> formInput = () -> {
       Random rgen = new Random();
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      inputs.put("x", new CloneableLong(rgen.nextLong()));
+      inputs.addLong("x", rgen.nextLong());
       return inputs;
     };
     Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
-            closestIntSameBitCount(((CloneableLong) inputs.get("x")).data);
+            closestIntSameBitCount(inputs.getLong("x"));
     Supplier<Long> emptyOutput = () -> 0L;
     TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "ClosestIntegerSameBits");
     algTimer.test(NUM_TESTS);

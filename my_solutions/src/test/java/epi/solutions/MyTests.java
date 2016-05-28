@@ -1,12 +1,10 @@
 package epi.solutions;
 
-import static org.junit.Assert.fail;
-
-import javafx.scene.paint.Stop;
 import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.Stopwatch;
 import org.junit.rules.Timeout;
 import org.junit.runner.Description;
@@ -17,19 +15,20 @@ import java.util.logging.Logger;
 
 /**
  * Created by psingh on 3/14/16.
+ * JUnit tests for EPI solutions
  */
 public class MyTests {
 
-  static final String[] NO_ARGS = new String[0];
-  static final String[] SMALL_ARGS = {"10", "10"};
-  static final String[] ARGS = NO_ARGS;
-  static long maxTimePerMethod = 100000;
+  private static final String[] NO_ARGS = new String[0];
+//  static final String[] SMALL_ARGS = {"10", "10"};
+  private static final String[] ARGS = NO_ARGS;
+  private static long maxTimePerMethod = 100000;
 
   private static final Logger logger = Logger.getLogger("");
   private static void logInfo(Description desc, String status, long nanos) {
     String displayName = desc.getDisplayName();
-//        String methodName = desc.getMethodName();
-    Class testClass = desc.getTestClass();
+//    String methodName = desc.getMethodName();
+//    Class testClass = desc.getTestClass();
     logger.info(String.format("%s : status %s : %d milliseconds"
             , displayName, status, TimeUnit.NANOSECONDS.toMillis(nanos)));
   }
@@ -37,6 +36,9 @@ public class MyTests {
 
   @Rule
   public Timeout globalTimeout = new Timeout(maxTimePerMethod, TimeUnit.MILLISECONDS);
+
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
   @Rule
   public Stopwatch stopwatch = new Stopwatch() {
@@ -72,7 +74,7 @@ public class MyTests {
 
   @Before
   public void setup() {
-    Logger logger = Logger.getLogger("MyLog");
+//    Logger logger = Logger.getLogger("MyLog");
 //    FileHandler fh;
     String timeoutString = System.getProperty("timeout");
     if (timeoutString != null) {
@@ -82,39 +84,44 @@ public class MyTests {
   }
 
   @Test // 5.1
-  public void Parity() { Parity.main(ARGS); }
+  public void Parity() throws Exception { Parity.main(ARGS); }
 
   @Test // 5.2
-  public void SwapBits() { SwapBits.main(ARGS); }
+  public void SwapBits() throws Exception { SwapBits.main(ARGS); }
 
   @Test // 5.4
-  public void ClosestIntSameBits() { ClosestIntSameBits.main(ARGS); }
+  public void ClosestIntSameBits() throws Exception { ClosestIntSameBits.main(ARGS); }
 
   @Test // 5.5
-  public void MultiplyShiftAdd() { MultiplyShiftAdd.main(ARGS); }
+  public void MultiplyShiftAdd() throws Exception { MultiplyShiftAdd.main(ARGS); }
 
   @Test // 5.7
-  public void PowerXY() { PowerXY.main(ARGS); }
+  public void PowerXY() throws Exception { PowerXY.main(ARGS); }
 
   @Test // 5.11
-  public void isPalindrome() { IsPalindrome.main(ARGS); }
+  public void isPalindrome() throws Exception { IsPalindrome.main(ARGS); }
 
   @Test // 5.12
-  public void UnifRandomNumberGenerator() { UnifRandomNumberGenerator.main(ARGS); }
+  public void UnifRandomNumberGenerator() throws Exception { UnifRandomNumberGenerator.main(ARGS); }
 
   @Test // 6.1
-  public void DutchFlagPartition() { DutchFlagPartition.main(ARGS); }
+  public void DutchFlagPartition() throws Exception { DutchFlagPartition.main(ARGS); }
 
   @Test // 6.2
-  public void PlusOne() { PlusOne.main(ARGS); }
+  public void PlusOne() throws Exception { PlusOne.main(ARGS); }
 
   @Test // 6.4
-  public void JumpBoardGame() { JumpBoardGame.main(ARGS); }
+  public void JumpBoardGame() throws Exception { JumpBoardGame.main(ARGS); }
 
   @Test // 6.5
-  public void RemoveElement() { RemoveElement.main(ARGS); }
+  public void RemoveElement() throws Exception { RemoveElement.main(ARGS); }
+
+  @Test // 6.6
+  public void RemoveDuplicatesFromSortedArrayList() throws Exception { RemoveDuplicatesFromSortedArrayList.main(ARGS); }
+
+  @Test // 6.9
+  public void MaxDifferenceKPairs() throws Exception { MaxDifferenceKPairs.main(ARGS); }
 
   @Test // 13.2
-  public void CanStringBePalindrome() { CanStringBePalindrome.main(ARGS); }
-
+  public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

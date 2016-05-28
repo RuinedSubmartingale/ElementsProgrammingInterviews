@@ -1,11 +1,9 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableArrayList;
-import epi.solutions.helper.CloneableTestInput;
 import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -24,8 +22,9 @@ public class DutchFlagPartition {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
   private static final int FLAG_LENGTH = 20;
 
-  private static enum Color {RED, WHITE, BLUE}
-  private static enum MyBoolean {FALSE, TRUE}
+  @SuppressWarnings("unused")
+  private enum Color {RED, WHITE, BLUE}
+  private enum MyBoolean {FALSE, TRUE}
 
   private static void partition(Color pivot, ArrayList<Color> A) {
     /**
@@ -56,38 +55,29 @@ public class DutchFlagPartition {
     }
   }
 
-  private static <T> ArrayList<T> randFlagArray(Supplier<T> randSupplier, int len) {
-    ArrayList<T> result = new ArrayList<>(len);
-    for (int i = 0; i < len; ++i) {
-      result.add(randSupplier.get());
-    }
-    return result;
-  }
-
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     runTest(Color.values(), Color.WHITE, DutchFlagPartition::partition, "DutchFlagPartition (colors - inplace)");
     runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans, "DutchFlagPartition (Booleans - inplace and stable)");
   }
 
-  private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) {
+  private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
       Random rgen = new Random();
-      CloneableArrayList A = new CloneableArrayList(
-              MiscHelperMethods.randArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH)
-      );
-      inputs.put("A", A);
+      inputs.addArrayList("A", MiscHelperMethods.randArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH));
       return inputs;
     };
     Function<CloneableTestInputsMap, ArrayList<T>> runAlgorithm = (input) -> {
-      partitionMethod.accept(pivot, (ArrayList<T>) input.get("A"));
+      partitionMethod.accept(pivot, input.getArrayList("A"));
 //      System.out.println(String.format("%-20s %s", "Observed output: ", (ArrayList<Color>) input));
-      return (ArrayList<T>) input.get("A");
+      return input.getArrayList("A");
     };
     Function<CloneableTestInputsMap, ArrayList<T>> getKnownOutput = (orig_input) -> {
-      ((ArrayList<T>) orig_input.get("A")).sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
+      ArrayList<T> result;
+      result = orig_input.getArrayList("A");
+      result.sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
 //      System.out.println(String.format("%-20s %s", "Expected output: ", (ArrayList<Color>) orig_input));
-      return (ArrayList<T>) orig_input.get("A");
+      return result;
     };
     BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
     Supplier<ArrayList<T>> emptyOutput = ArrayList::new;

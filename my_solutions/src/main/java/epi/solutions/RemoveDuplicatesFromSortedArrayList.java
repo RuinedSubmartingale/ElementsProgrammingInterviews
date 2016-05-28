@@ -1,6 +1,8 @@
 package epi.solutions;
 
-import epi.solutions.helper.*;
+import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.MiscHelperMethods;
+import epi.solutions.helper.TimeTests;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -12,6 +14,7 @@ import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/23/16.
+ * Problem 6.6
  */
 public class RemoveDuplicatesFromSortedArrayList {
 
@@ -24,53 +27,51 @@ public class RemoveDuplicatesFromSortedArrayList {
     if (A.isEmpty()) return 0;
     int writeIdx = 0;
     for (int i=1; i < A.size(); ++i) {
-      if (!A.get(writeIdx).equals(A.get(i))) {
+      if (!A.get(writeIdx).equals(A.get(i)))
         A.set(++writeIdx, A.get(i));
-      } else {
+//      else
 //        System.out.println(String.format("Duplicate found at index %d: %s", i, A.get(i)));
-      }
-
     }
     return writeIdx + 1;
   }
 
   private static void smallTest() {
     ArrayList<Student> students = new ArrayList<>();
-    students.add(new Student("John", "Adams", 3.0));
-    students.add(new Student("John", "Adams", 4.0)); // should flag as duplicate
-    students.add(new Student("John", "Gold", 3.0));
+    students.add(new Student("John", "Adams"));
+    students.add(new Student("John", "Adams")); // should flag as duplicate
+    students.add(new Student("John", "Gold"));
     int studentsWithDiffNames = removeDuplicates(students);
     assert(studentsWithDiffNames == 2);
 
   }
 
-  private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) {
+  private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       ArrayList<T> A = MiscHelperMethods.randArray(randSupplier, ARR_LEN);
       Collections.sort(A);
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      inputs.put("A", new CloneableArrayList(A));
+      inputs.addArrayList("A", A);
       return inputs;
     };
     Function<CloneableTestInputsMap, ArrayList<T>> runAlg = (inputs) -> {
-      int elemsLeft = removeDuplicates((ArrayList<T>) inputs.get("A"));
-      inputs.put("elemsLeft", new CloneableInteger(elemsLeft));
-      return (ArrayList<T>) inputs.get("A");
+      int elemsLeft = removeDuplicates(inputs.getArrayList("A"));
+      inputs.addInteger("elemsLeft", elemsLeft);
+      return inputs.getArrayList("A");
     };
     Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
     Function<CloneableTestInputsMap, ArrayList<T>> getKnownOutput = (inputs) -> {
-      ArrayList<T> unique = new ArrayList<>(new HashSet<T>((ArrayList<T>) inputs.get("A")));
+      ArrayList<T> unique = new ArrayList<>(new HashSet<>(inputs.getArrayList("A")));
       Collections.sort(unique);
       return unique;
     };
-    Function<CloneableTestInputsMap, HashMap<String, Object>> saveExtraResults = (inputs) -> {
-      HashMap<String, Object> algExtraResults = new HashMap<>();
-      algExtraResults.put("elemsLeft", ((CloneableInteger) inputs.get("elemsLeft")).data);
+    Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraResults = (inputs) -> {
+      CloneableTestInputsMap algExtraResults = new CloneableTestInputsMap();
+      algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
       return algExtraResults;
     };
-    TimeTests.TriFunction<ArrayList<T>, ArrayList<T>, HashMap, Boolean> checkResults =
+    TimeTests.TriFunction<ArrayList<T>, ArrayList<T>, CloneableTestInputsMap, Boolean> checkResults =
             (observedResult, expectedResult, algExtraResults) -> {
-              List<T> truncatedObservedResults = observedResult.subList(0, (int) algExtraResults.get("elemsLeft"));
+              List<T> truncatedObservedResults = observedResult.subList(0, algExtraResults.getInteger("elemsLeft"));
               return truncatedObservedResults.equals(expectedResult);
             };
 
@@ -79,21 +80,20 @@ public class RemoveDuplicatesFromSortedArrayList {
   }
 
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     smallTest();
     Random rgen = new Random();
     runTests(() -> rgen.nextInt(MAX_INT), "RemoveDuplicatesFromSortedArrayList - Integer array");
     runTests(() -> new Student(
                         Student.FNAME.values()[rgen.nextInt(Student.FNAME.values().length)].toString()
                         , Student.LNAME.values()[rgen.nextInt(Student.LNAME.values().length)].toString()
-                        , rgen.nextDouble() * 4
                       )
               , "RemoveDuplicatesFromSortedArrayList - Students array");
   }
 }
 
 class Student implements Comparable<Student> {
-  public static enum FNAME {
+  enum FNAME {
     ADAM("ADAM"), BOB("BOB"), CHARLIE("CHARLIE"), DAVID("DAVID");
     private String fname;
     FNAME(String name) {
@@ -104,7 +104,7 @@ class Student implements Comparable<Student> {
       return fname;
     }
   }
-  public static enum LNAME {
+  enum LNAME {
     JOHNSON("JOHNSON"), FIELDS("FIELDS"), ROSE("ROSE"), SMITH("SMITH");
     private String lname;
     LNAME(String name) {
@@ -118,13 +118,11 @@ class Student implements Comparable<Student> {
 
   private final String fname;
   private final String lname;
-  private final double gpa;
   private int cached_hash;
 
-  Student(String _fname, String _lname, double _gpa) {
+  Student(String _fname, String _lname) {
     fname = _fname;
     lname = _lname;
-    gpa = _gpa;
   }
 
   @Override

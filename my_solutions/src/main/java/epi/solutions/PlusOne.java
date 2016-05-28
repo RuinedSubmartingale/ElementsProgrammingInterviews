@@ -1,15 +1,11 @@
 package epi.solutions;
 
 import com.google.common.base.Joiner;
-import epi.solutions.helper.CloneableArrayList;
-import epi.solutions.helper.CloneableTestInput;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.math.BigInteger;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -20,7 +16,7 @@ import java.util.function.Supplier;
 /**
  * Created by psingh on 5/13/16.
  * Problem 6.2
- * Given an array A of digits encodiing a decimal number D,
+ * Given an array A of digits encoding a decimal number D,
  * with MSD at A[0]. Update A to hold D + 1.
  */
 public class PlusOne {
@@ -56,16 +52,16 @@ public class PlusOne {
     return A;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      inputs.put("A", new CloneableArrayList(randArray(ARR_LENGTH)));
+      inputs.addArrayList("A", randArray(ARR_LENGTH));
       return inputs;
     };
     Function<CloneableTestInputsMap, ArrayList<Integer>> runAlgorithm =
-            (input) -> plusOne((ArrayList<Integer>) input.get("A"));
+            (input) -> plusOne(input.getArrayList("A"));
     Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
-      BigInteger B = new BigInteger(Joiner.on("").join((ArrayList<Integer>) orig_input.get("A")));
+      BigInteger B = new BigInteger(Joiner.on("").join(orig_input.getArrayList("A")));
       B = B.add(BigInteger.valueOf(1));
       ArrayList<Integer> expectedOutput = new ArrayList<>();
       while (B.compareTo(BigInteger.valueOf(0)) > 0) {

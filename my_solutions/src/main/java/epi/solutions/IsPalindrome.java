@@ -1,6 +1,5 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInteger;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
@@ -53,7 +52,7 @@ public class IsPalindrome {
     return true;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     if (args.length == 1) {
       int x = Integer.parseInt(args[0]);
       System.out.println(x + " " + isPalindrome(x));
@@ -62,13 +61,13 @@ public class IsPalindrome {
       Callable<CloneableTestInputsMap> formInput = () -> {
         Random rgen = new Random();
         CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-        inputs.put("x", new CloneableInteger(rgen.nextInt(99999 * 2 + 1) - 99999));
+        inputs.addInteger("x", rgen.nextInt(99999 * 2 + 1) - 99999);
         return inputs;
       };
       Function<CloneableTestInputsMap, Boolean> runAlgorithm =
-              (input) -> isPalindrome(((CloneableInteger) input.get("x")).data);
+              (input) -> isPalindrome(input.getInteger("x"));
       Function<CloneableTestInputsMap, Boolean> getKnownOutput =
-              (orig_input) -> slowSolution(((CloneableInteger) orig_input.get("x")).data);
+              (orig_input) -> slowSolution(orig_input.getInteger("x"));
       BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
       Supplier<Boolean> emptyOutput = () -> true;
       TimeTests<Boolean> algTimer =

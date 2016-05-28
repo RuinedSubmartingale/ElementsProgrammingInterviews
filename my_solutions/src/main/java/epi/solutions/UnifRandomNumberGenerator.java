@@ -1,6 +1,5 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInteger;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
@@ -29,7 +28,7 @@ public class UnifRandomNumberGenerator {
     return lowerBound + result;
 
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     if (args.length == 2) {
       int a, b;
       a = Integer.parseInt(args[0]);
@@ -42,14 +41,14 @@ public class UnifRandomNumberGenerator {
         int a = rgen.nextInt(100);
         int b = rgen.nextInt(100) + a + 1;
         CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-        inputs.put("a", new CloneableInteger(a));
-        inputs.put("b", new CloneableInteger(b));
+        inputs.addInteger("a", a);
+        inputs.addInteger("b", b);
         return inputs;
       };
       Function<CloneableTestInputsMap, Integer> runAlg = (inputs) ->
-        UnifRandom( ((CloneableInteger) inputs.get("a")).data, ((CloneableInteger) inputs.get("b")).data);
+        UnifRandom(inputs.getInteger("a"), inputs.getInteger("b"));
       BiFunction<CloneableTestInputsMap, Integer, Boolean> checkResults = (orig_input, observed) ->
-              ((CloneableInteger) orig_input.get("a")).data <= observed && observed <= ((CloneableInteger) orig_input.get("b")).data;
+              orig_input.getInteger("a") <= observed && observed <= orig_input.getInteger("b");
       Supplier<Integer> emptyOutput = () -> 0;
       TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "UnifRandomNumberGenerator");
       algTimer.testAndCheck(NUM_TESTS, checkResults);

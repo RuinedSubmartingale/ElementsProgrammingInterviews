@@ -1,7 +1,7 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableArrayList;
 import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class MaxDifferenceKPairs {
   // O(1) space
   private static double maxProfitUnlimitedPairs(List<Double> A) {
     double profit = 0;
-    for (int i = 0; i < A.size(); ++i) {
+    for (int i = 1; i < A.size(); ++i) {
       double delta = A.get(i) - A.get(i-1);
       if (delta > 0)
         profit += delta;
@@ -86,24 +86,24 @@ public class MaxDifferenceKPairs {
     return profit;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Callable<CloneableTestInputsMap> formInput = () -> {
       Random rgen = new Random();
-      ArrayList<Double> A = MiscHelperMethods.randArray(() -> rgen.nextDouble(), ARR_LEN);
+      ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
       CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-      inputs.put("A", new CloneableArrayList(A));
+      inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits((List<Double>) inputs.get("A"), K_BUY_SELLS);
+    Function<CloneableTestInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A"), K_BUY_SELLS);
     Supplier<Double> emptyOutput = () -> 0.0;
-    Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) -> checkAns((List<Double>) inputs.get("A"), K_BUY_SELLS);
+    Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
     BiFunction<Double, Double, Boolean> checkAns = Double::equals;
     TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
-    algTimer.testAndCheck(100, checkAns, getKnownOutput); // checking is O(n^k) expensive
+    algTimer.testAndCheck(10000, checkAns, getKnownOutput); // checking is O(n^k) expensive
     algTimer.test(NUM_TESTS);
 
-    Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs((List<Double>) inputs.get("A"));
-    TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
+    Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
+    TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runSimpleAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
     simpleAlgTimer.test(NUM_TESTS);
   }
 }

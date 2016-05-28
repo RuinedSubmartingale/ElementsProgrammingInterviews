@@ -1,13 +1,10 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInteger;
-import epi.solutions.helper.CloneableLong;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -34,7 +31,7 @@ public class SwapBits {
     assert(swapBits(28, 0, 2) == 25);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     simpleTest();
     if (args.length == 3) {
       long x = Long.parseLong(args[0]);
@@ -52,17 +49,14 @@ public class SwapBits {
           x_num_bits += 1;
           x >>>= 1;
         }
-        int i = rgen.nextInt(x_num_bits);
-        int j = rgen.nextInt(x_num_bits);
         CloneableTestInputsMap inputs = new CloneableTestInputsMap();
-        inputs.put("x", new CloneableLong(x));
-        inputs.put("i", new CloneableInteger(i));
-        inputs.put("j", new CloneableInteger(j));
+        inputs.addLong("x", x);
+        inputs.addInteger("i", rgen.nextInt(x_num_bits));
+        inputs.addInteger("j", rgen.nextInt(x_num_bits));
         return inputs;
       };
-      Function<CloneableTestInputsMap, Long> runAlg = (inputs) -> swapBits( ((CloneableLong) inputs.get("x")).data
-                , ((CloneableInteger) inputs.get("i")).data
-                , ((CloneableInteger) inputs.get("j")).data);
+      Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
+              swapBits(inputs.getLong("x"), inputs.getInteger("i"), inputs.getInteger("j"));
       Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "SwapBits");
       algTimer.test(NUM_TESTS);

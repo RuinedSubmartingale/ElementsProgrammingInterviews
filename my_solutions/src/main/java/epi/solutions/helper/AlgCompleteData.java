@@ -1,18 +1,17 @@
 package epi.solutions.helper;
 
-import java.util.HashMap;
-
 /**
  * Created by psingh on 5/20/16.
+ * Used by TimeTests. Has sufficient information about the algorithm to check its correctness.
  */
 class AlgCompleteData<outputType> {
   CloneableTestInputsMap _orig_inputs;
   outputType _expectedResults;
   outputType _observedResults;
-  HashMap<String, Object> _algExtraResults;
+  CloneableTestInputsMap _algExtraResults;
 
   AlgCompleteData(CloneableTestInputsMap orig_inputs, outputType expectedResults, outputType observedResults
-          , HashMap<String, Object> algExtraResults) {
+          , CloneableTestInputsMap algExtraResults) {
     _orig_inputs = orig_inputs;
     _expectedResults = expectedResults;
     _observedResults = observedResults;
