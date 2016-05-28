@@ -74,6 +74,6 @@ public class PlusOne {
     Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
     TimeTests<ArrayList<Integer>> algTimer =
             new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PlusOne");
-    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 }

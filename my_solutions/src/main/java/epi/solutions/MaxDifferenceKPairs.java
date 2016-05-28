@@ -101,12 +101,12 @@ public class MaxDifferenceKPairs {
     BiFunction<Double, Double, Boolean> checkAns = Double::equals;
     TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    algTimer.testAndCheck(10000, checkAns, getKnownOutput); // checking is O(n^k) expensive
+    algTimer.timeAndCheck(10000, checkAns, getKnownOutput); // checking is O(n^k) expensive
     System.setOut(originalStream);
-    algTimer.test(NUM_TESTS);
+    algTimer.time(NUM_TESTS);
 
     Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
     TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runSimpleAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
-    simpleAlgTimer.test(NUM_TESTS);
+    simpleAlgTimer.time(NUM_TESTS);
   }
 }

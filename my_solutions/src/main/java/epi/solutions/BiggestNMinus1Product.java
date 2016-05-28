@@ -157,11 +157,11 @@ public class BiggestNMinus1Product {
     TimeTests<Long> alg2Timer = new TimeTests<>(formInput, runAlg2, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(1) space ]");
 
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    alg1Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
-    alg2Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
+    alg1Timer.timeAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
+    alg2Timer.timeAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
 
     System.setOut(originalStream);
-    alg1Timer.test(NUM_TESTS);
-    alg2Timer.test(NUM_TESTS);
+    alg1Timer.time(NUM_TESTS);
+    alg2Timer.time(NUM_TESTS);
   }
 }

@@ -51,7 +51,7 @@ public class PowerXY {
 
     TimeTests<Double> algTimer =
             new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PowerXY");
-    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 
 }

@@ -55,7 +55,7 @@ public class ClosestIntSameBits {
             closestIntSameBitCount(inputs.getLong("x"));
     Supplier<Long> emptyOutput = () -> 0L;
     TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "ClosestIntegerSameBits");
-    algTimer.test(NUM_TESTS);
+    algTimer.time(NUM_TESTS);
   }
 
 }

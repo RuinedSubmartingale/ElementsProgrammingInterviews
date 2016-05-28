@@ -4,12 +4,9 @@ import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -116,12 +113,12 @@ public class PrimeSieve {
     TimeTests<ArrayList<Integer>> algTimer2 = new TimeTests<>(formInput, runAlg2, emptyOutput, "Improved Prime Sieve");
 
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    algTimer1.testAndCheck(100, checkResults); // checking is pretty expensive
-    algTimer2.testAndCheck(100, checkResults); // checking is pretty expensive
+    algTimer1.timeAndCheck(100, checkResults); // checking is pretty expensive
+    algTimer2.timeAndCheck(100, checkResults); // checking is pretty expensive
 
     System.setOut(originalStream);
-    algTimer1.test(NUM_TESTS);
-    algTimer2.test(NUM_TESTS);
+    algTimer1.time(NUM_TESTS);
+    algTimer2.time(NUM_TESTS);
   }
 
 }

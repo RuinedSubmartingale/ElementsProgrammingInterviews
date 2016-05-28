@@ -66,7 +66,7 @@ public class MultiplyShiftAdd {
       Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer =
               new TimeTests<>(formInput, runAlg, emptyOutput, "MultiplyShiftAdd");
-      algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+      algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
     }
   }
 }

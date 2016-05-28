@@ -36,16 +36,22 @@ public class TimeTests<outputType> {
   // See https://stackoverflow.com/questions/1998544/method-has-the-same-erasure-as-another-method-in-type
   // for why classes aren't allowed to have methods that are override-equivalent,
   // i.e. methods that have the same parameter types after erasure
-  // It took a bit of brainstorming to overload testAndCheck method in a valid way as follows
-  public void testAndCheck(final int numTests, BiFunction<outputType, outputType, Boolean> checkResults
+  // It took a bit of brainstorming to overload timeAndCheck method in a valid way as follows
+  public void timeAndCheck(final int numTests, BiFunction<outputType, outputType, Boolean> checkResults
           , Function<CloneableTestInputsMap, outputType> getKnownOutput) throws Exception {
     _numTests = numTests;
     _getKnownOutput = getKnownOutput;
     _algChecker = algCompleteData ->
             checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults);
     _numTests = numTests;
-    testAndCheck();
+    timeAndCheck();
   }
+
+  /* TODO: Add a timeAndCheck() method that allows for running the algorithm multiple times and verifying that the
+            distribution of results matches expectations. For example, time and check that SampleOffline.java sends
+            approx equal random subsets of k elements to the front of A.
+    */
+
 
   // TODO: Clearer variable names and better documentation/explanation of use cases for TriFunction.
   @FunctionalInterface
@@ -53,7 +59,7 @@ public class TimeTests<outputType> {
     D apply(A a, B b, C c);
   }
 
-  public void testAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableTestInputsMap, Boolean> checkResults
+  public void timeAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableTestInputsMap, Boolean> checkResults
           , Function<CloneableTestInputsMap, outputType> getKnownOutput
           , Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraAlgResults) throws Exception {
     _numTests = numTests;
@@ -62,29 +68,29 @@ public class TimeTests<outputType> {
             checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults, algCompleteData._algExtraResults);
     _numTests = numTests;
     _saveExtraAlgResults = saveExtraAlgResults;
-    testAndCheck();
+    timeAndCheck();
   }
 
-  public void testAndCheck(final int numTests, BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) throws Exception {
+  public void timeAndCheck(final int numTests, BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) throws Exception {
     _numTests = numTests;
     _algChecker = algCompleteData ->
             checkResults.apply(algCompleteData._orig_inputs, algCompleteData._observedResults);
-    testAndCheck();
+    timeAndCheck();
   }
 
-  public void testAndCheck(final int numTests, Function<outputType, Boolean> checkResults) throws Exception {
+  public void timeAndCheck(final int numTests, Function<outputType, Boolean> checkResults) throws Exception {
     _numTests = numTests;
     _algChecker = algCompleteData -> checkResults.apply(algCompleteData._observedResults);
-    testAndCheck();
+    timeAndCheck();
   }
 
-  public void test(final int numTests) throws Exception {
+  public void time(final int numTests) throws Exception {
     _numTests = numTests;
     _algChecker = (completeData) -> true;
-    testAndCheck();
+    timeAndCheck();
   }
 
-  private void testAndCheck() throws Exception {
+  private void timeAndCheck() throws Exception {
     DecimalFormat df = new DecimalFormat("#.####");
     Runtime javaApp = Runtime.getRuntime();
     int nProcs = Math.max(javaApp.availableProcessors(), 1);

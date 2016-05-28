@@ -53,7 +53,7 @@ public class JumpBoardGame {
             isWinnable(inputs.getArrayList("A"));
     Supplier<Boolean> emptyOutput = () -> false;
     TimeTests<Boolean> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "JumpBoardGame");
-    algTimer.test(NUM_TESTS);
+    algTimer.time(NUM_TESTS);
 
   }
 }

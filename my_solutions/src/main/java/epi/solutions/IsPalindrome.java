@@ -72,7 +72,7 @@ public class IsPalindrome {
       Supplier<Boolean> emptyOutput = () -> true;
       TimeTests<Boolean> algTimer =
               new TimeTests<>(formInput, runAlgorithm, emptyOutput, "IsPalindrome");
-      algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+      algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
     }
   }
 }

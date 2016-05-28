@@ -59,7 +59,7 @@ public class SwapBits {
               swapBits(inputs.getLong("x"), inputs.getInteger("i"), inputs.getInteger("j"));
       Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "SwapBits");
-      algTimer.test(NUM_TESTS);
+      algTimer.time(NUM_TESTS);
     }
   }
 }

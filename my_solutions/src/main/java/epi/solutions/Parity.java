@@ -131,10 +131,10 @@ public class Parity {
       TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, emptyOutput, "Parity2");
       TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, emptyOutput, "Parity3");
       TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, emptyOutput, "Parity4");
-      algTimer1.test(NUM_TESTS);
-      algTimer2.test(NUM_TESTS);
-      algTimer3.test(NUM_TESTS);
-      algTimer4.test(NUM_TESTS);
+      algTimer1.time(NUM_TESTS);
+      algTimer2.time(NUM_TESTS);
+      algTimer3.time(NUM_TESTS);
+      algTimer4.time(NUM_TESTS);
     }
   }
 }

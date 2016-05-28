@@ -82,6 +82,6 @@ public class DutchFlagPartition {
     BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
     Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
     TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlgorithm, emptyOutput, testDesc);
-    algTimer.testAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
   }
 }

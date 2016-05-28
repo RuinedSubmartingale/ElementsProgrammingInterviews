@@ -145,7 +145,7 @@ public class PermuteArray {
     ArrayList<Integer> expected = getKnownOutput.apply(orig_input);
     boolean correct = checkAns.apply(expected, observed);
     assert(correct);
-    algTimer1.testAndCheck(NUM_TESTS, checkAns, getKnownOutput);
-    algTimer2.testAndCheck(NUM_TESTS, checkAns, getKnownOutput);
+    algTimer1.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
+    algTimer2.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
   }
 }

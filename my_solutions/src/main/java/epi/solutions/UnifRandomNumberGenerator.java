@@ -51,7 +51,7 @@ public class UnifRandomNumberGenerator {
               orig_input.getInteger("a") <= observed && observed <= orig_input.getInteger("b");
       Supplier<Integer> emptyOutput = () -> 0;
       TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "UnifRandomNumberGenerator");
-      algTimer.testAndCheck(NUM_TESTS, checkResults);
+      algTimer.timeAndCheck(NUM_TESTS, checkResults);
     }
 
   }
