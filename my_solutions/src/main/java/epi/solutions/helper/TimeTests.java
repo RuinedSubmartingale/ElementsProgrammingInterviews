@@ -72,6 +72,12 @@ public class TimeTests<outputType> {
     testAndCheck();
   }
 
+  public void testAndCheck(final int numTests, Function<outputType, Boolean> checkResults) throws Exception {
+    _numTests = numTests;
+    _algChecker = algCompleteData -> checkResults.apply(algCompleteData._observedResults);
+    testAndCheck();
+  }
+
   public void test(final int numTests) throws Exception {
     _numTests = numTests;
     _algChecker = (completeData) -> true;
