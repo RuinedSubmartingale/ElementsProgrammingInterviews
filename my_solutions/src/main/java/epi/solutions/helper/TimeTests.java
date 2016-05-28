@@ -50,6 +50,7 @@ public class TimeTests<outputType> {
   /* TODO: Add a timeAndCheck() method that allows for running the algorithm multiple times and verifying that the
             distribution of results matches expectations. For example, time and check that SampleOffline.java sends
             approx equal random subsets of k elements to the front of A.
+     Notes: it could possibly be worked into timeAndCheck(final int numTests, Function<outputType, Boolean> checkResults) ...?
     */
 
 
@@ -96,25 +97,11 @@ public class TimeTests<outputType> {
     int nProcs = Math.max(javaApp.availableProcessors(), 1);
     ExecutorService execService = Executors.newFixedThreadPool(nProcs);
     int numTestPerThread = _numTests / nProcs;
-    Callable<Long> task  = () -> {
-      long total = 0, start;
-      for (int i = 0; i < numTestPerThread; ++i) {
-        CloneableTestInputsMap input = _formInput.call();
-        CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
-        input.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
-        start = System.nanoTime();
-        outputType algorithmResult = _runAlgorithm.apply(input);
-        total += System.nanoTime() - start;
-        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(input);
-        assert (check(orig_input, algorithmResult, algExtraResults));
-      }
-      return total;
-    };
+    Callable<Long> task  = timeAndCheckCallable(numTestPerThread);
     List<Callable<Long>> tasks = Collections.nCopies(nProcs, task);
 
     List<Future<Long>> futures = execService.invokeAll(tasks);
-    Long totalExecTime = futures
-            .stream()
+    Long totalExecTime = futures.stream()
             .map((future) -> {
               try {
                 return future.get();
@@ -127,6 +114,23 @@ public class TimeTests<outputType> {
             + df.format(totalExecTime * 1.0 / _numTests)
             + " nanoseconds on average for " + _numTests * 1.0 / Math.pow(10, 6) + " million tests"));
     execService.shutdown();
+  }
+
+  private Callable<Long> timeAndCheckCallable(int numTests) {
+    return () -> {
+      long total = 0, start;
+      for (int i = 0; i < numTests; ++i) {
+        CloneableTestInputsMap input = _formInput.call();
+        CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
+        input.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
+        start = System.nanoTime();
+        outputType algorithmResult = _runAlgorithm.apply(input);
+        total += System.nanoTime() - start;
+        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(input);
+        assert (check(orig_input, algorithmResult, algExtraResults));
+      }
+      return total;
+    };
   }
 
   private boolean check(CloneableTestInputsMap orig_input, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
