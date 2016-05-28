@@ -1,13 +1,17 @@
 package epi.solutions.helper;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.google.common.collect.Lists;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class TimeTests<outputType> {
@@ -17,7 +21,7 @@ public class TimeTests<outputType> {
   private int _numTests;
   private String _algDescription;
   private Function<AlgCompleteData<outputType>, Boolean> _algChecker;
-  private Function<CloneableTestInputsMap, HashMap<String, Object>> _saveExtraAlgResults;
+  private Function<CloneableTestInputsMap, CloneableTestInputsMap> _saveExtraAlgResults;
 
   public TimeTests(Callable<CloneableTestInputsMap> formInput
                   , Function<CloneableTestInputsMap, outputType> runAlgorithm
@@ -28,7 +32,7 @@ public class TimeTests<outputType> {
     _algDescription = algName;
 
     _getKnownOutput = (inputs) -> emptyOutput.get();
-    _saveExtraAlgResults = (inputs) -> new HashMap<String, Object>();
+    _saveExtraAlgResults = (inputs) -> new CloneableTestInputsMap();
     // TODO: prob not a good practice to use Object as value type in HashMap here and use unchecked type casting below. Try to figure out a better approach...
   }
 
@@ -37,7 +41,7 @@ public class TimeTests<outputType> {
   // i.e. methods that have the same parameter types after erasure
   // It took a bit of brainstorming to overload testAndCheck method in a valid way as follows
   public void testAndCheck(final int numTests, BiFunction<outputType, outputType, Boolean> checkResults
-          , Function<CloneableTestInputsMap, outputType> getKnownOutput) {
+          , Function<CloneableTestInputsMap, outputType> getKnownOutput) throws Exception {
     _numTests = numTests;
     _getKnownOutput = getKnownOutput;
     _algChecker = algCompleteData ->
@@ -52,9 +56,9 @@ public class TimeTests<outputType> {
     D apply(A a, B b, C c);
   }
 
-  public void testAndCheck(final int numTests, TriFunction<outputType, outputType, HashMap, Boolean> checkResults
+  public void testAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableTestInputsMap, Boolean> checkResults
           , Function<CloneableTestInputsMap, outputType> getKnownOutput
-          , Function<CloneableTestInputsMap, HashMap<String, Object>> saveExtraAlgResults) {
+          , Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraAlgResults) throws Exception {
     _numTests = numTests;
     _getKnownOutput = getKnownOutput;
     _algChecker = algCompleteData ->
@@ -64,50 +68,61 @@ public class TimeTests<outputType> {
     testAndCheck();
   }
 
-  public void testAndCheck(final int numTests, BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) {
+  public void testAndCheck(final int numTests, BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) throws Exception {
     _numTests = numTests;
     _algChecker = algCompleteData ->
             checkResults.apply(algCompleteData._orig_inputs, algCompleteData._observedResults);
     testAndCheck();
   }
 
-  public void test(final int numTests) {
+  public void test(final int numTests) throws Exception {
     _numTests = numTests;
     _algChecker = (completeData) -> true;
     testAndCheck();
   }
 
-  private void testAndCheck() {
+  private void testAndCheck() throws Exception {
     DecimalFormat df = new DecimalFormat("#.####");
-    long total = 0, start;
-    try {
-      for (int i=0; i < _numTests; ++i) {
+    Runtime javaApp = Runtime.getRuntime();
+    int nProcs = Math.max(javaApp.availableProcessors() - 1, 1);
+    ExecutorService execService = Executors.newFixedThreadPool(nProcs);
+    int numTestPerThread = _numTests / nProcs;
+    Callable<Long> task  = () -> {
+      long total = 0, start;
+      for (int i = 0; i < numTestPerThread; ++i) {
         CloneableTestInputsMap input = _formInput.call();
         CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
         input.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
         start = System.nanoTime();
         outputType algorithmResult = _runAlgorithm.apply(input);
         total += System.nanoTime() - start;
-        HashMap<String, Object> algExtraResults = _saveExtraAlgResults.apply(input);
-        assert(check(orig_input, algorithmResult, algExtraResults));
+        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(input);
+        assert (check(orig_input, algorithmResult, algExtraResults));
       }
-      System.out.println(String.format("%s %50s %s", "DEBUG: ", _algDescription, " took "
-              + df.format(total * 1.0 / _numTests)
-              + " nanoseconds on average for " + _numTests * 1.0 / Math.pow(10, 6) + " million tests"));
-    } catch (Exception|AssertionError e) {
-      System.out.println(e.toString() + " - " + e.getMessage() + " - ");
-      e.printStackTrace();
-    }
+      return total;
+    };
+    List<Callable<Long>> tasks = Collections.nCopies(nProcs, task);
+
+    List<Future<Long>> futures = execService.invokeAll(tasks);
+    Long totalExecTime = futures
+            .stream()
+            .map((future) -> {
+              try {
+                return future.get();
+              } catch (Exception e){
+                throw new IllegalStateException(e);
+              }
+            })
+            .reduce((a,b) -> a + b).orElse(0L);
+    System.out.println(String.format("%s %50s %s", "DEBUG: ", _algDescription, " took "
+            + df.format(totalExecTime * 1.0 / _numTests)
+            + " nanoseconds on average for " + _numTests * 1.0 / Math.pow(10, 6) + " million tests"));
+
   }
 
-  private boolean check(CloneableTestInputsMap orig_input, outputType algorithmResult, HashMap<String, Object> algExtraResults) {
+  private boolean check(CloneableTestInputsMap orig_input, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
     outputType expectedResult = _getKnownOutput.apply(orig_input);
     AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_input, expectedResult, algorithmResult, algExtraResults);
     return _algChecker.apply(completeData);
   }
-
-  public void main(String[] args) {
-
-  }
 }
-
