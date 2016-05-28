@@ -128,6 +128,9 @@ public class MyTests {
   @Test // 6.12
   public void PrimeSieve() throws Exception { PrimeSieve.main(ARGS); }
 
+  @Test // 6.13
+  public void PermuteArray() throws Exception { PermuteArray.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

@@ -2,6 +2,7 @@ package epi.solutions.helper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,7 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
     }
   }
 
-  public <T> void addArrayList(String name, ArrayList<T> A) {
+  public <T> void addArrayList(String name, List<T> A) {
     this.put(name, new CloneableArrayList<>(A));
   }
   public <T> ArrayList<T> getArrayList(String name) throws IllegalArgumentException {

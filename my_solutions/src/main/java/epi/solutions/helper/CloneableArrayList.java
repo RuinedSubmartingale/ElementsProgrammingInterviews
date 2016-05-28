@@ -1,6 +1,7 @@
 package epi.solutions.helper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by psingh on 5/14/16.
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 class CloneableArrayList<T> implements CloneableTestInput<CloneableArrayList<T>> {
   private ArrayList<T> data;
   CloneableArrayList() {}
-  CloneableArrayList(ArrayList<T> input) {
+  CloneableArrayList(List<T> input) {
     data = new ArrayList<>(input);
   }
 
