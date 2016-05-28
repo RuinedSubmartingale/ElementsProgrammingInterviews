@@ -1,5 +1,7 @@
 package epi.solutions.helper;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
@@ -15,5 +17,17 @@ public class MiscHelperMethods {
       result.add(randSupplier.get());
     }
     return result;
+  }
+
+  public static PrintStream setSystemOutToDummyStream() {
+    PrintStream originalStream = System.out;
+    PrintStream dummyStream  = new PrintStream(new OutputStream(){
+      @Override
+      public void write(int b) {
+        //NO-OP
+      }
+    });
+    System.setOut(dummyStream);
+    return originalStream;
   }
 }

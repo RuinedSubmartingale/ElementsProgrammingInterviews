@@ -4,6 +4,7 @@ import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
+import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
@@ -155,10 +156,11 @@ public class BiggestNMinus1Product {
     TimeTests<Long> alg1Timer = new TimeTests<>(formInput, runAlg1, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(n) space ]");
     TimeTests<Long> alg2Timer = new TimeTests<>(formInput, runAlg2, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(1) space ]");
 
+    PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
     alg1Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
     alg2Timer.testAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
 
-    System.out.println("\n\n");
+    System.setOut(originalStream);
     alg1Timer.test(NUM_TESTS);
     alg2Timer.test(NUM_TESTS);
   }

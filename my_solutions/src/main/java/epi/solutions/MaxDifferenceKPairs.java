@@ -4,6 +4,7 @@ import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -99,7 +100,9 @@ public class MaxDifferenceKPairs {
     Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
     BiFunction<Double, Double, Boolean> checkAns = Double::equals;
     TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
+    PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
     algTimer.testAndCheck(10000, checkAns, getKnownOutput); // checking is O(n^k) expensive
+    System.setOut(originalStream);
     algTimer.test(NUM_TESTS);
 
     Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
