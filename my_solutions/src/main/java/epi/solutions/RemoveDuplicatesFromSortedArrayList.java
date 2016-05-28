@@ -136,7 +136,8 @@ class Student implements Comparable<Student> {
 
   @Override
   public boolean equals(Object other) {
-    if (! (other instanceof Student)) return false;
+    if (other == null || !(other instanceof Student)) return false;
+    if (this == other) return true;
     Student that = (Student) other;
     return new EqualsBuilder().append(fname, that.fname).append(lname, that.lname).isEquals();
   }
