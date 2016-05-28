@@ -125,6 +125,9 @@ public class MyTests {
   @Test // 6.10
   public void BiggestNMinus1Product() throws Exception { BiggestNMinus1Product.main(ARGS); }
 
+  @Test // 6.12
+  public void PrimeSieve() throws Exception { PrimeSieve.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }
