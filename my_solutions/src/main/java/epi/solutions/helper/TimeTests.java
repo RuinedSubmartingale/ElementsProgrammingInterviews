@@ -122,4 +122,23 @@ public class TimeTests<outputType> {
     AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_input, expectedResult, algorithmResult, algExtraResults);
     return _algChecker.apply(completeData);
   }
+//
+//  public static abstract class InputFormer implements Callable<CloneableTestInputsMap> {
+//    protected CloneableTestInputsMap inputs;
+//    public InputFormer() {
+//      inputs = new CloneableTestInputsMap();
+//    }
+//  }
+//
+//  // Example usage
+//
+//  TimeTests.InputFormer inputFormer = new TimeTests.InputFormer() {
+//    @Override
+//    public CloneableTestInputsMap call() throws Exception {
+//      Random rgen = new Random();
+//      ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
+//      this.inputs.addArrayList("A", A);
+//      return this.inputs;
+//    }
+//  };
 }
