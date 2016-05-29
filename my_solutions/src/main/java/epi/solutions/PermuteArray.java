@@ -137,14 +137,13 @@ public class PermuteArray {
     TimeTests<ArrayList<Integer>> algTimer1 = new TimeTests<>(formInput, runAlg1, emptyOutput, "Permute Array: O(n) time / O(n) space");
     TimeTests<ArrayList<Integer>> algTimer2 = new TimeTests<>(formInput, runAlg2, emptyOutput, "Permute Array: O(n^2) time / O(1) space");
 
-
-    CloneableTestInputsMap inputs = formInput.call();
-    CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
-    inputs.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
-    ArrayList<Integer> observed = runAlg1.apply(inputs);
-    ArrayList<Integer> expected = getKnownOutput.apply(orig_input);
-    boolean correct = checkAns.apply(expected, observed);
-    assert(correct);
+//    CloneableTestInputsMap inputs = formInput.call();
+//    CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
+//    inputs.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
+//    ArrayList<Integer> observed = runAlg1.apply(inputs);
+//    ArrayList<Integer> expected = getKnownOutput.apply(orig_input);
+//    boolean correct = checkAns.apply(expected, observed);
+//    assert(correct);
     algTimer1.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
     algTimer2.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
   }

@@ -1,5 +1,7 @@
 package epi.solutions.helper;
 
+import com.google.common.base.Preconditions;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -29,5 +31,21 @@ public class MiscHelperMethods {
     });
     System.setOut(dummyStream);
     return originalStream;
+  }
+
+  // TODO: random character array (w. options for range of char values) / random string
+  public static char[] randCharArray(Supplier<Character> randSupplier, int len) {
+    char[] result = new char[len];
+    for (int i = 0; i < len; ++i) {
+      result[i] = randSupplier.get();
+    }
+    return result;
+  }
+
+  public static void randCharArray(Supplier<Character> randSupplier, int len, char[] result) {
+    Preconditions.checkArgument(result.length >= len);
+    for (int i = 0; i < len; ++i) {
+      result[i] = randSupplier.get();
+    }
   }
 }

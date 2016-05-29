@@ -19,6 +19,7 @@ public class TimeTests<outputType> {
   private String _algDescription;
   private Function<AlgCompleteData<outputType>, Boolean> _algChecker;
   private Function<CloneableTestInputsMap, CloneableTestInputsMap> _saveExtraAlgResults;
+  private Function<CloneableTestInputsMap, CloneableTestInputsMap> _saveExtraExpResults;
 
   public TimeTests(Callable<CloneableTestInputsMap> formInput
                   , Function<CloneableTestInputsMap, outputType> runAlgorithm
@@ -30,6 +31,7 @@ public class TimeTests<outputType> {
 
     _getKnownOutput = (inputs) -> emptyOutput.get();
     _saveExtraAlgResults = (inputs) -> new CloneableTestInputsMap();
+    _saveExtraExpResults = (inputs) -> new CloneableTestInputsMap();
     // TODO: prob not a good practice to use Object as value type in HashMap here and use unchecked type casting below. Try to figure out a better approach...
   }
 
@@ -53,11 +55,18 @@ public class TimeTests<outputType> {
      Notes: it could possibly be worked into timeAndCheck(final int numTests, Function<outputType, Boolean> checkResults) ...?
     */
 
+  /* TODO: Allow running sequentially without spawning new threads. Helps with debugging sometimes.
+   */
 
   // TODO: Clearer variable names and better documentation/explanation of use cases for TriFunction.
   @FunctionalInterface
   public interface TriFunction<A, B, C, D> {
     D apply(A a, B b, C c);
+  }
+
+  @FunctionalInterface
+  public interface QuadFunction<A, B, C, D, E> {
+    E apply(A a, B b, C c, D d);
   }
 
   public void timeAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableTestInputsMap, Boolean> checkResults
@@ -69,6 +78,34 @@ public class TimeTests<outputType> {
             checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults, algCompleteData._algExtraResults);
     _numTests = numTests;
     _saveExtraAlgResults = saveExtraAlgResults;
+    timeAndCheck();
+  }
+
+  public void timeAndCheck(final int numTests, QuadFunction<outputType, outputType, CloneableTestInputsMap, CloneableTestInputsMap, Boolean> checkResults
+          , Function<CloneableTestInputsMap, outputType> getKnownOutput
+          , Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraAlgResults) throws Exception {
+    _numTests = numTests;
+    _getKnownOutput = getKnownOutput;
+    _algChecker = algCompleteData ->
+            checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults
+                    , algCompleteData._algExtraResults, algCompleteData._expectedExtraResults);
+    _numTests = numTests;
+    _saveExtraAlgResults = saveExtraAlgResults;
+    timeAndCheck();
+  }
+
+  public void timeAndCheck(final int numTests, QuadFunction<outputType, outputType, CloneableTestInputsMap, CloneableTestInputsMap, Boolean> checkResults
+          , Function<CloneableTestInputsMap, outputType> getKnownOutput
+          , Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraAlgResults
+          , Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraExpResults) throws Exception {
+    _numTests = numTests;
+    _getKnownOutput = getKnownOutput;
+    _algChecker = algCompleteData ->
+            checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults
+                    , algCompleteData._algExtraResults, algCompleteData._expectedExtraResults);
+    _numTests = numTests;
+    _saveExtraAlgResults = saveExtraAlgResults;
+    _saveExtraExpResults = saveExtraExpResults;
     timeAndCheck();
   }
 
@@ -120,22 +157,26 @@ public class TimeTests<outputType> {
     return () -> {
       long total = 0, start;
       for (int i = 0; i < numTests; ++i) {
-        CloneableTestInputsMap input = _formInput.call();
-        CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
-        input.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
+        CloneableTestInputsMap inputs = _formInput.call();
+        CloneableTestInputsMap orig_inputs = new CloneableTestInputsMap();
+        inputs.forEach((name, inputType) -> orig_inputs.put(name, inputType.cloneInput()));
         start = System.nanoTime();
-        outputType algorithmResult = _runAlgorithm.apply(input);
+        outputType algorithmResult = _runAlgorithm.apply(inputs);
         total += System.nanoTime() - start;
-        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(input);
-        assert (check(orig_input, algorithmResult, algExtraResults));
+        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(inputs);
+        assert (check(orig_inputs, algorithmResult, algExtraResults));
       }
       return total;
     };
   }
+  public long timeAndCheckCallableOnce() throws Exception {
+    return timeAndCheckCallable(1).call();
+  }
 
-  private boolean check(CloneableTestInputsMap orig_input, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
-    outputType expectedResult = _getKnownOutput.apply(orig_input);
-    AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_input, expectedResult, algorithmResult, algExtraResults);
+  private boolean check(CloneableTestInputsMap orig_inputs, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
+    outputType expectedResult = _getKnownOutput.apply(orig_inputs);
+    CloneableTestInputsMap expectedExtraResults = _saveExtraExpResults.apply(orig_inputs);
+    AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_inputs, expectedResult, algorithmResult, algExtraResults, expectedExtraResults);
     return _algChecker.apply(completeData);
   }
 //

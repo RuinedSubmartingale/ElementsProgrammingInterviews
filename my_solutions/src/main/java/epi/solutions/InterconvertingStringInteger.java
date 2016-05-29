@@ -78,7 +78,7 @@ public class InterconvertingStringInteger {
         s.append((char)('0' + rgen.nextInt(10)));
       }
       String str = s.toString();
-      Assert.assertTrue(String.format("String \"%s\" represents too big an integer.", str.toString())
+      Assert.assertTrue(String.format("String \"%s\" represents too big an integer.", str)
               , Integer.MIN_VALUE <= Long.parseLong(str) && Long.parseLong(str) <= Integer.MAX_VALUE);
       inputs.addString("s", str);
       return inputs;

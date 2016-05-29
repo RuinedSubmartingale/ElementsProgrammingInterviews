@@ -137,6 +137,9 @@ public class MyTests {
   @Test // 7.1
   public void InterconvertingStringInteger() throws Exception { InterconvertingStringInteger.main(ARGS); }
 
+  @Test // 7.2
+  public void ReplaceAndRemove() throws Exception { ReplaceAndRemove.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

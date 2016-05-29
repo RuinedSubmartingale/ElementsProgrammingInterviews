@@ -65,4 +65,11 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
     return result.getInput();
   }
 
+  public void addCharArray(String name, char[] s) {
+    this.put(name, new CloneableCharArray(s));
+  }
+  public char[] getCharArray(String name) {
+    CloneableCharArray result = get(name, CloneableCharArray.class);
+    return result.getInput();
+  }
 }

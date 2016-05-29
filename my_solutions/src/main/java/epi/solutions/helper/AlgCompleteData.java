@@ -9,12 +9,14 @@ class AlgCompleteData<outputType> {
   outputType _expectedResults;
   outputType _observedResults;
   CloneableTestInputsMap _algExtraResults;
+  CloneableTestInputsMap _expectedExtraResults;
 
   AlgCompleteData(CloneableTestInputsMap orig_inputs, outputType expectedResults, outputType observedResults
-          , CloneableTestInputsMap algExtraResults) {
+          , CloneableTestInputsMap algExtraResults, CloneableTestInputsMap expectedExtraResults) {
     _orig_inputs = orig_inputs;
     _expectedResults = expectedResults;
     _observedResults = observedResults;
     _algExtraResults = algExtraResults;
+    _expectedExtraResults = expectedExtraResults;
   }
 }
