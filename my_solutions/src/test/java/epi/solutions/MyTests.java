@@ -134,6 +134,9 @@ public class MyTests {
   @Test // 6.16
   public void SampleOffline() throws Exception { SampleOffline.main(ARGS); }
 
+  @Test // 7.1
+  public void InterconvertingStringInteger() throws Exception { InterconvertingStringInteger.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }
