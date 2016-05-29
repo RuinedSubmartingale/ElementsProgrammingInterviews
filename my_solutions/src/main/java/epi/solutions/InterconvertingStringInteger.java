@@ -63,7 +63,7 @@ public class InterconvertingStringInteger {
       String.valueOf(inputs.getInteger("x"));
     Supplier<String> emptyOutput = String::new;
     BiFunction<String, String, Boolean> checkAns = String::equals;
-    TimeTests<String> algTimer = new TimeTests<>(formInputs, knownOutput, emptyOutput, "IntegerToString");
+    TimeTests<String> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "IntegerToString");
     algTimer.timeAndCheck(NUM_TESTS, checkAns, knownOutput);
   }
 
@@ -89,7 +89,7 @@ public class InterconvertingStringInteger {
             Integer.parseInt(inputs.getString("s"));
     Supplier<Integer> emptyOutput = () -> 0;
     BiFunction<Integer, Integer, Boolean> checkAns = Integer::equals;
-    TimeTests<Integer> algTimer = new TimeTests<>(formInputs, knownOutput, emptyOutput, "IntegerToString");
+    TimeTests<Integer> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "StringToInteger");
     algTimer.timeAndCheck(NUM_TESTS, checkAns, knownOutput);
   }
 
