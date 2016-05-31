@@ -63,7 +63,9 @@ public class RemoveElement {
             };
 
     TimeTests<ArrayList<Integer>> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "RemoveElement");
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput, saveExtraResults);
+    algTimer.setKnownOutput(getKnownOutput);
+    algTimer.saveExtraAlgResults(saveExtraResults);
+    algTimer.timeAndCheck(NUM_TESTS, checkResults);
 
 //    ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1,2,1,5,3,4,1,8));
 //    ArrayList<Integer> copyA = new ArrayList<>(A);

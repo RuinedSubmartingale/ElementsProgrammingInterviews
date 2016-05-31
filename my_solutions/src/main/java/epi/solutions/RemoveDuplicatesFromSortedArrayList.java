@@ -76,7 +76,9 @@ public class RemoveDuplicatesFromSortedArrayList {
             };
 
     TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, testDesc);
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput, saveExtraResults);
+    algTimer.setKnownOutput(getKnownOutput);
+    algTimer.saveExtraAlgResults(saveExtraResults);
+    algTimer.timeAndCheck(NUM_TESTS, checkResults);
   }
 
 

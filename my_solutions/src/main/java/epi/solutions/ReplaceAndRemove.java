@@ -102,7 +102,10 @@ public class ReplaceAndRemove {
     TimeTests<Integer> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "Replace and Remove");
 
     System.out.println(String.format("Running algorithms on character arrays of length %d...", ARR_LEN));
-    algTimer.timeAndCheck(NUM_TESTS, checkAns, knownOutput, saveExtraResults, saveExtraResults);
+    algTimer.saveExtraAlgResults(saveExtraResults);
+    algTimer.saveExtraExpResults(saveExtraResults);
+    algTimer.setKnownOutput(knownOutput);
+    algTimer.timeAndCheck(NUM_TESTS, checkAns);
 //    algTimer.timeAndCheckCallableOnce();
 //    algTimer.time(NUM_TESTS);
 
