@@ -48,4 +48,12 @@ public class MiscHelperMethods {
       result[i] = randSupplier.get();
     }
   }
+
+  public static String randString(Supplier<Character> randSupplier, int len) {
+    StringBuilder sb = new StringBuilder(len);
+    for (int i = 0; i < len; ++i) {
+      sb.append(randSupplier.get());
+    }
+    return sb.toString();
+  }
 }
