@@ -72,4 +72,10 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
     CloneableCharArray result = get(name, CloneableCharArray.class);
     return result.getInput();
   }
+
+  public String printInputs() {
+    StringBuilder sb = new StringBuilder();
+    this.forEach((name, inputType) -> sb.append("\n" + name + ": " + inputType.getInput()));
+    return sb.toString();
+  }
 }
