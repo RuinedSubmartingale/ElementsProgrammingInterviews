@@ -5,6 +5,7 @@ import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -145,7 +146,7 @@ class Student implements Comparable<Student> {
   }
 
   @Override
-  public int compareTo(Student other) {
+  public int compareTo(@NotNull Student other) {
     return (lname + fname).compareTo(other.lname + other.fname);
   }
 }
