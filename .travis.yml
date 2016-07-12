@@ -1,1 +1,3 @@
 language: java
+before_install: cd $HOME/my_solutions
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
