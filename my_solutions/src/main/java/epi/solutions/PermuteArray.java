@@ -1,10 +1,10 @@
 package epi.solutions;
 
 import com.google.common.base.Preconditions;
-import com.sun.istack.internal.NotNull;
 import epi.solutions.helper.CloneableTestInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.concurrent.Callable;
