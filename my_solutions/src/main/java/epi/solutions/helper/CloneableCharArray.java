@@ -2,9 +2,9 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/28/16.
- * A CloneableTestInput wrapper for character arrays.
+ * A CloneableInput wrapper for character arrays.
  */
-class CloneableCharArray implements CloneableTestInput<CloneableCharArray> {
+class CloneableCharArray extends CloneableInput<char[]> {
   private char[] data;
 
   CloneableCharArray(String input) { data = input.toCharArray(); }
@@ -12,14 +12,11 @@ class CloneableCharArray implements CloneableTestInput<CloneableCharArray> {
 
   @Override
   public Class getType() {
-    return CloneableCharArray.class;
+    return this.getClass();
   }
 
   @Override
   public char[] getInput() {
-    return data;
+    return this.data;
   }
-
-  @Override
-  public CloneableCharArray cloneInput() { return new CloneableCharArray(data); }
 }

@@ -1,9 +1,8 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -83,15 +82,15 @@ public class IsPalindrome {
       System.out.println(x + " " + isPalindrome(x));
       assert (slowSolution(x) == isPalindrome(x));
     } else {
-      Callable<CloneableTestInputsMap> formIntegerInputs = () -> {
+      Callable<CloneableInputsMap> formIntegerInputs = () -> {
         Random rgen = new Random();
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addInteger("x", rgen.nextInt(99999 * 2 + 1) - 99999);
         return inputs;
       };
-      Function<CloneableTestInputsMap, Boolean> runIntegerAlg =
+      Function<CloneableInputsMap, Boolean> runIntegerAlg =
               (input) -> isPalindrome(input.getInteger("x"));
-      Function<CloneableTestInputsMap, Boolean> integerKnownOutput =
+      Function<CloneableInputsMap, Boolean> integerKnownOutput =
               (orig_input) -> slowSolution(orig_input.getInteger("x"));
       BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
       Supplier<Boolean> emptyOutput = () -> true;
@@ -100,18 +99,18 @@ public class IsPalindrome {
       intAlgTimer.timeAndCheck(NUM_TESTS, checkResults, integerKnownOutput);
 
 
-      Callable<CloneableTestInputsMap> formStringInputs = () -> {
+      Callable<CloneableInputsMap> formStringInputs = () -> {
         Random rgen = new Random();
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addString("s", MiscHelperMethods.randString(() ->
                 (char) (rgen.nextInt(127 - 32) + 32), STRING_LEN));
                 // range of printable ASCII characters: 32 = SPACE ; 126 = ~
         return inputs;
       };
       Predicate<Character> isAlphaNum = Character::isLetterOrDigit;
-      Function<CloneableTestInputsMap, Boolean> runStringAlg =
+      Function<CloneableInputsMap, Boolean> runStringAlg =
               (input) -> isPalindrome(input.getString("s"), isAlphaNum);
-      Function<CloneableTestInputsMap, Boolean> stringKnownOutput = (orig_inputs) ->
+      Function<CloneableInputsMap, Boolean> stringKnownOutput = (orig_inputs) ->
               slowSolution(orig_inputs.getString("s"), isAlphaNum);
       TimeTests<Boolean> stringAlgTimer =
               new TimeTests<>(formStringInputs, runStringAlg, emptyOutput, "IsPalindrome - String");

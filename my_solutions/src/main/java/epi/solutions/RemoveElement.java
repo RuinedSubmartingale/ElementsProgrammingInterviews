@@ -1,7 +1,7 @@
 package epi.solutions;
 
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -32,30 +32,30 @@ public class RemoveElement {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
       Random rgen = new Random();
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(ELEMS_BUCKET_SIZE), ARRAY_LENGTH));
       inputs.addInteger("key", rgen.nextInt(ELEMS_BUCKET_SIZE));
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
       int elemsLeft = removeElement(inputs.getInteger("key"), inputs.getArrayList("A"));
       inputs.addInteger("elemsLeft", elemsLeft);
       return inputs.getArrayList("A");
     };
     Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
-    Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
       // TODO: Try .... while(A.remove(key)) {} .... or ... A.removeAll(Collections.singleton(key))... instead of removeIf?
       inputs.getArrayList("A").removeIf(inputs.getInteger("key")::equals);
       return inputs.getArrayList("A");
     };
-    Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraResults = (inputs) -> {
-      CloneableTestInputsMap algExtraResults = new CloneableTestInputsMap();
+    Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
+      CloneableInputsMap algExtraResults = new CloneableInputsMap();
       algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
       return algExtraResults;
     };
-    TimeTests.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableTestInputsMap, Boolean> checkResults =
+    TimeTests.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableInputsMap, Boolean> checkResults =
             (observedResults, expectedResults, algExtraResults) -> {
               List<Integer> truncatedObservedResults = observedResults.subList(0, algExtraResults.getInteger("elemsLeft"));
               // TODO: Implement equality comparison for two generic lists

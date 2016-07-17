@@ -2,22 +2,19 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/17/16.
- * A CloneableTestInput wrapper for Longs.
+ * A CloneableInput wrapper for Longs.
  */
-public class CloneableLong implements CloneableTestInput<CloneableLong> {
+public class CloneableLong extends CloneableInput<Long> {
   private Long data;
-  CloneableLong(long input) { data = input; }
+  CloneableLong(Long input) { data = input; }
 
   @Override
   public Class getType() {
-    return CloneableLong.class;
+    return this.getClass();
   }
 
   @Override
-  public Long getInput() {
-    return data;
+  Long getInput() {
+    return this.data;
   }
-
-  @Override
-  public CloneableLong cloneInput() { return new CloneableLong(data); }
 }

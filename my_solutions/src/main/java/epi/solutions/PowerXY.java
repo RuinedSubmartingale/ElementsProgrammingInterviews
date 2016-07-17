@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
@@ -32,16 +32,16 @@ public class PowerXY {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addDouble("x", rgen.nextDouble() * 10);
       inputs.addInteger("y", rgen.nextInt(257) - 128);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Double> runAlgorithm = (inputs) ->
+    Function<CloneableInputsMap, Double> runAlgorithm = (inputs) ->
             power(inputs.getDouble("x"), inputs.getInteger("y"));
-    Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) ->
+    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) ->
             Math.pow(inputs.getDouble("x"), inputs.getInteger("y"));
     BiFunction<Double, Double, Boolean> checkResults = (observed, expected) -> {
       final Double diff = (observed - expected) / expected;

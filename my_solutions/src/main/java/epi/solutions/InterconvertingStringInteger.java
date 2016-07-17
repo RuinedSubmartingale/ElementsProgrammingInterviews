@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 import org.junit.Assert;
 
@@ -51,15 +51,15 @@ public class InterconvertingStringInteger {
   }
 
   private static void intToStringTest() throws Exception {
-    Callable<CloneableTestInputsMap> formInputs = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInputs = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addInteger("x", rgen.nextInt());
       return inputs;
     };
-    Function<CloneableTestInputsMap, String> runAlg = (inputs) ->
+    Function<CloneableInputsMap, String> runAlg = (inputs) ->
             intToString(inputs.getInteger("x"));
-    Function<CloneableTestInputsMap, String> knownOutput = (inputs) ->
+    Function<CloneableInputsMap, String> knownOutput = (inputs) ->
       String.valueOf(inputs.getInteger("x"));
     Supplier<String> emptyOutput = String::new;
     BiFunction<String, String, Boolean> checkAns = String::equals;
@@ -68,8 +68,8 @@ public class InterconvertingStringInteger {
   }
 
   private static void stringToIntTest() throws Exception {
-    Callable<CloneableTestInputsMap> formInputs = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInputs = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       StringBuilder s = new StringBuilder();
       if (rgen.nextBoolean()) s.append('-');
@@ -83,9 +83,9 @@ public class InterconvertingStringInteger {
       inputs.addString("s", str);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Integer> runAlg = (inputs) ->
+    Function<CloneableInputsMap, Integer> runAlg = (inputs) ->
             stringToInt(inputs.getString("s"));
-    Function<CloneableTestInputsMap, Integer> knownOutput = (inputs) ->
+    Function<CloneableInputsMap, Integer> knownOutput = (inputs) ->
             Integer.parseInt(inputs.getString("s"));
     Supplier<Integer> emptyOutput = () -> 0;
     BiFunction<Integer, Integer, Boolean> checkAns = Integer::equals;

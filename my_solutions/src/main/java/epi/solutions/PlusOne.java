@@ -1,7 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Joiner;
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.math.BigInteger;
@@ -53,14 +53,14 @@ public class PlusOne {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", randArray(ARR_LENGTH));
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlgorithm =
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlgorithm =
             (input) -> plusOne(input.getArrayList("A"));
-    Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
       BigInteger B = new BigInteger(Joiner.on("").join(orig_input.getArrayList("A")));
       B = B.add(BigInteger.valueOf(1));
       ArrayList<Integer> expectedOutput = new ArrayList<>();

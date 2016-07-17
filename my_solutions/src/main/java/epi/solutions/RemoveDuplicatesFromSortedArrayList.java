@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -47,30 +47,30 @@ public class RemoveDuplicatesFromSortedArrayList {
   }
 
   private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
       ArrayList<T> A = MiscHelperMethods.randArray(randSupplier, ARR_LEN);
       Collections.sort(A);
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<T>> runAlg = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<T>> runAlg = (inputs) -> {
       int elemsLeft = removeDuplicates(inputs.getArrayList("A"));
       inputs.addInteger("elemsLeft", elemsLeft);
       return inputs.getArrayList("A");
     };
     Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
-    Function<CloneableTestInputsMap, ArrayList<T>> getKnownOutput = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<T>> getKnownOutput = (inputs) -> {
       ArrayList<T> unique = new ArrayList<>(new HashSet<>(inputs.getArrayList("A")));
       Collections.sort(unique);
       return unique;
     };
-    Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraResults = (inputs) -> {
-      CloneableTestInputsMap algExtraResults = new CloneableTestInputsMap();
+    Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
+      CloneableInputsMap algExtraResults = new CloneableInputsMap();
       algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
       return algExtraResults;
     };
-    TimeTests.TriFunction<ArrayList<T>, ArrayList<T>, CloneableTestInputsMap, Boolean> checkResults =
+    TimeTests.TriFunction<ArrayList<T>, ArrayList<T>, CloneableInputsMap, Boolean> checkResults =
             (observedResult, expectedResult, algExtraResults) -> {
               List<T> truncatedObservedResults = observedResult.subList(0, algExtraResults.getInteger("elemsLeft"));
               return truncatedObservedResults.equals(expectedResult);

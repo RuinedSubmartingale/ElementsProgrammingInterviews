@@ -2,23 +2,20 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/14/16.
- * A CloneableTestInput wrapper for Strings.
+ * A CloneableInput wrapper for Strings.
  */
-class CloneableString implements CloneableTestInput<CloneableString> {
+class CloneableString extends CloneableInput<String> {
   private String data;
 
   CloneableString(String input) { data = input; }
 
   @Override
   public Class getType() {
-    return CloneableString.class;
+    return this.getClass();
   }
 
   @Override
-  public String getInput() {
-    return data;
+  String getInput() {
+    return this.data;
   }
-
-  @Override
-  public CloneableString cloneInput() { return new CloneableString(String.valueOf(data)); }
 }

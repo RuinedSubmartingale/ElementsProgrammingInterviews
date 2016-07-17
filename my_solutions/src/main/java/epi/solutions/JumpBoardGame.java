@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -43,13 +43,13 @@ public class JumpBoardGame {
   }
   public static void main(String[] args) throws Exception {
     smallTest();
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(MAX_ADVANCE_PER_STEP), BOARD_LENGTH));
       return inputs;
     };
-    Function<CloneableTestInputsMap, Boolean> runAlg = (inputs) ->
+    Function<CloneableInputsMap, Boolean> runAlg = (inputs) ->
             isWinnable(inputs.getArrayList("A"));
     Supplier<Boolean> emptyOutput = () -> false;
     TimeTests<Boolean> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "JumpBoardGame");

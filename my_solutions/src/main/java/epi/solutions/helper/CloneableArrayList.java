@@ -5,12 +5,15 @@ import java.util.List;
 
 /**
  * Created by psingh on 5/14/16.
- * A CloneableTestInput wrapper for ArrayLists.
+ * A CloneableInput wrapper for ArrayLists.
  */
-class CloneableArrayList<T> implements CloneableTestInput<CloneableArrayList<T>> {
+class CloneableArrayList<T> extends CloneableInput<ArrayList<T>> {
   private ArrayList<T> data;
   CloneableArrayList() {}
   CloneableArrayList(List<T> input) {
+    data = new ArrayList<>(input);
+  }
+  CloneableArrayList(ArrayList<T> input) {
     data = new ArrayList<>(input);
   }
 
@@ -20,12 +23,7 @@ class CloneableArrayList<T> implements CloneableTestInput<CloneableArrayList<T>>
   }
 
   @Override
-  public ArrayList<T> getInput() {
-    return data;
-  }
-
-  @Override
-  public CloneableArrayList<T> cloneInput() {
-    return new CloneableArrayList<>(data);
+  ArrayList<T> getInput() {
+    return this.data;
   }
 }

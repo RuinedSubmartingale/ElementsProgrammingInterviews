@@ -2,7 +2,7 @@ package epi.solutions;
 
 //import epi.solutions.helper.TimeTests;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -50,16 +50,16 @@ public class MultiplyShiftAdd {
       long res = multiply(x,y);
       assert(res == (long)x*y);
     } else {
-      Callable<CloneableTestInputsMap> formInput = () -> {
+      Callable<CloneableInputsMap> formInput = () -> {
         Random rgen = new Random();
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addInteger("x", rgen.nextInt(MAX_INT_INPUT));
         inputs.addInteger("y", rgen.nextInt(MAX_INT_INPUT));
         return inputs;
       };
-      Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
+      Function<CloneableInputsMap, Long> runAlg = (inputs) ->
               multiply(inputs.getInteger("x"), inputs.getInteger("y"));
-      Function<CloneableTestInputsMap, Long> getKnownOutput = (orig_inputs) ->
+      Function<CloneableInputsMap, Long> getKnownOutput = (orig_inputs) ->
               ((long) orig_inputs.getInteger("x")) *
               orig_inputs.getInteger("y");
       BiFunction<Long, Long, Boolean> checkResults = Long::equals;

@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -61,18 +61,18 @@ public class DutchFlagPartition {
   }
 
   private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH));
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<T>> runAlgorithm = (input) -> {
+    Function<CloneableInputsMap, ArrayList<T>> runAlgorithm = (input) -> {
       partitionMethod.accept(pivot, input.getArrayList("A"));
 //      System.out.println(String.format("%-20s %s", "Observed output: ", (ArrayList<Color>) input));
       return input.getArrayList("A");
     };
-    Function<CloneableTestInputsMap, ArrayList<T>> getKnownOutput = (orig_input) -> {
+    Function<CloneableInputsMap, ArrayList<T>> getKnownOutput = (orig_input) -> {
       ArrayList<T> result;
       result = orig_input.getArrayList("A");
       result.sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());

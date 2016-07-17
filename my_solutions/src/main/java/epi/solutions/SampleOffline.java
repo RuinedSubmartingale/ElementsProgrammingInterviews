@@ -1,7 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Preconditions;
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 import org.jetbrains.annotations.NotNull;
@@ -43,14 +43,14 @@ public class SampleOffline {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN));
       inputs.addInteger("k", K);
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
       ArrayList<Integer> A = inputs.getArrayList("A");
       int k = inputs.getInteger("k");
       sampleOffline(A, k);

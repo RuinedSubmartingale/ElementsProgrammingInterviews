@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
@@ -45,13 +45,13 @@ public class ClosestIntSameBits {
 
   public static void main(String[] args) throws Exception {
     smallTest();
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
       Random rgen = new Random();
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addLong("x", rgen.nextLong());
       return inputs;
     };
-    Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
+    Function<CloneableInputsMap, Long> runAlg = (inputs) ->
             closestIntSameBitCount(inputs.getLong("x"));
     Supplier<Long> emptyOutput = () -> 0L;
     TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "ClosestIntegerSameBits");

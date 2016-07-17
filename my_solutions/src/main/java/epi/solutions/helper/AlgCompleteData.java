@@ -5,14 +5,14 @@ package epi.solutions.helper;
  * Used by TimeTests. Has sufficient information about the algorithm to check its correctness.
  */
 class AlgCompleteData<outputType> {
-  CloneableTestInputsMap _orig_inputs;
+  CloneableInputsMap _orig_inputs;
   outputType _expectedResults;
   outputType _observedResults;
-  CloneableTestInputsMap _algExtraResults;
-  CloneableTestInputsMap _expectedExtraResults;
+  CloneableInputsMap _algExtraResults;
+  CloneableInputsMap _expectedExtraResults;
 
-  AlgCompleteData(CloneableTestInputsMap orig_inputs, outputType expectedResults, outputType observedResults
-          , CloneableTestInputsMap algExtraResults, CloneableTestInputsMap expectedExtraResults) {
+  AlgCompleteData(CloneableInputsMap orig_inputs, outputType expectedResults, outputType observedResults
+          , CloneableInputsMap algExtraResults, CloneableInputsMap expectedExtraResults) {
     _orig_inputs = orig_inputs;
     _expectedResults = expectedResults;
     _observedResults = observedResults;

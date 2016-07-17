@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -88,16 +88,16 @@ public class MaxDifferenceKPairs {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
       Random rgen = new Random();
       ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A"), K_BUY_SELLS);
+    Function<CloneableInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A"), K_BUY_SELLS);
     Supplier<Double> emptyOutput = () -> 0.0;
-    Function<CloneableTestInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
+    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
     BiFunction<Double, Double, Boolean> checkAns = Double::equals;
     TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
@@ -105,7 +105,7 @@ public class MaxDifferenceKPairs {
     System.setOut(originalStream);
     algTimer.time(NUM_TESTS);
 
-    Function<CloneableTestInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
+    Function<CloneableInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
     TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runSimpleAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
     simpleAlgTimer.time(NUM_TESTS);
   }

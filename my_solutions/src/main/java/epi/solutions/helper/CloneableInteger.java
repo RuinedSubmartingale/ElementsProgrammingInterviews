@@ -2,9 +2,9 @@ package epi.solutions.helper;
 
 /**
  * Created by psingh on 5/14/16.
- * A CloneableTestInput wrapper for Integers.
+ * A CloneableInput wrapper for Integers.
  */
-class CloneableInteger implements CloneableTestInput<CloneableInteger> {
+class CloneableInteger extends CloneableInput<Integer> {
   private Integer data;
   CloneableInteger(Integer input) { data = input; }
 
@@ -14,10 +14,7 @@ class CloneableInteger implements CloneableTestInput<CloneableInteger> {
   }
 
   @Override
-  public Integer getInput() {
-    return data;
+  Integer getInput() {
+    return this.data;
   }
-
-  @Override
-  public CloneableInteger cloneInput() { return new CloneableInteger(data); }
 }

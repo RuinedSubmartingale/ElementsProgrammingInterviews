@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -72,8 +72,8 @@ public class ReplaceAndRemove {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableTestInputsMap> formInputs = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInputs = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       char[] s = new char[(ARR_LEN << 1) + 1];
       MiscHelperMethods.randCharArray(() -> (char) ('a' + rgen.nextInt(26)), ARR_LEN, s);
@@ -81,21 +81,22 @@ public class ReplaceAndRemove {
       inputs.addInteger("len", ARR_LEN);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Integer> runAlg = (inputs) ->
+    Function<CloneableInputsMap, Integer> runAlg = (inputs) ->
             replaceAndRemove(inputs.getCharArray("s"), inputs.getInteger("len"));
-    Function<CloneableTestInputsMap, Integer> knownOutput = (inputs) -> {
+
+    Function<CloneableInputsMap, Integer> knownOutput = (inputs) -> {
       String expected = knownOutput(inputs.getCharArray("s"), inputs.getInteger("len"));
       inputs.addCharArray("s", expected.toCharArray());
       return expected.length();
     };
 
     Supplier<Integer> emptyOutput = () -> 0;
-    Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraResults = (inputs) -> {
-      CloneableTestInputsMap extraResults = new CloneableTestInputsMap();
+    Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
+      CloneableInputsMap extraResults = new CloneableInputsMap();
       extraResults.addCharArray("s", inputs.getCharArray("s"));
       return extraResults;
     };
-    TimeTests.QuadFunction<Integer, Integer, CloneableTestInputsMap, CloneableTestInputsMap, Boolean> checkAns =
+    TimeTests.QuadFunction<Integer, Integer, CloneableInputsMap, CloneableInputsMap, Boolean> checkAns =
             (observed, expected, algExtraResults, expExtraResults) ->
                     observed.equals(expected) && new String(algExtraResults.getCharArray("s"), 0, observed).equals(new String(expExtraResults.getCharArray("s")));
 
@@ -105,6 +106,7 @@ public class ReplaceAndRemove {
     algTimer.saveExtraAlgResults(saveExtraResults);
     algTimer.saveExtraExpResults(saveExtraResults);
     algTimer.setKnownOutput(knownOutput);
+//    algTimer.setSequential();
     algTimer.timeAndCheck(NUM_TESTS, checkAns);
 //    algTimer.timeAndCheckCallableOnce();
 //    algTimer.time(NUM_TESTS);

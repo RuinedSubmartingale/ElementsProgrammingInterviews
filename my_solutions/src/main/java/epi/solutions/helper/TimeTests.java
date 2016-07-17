@@ -14,20 +14,21 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class TimeTests<outputType> {
-  private Callable<CloneableTestInputsMap> _formInput;
-  private Function<CloneableTestInputsMap, outputType> _runAlgorithm;
-  private Function<CloneableTestInputsMap, outputType> _getKnownOutput;
+  private Callable<CloneableInputsMap> _formInput;
+  private Function<CloneableInputsMap, outputType> _runAlgorithm;
+  private Function<CloneableInputsMap, outputType> _getKnownOutput;
   private int _numTests;
   private String _algDescription;
   private Function<AlgCompleteData<outputType>, Boolean> _algChecker;
-  private Function<CloneableTestInputsMap, CloneableTestInputsMap> _saveExtraAlgResults;
-  private Function<CloneableTestInputsMap, CloneableTestInputsMap> _saveExtraExpResults;
+  private Function<CloneableInputsMap, CloneableInputsMap> _saveExtraAlgResults;
+  private Function<CloneableInputsMap, CloneableInputsMap> _saveExtraExpResults;
   private boolean knownOutputSet;
   private boolean extraAlgResultsSaved;
   private boolean extraExpResultsSaved;
+  private boolean _parallel;
 
-  public TimeTests(Callable<CloneableTestInputsMap> formInput
-                  , Function<CloneableTestInputsMap, outputType> runAlgorithm
+  public TimeTests(Callable<CloneableInputsMap> formInput
+                  , Function<CloneableInputsMap, outputType> runAlgorithm
                   , Supplier<outputType> emptyOutput
                   , String algName) {
     _formInput = formInput;
@@ -35,8 +36,9 @@ public class TimeTests<outputType> {
     _algDescription = algName;
 
     _getKnownOutput = (inputs) -> emptyOutput.get();
-    _saveExtraAlgResults = (inputs) -> new CloneableTestInputsMap();
-    _saveExtraExpResults = (inputs) -> new CloneableTestInputsMap();
+    _saveExtraAlgResults = (inputs) -> new CloneableInputsMap();
+    _saveExtraExpResults = (inputs) -> new CloneableInputsMap();
+    _parallel = true;
     knownOutputSet = false;
     extraAlgResultsSaved = false;
     extraExpResultsSaved = false;
@@ -54,14 +56,14 @@ public class TimeTests<outputType> {
   }
 
   public void timeAndCheck(final int numTests, BiFunction<outputType, outputType, Boolean> checkResults
-          , Function<CloneableTestInputsMap, outputType> getKnownOutput) throws Exception {
+          , Function<CloneableInputsMap, outputType> getKnownOutput) throws Exception {
     _numTests = numTests;
     _getKnownOutput = getKnownOutput;
     _algChecker = algCompleteData -> checkResults.apply(algCompleteData._observedResults, algCompleteData._expectedResults);
     timeAndCheck();
   }
 
-  public void timeAndCheck(final int numTests, BiFunction<CloneableTestInputsMap, outputType, Boolean> checkResults) throws Exception {
+  public void timeAndCheck(final int numTests, BiFunction<CloneableInputsMap, outputType, Boolean> checkResults) throws Exception {
     _numTests = numTests;
     _algChecker = algCompleteData -> checkResults.apply(algCompleteData._orig_inputs, algCompleteData._observedResults);
     timeAndCheck();
@@ -85,7 +87,7 @@ public class TimeTests<outputType> {
   }
 
   // TODO: Start using setKnownOutput and setExtraResults instead of this mess of parameters
-  public void timeAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableTestInputsMap, Boolean> checkResults) throws Exception {
+  public void timeAndCheck(final int numTests, TriFunction<outputType, outputType, CloneableInputsMap, Boolean> checkResults) throws Exception {
     Preconditions.checkState(knownOutputSet, "setKnownOutput has not been called on this TimeTests instance.");
     Preconditions.checkState(extraAlgResultsSaved, "saveExtraAlgResults has not been called on this TimeTests instance.");
     _numTests = numTests;
@@ -94,7 +96,7 @@ public class TimeTests<outputType> {
     timeAndCheck();
   }
 
-  public void timeAndCheck(final int numTests, QuadFunction<outputType, outputType, CloneableTestInputsMap, CloneableTestInputsMap, Boolean> checkResults) throws Exception {
+  public void timeAndCheck(final int numTests, QuadFunction<outputType, outputType, CloneableInputsMap, CloneableInputsMap, Boolean> checkResults) throws Exception {
     Preconditions.checkState(knownOutputSet, "setKnownOutput has not been called on this TimeTests instance.");
     Preconditions.checkState(extraAlgResultsSaved, "saveExtraAlgResults has not been called on this TimeTests instance.");
     Preconditions.checkState(extraExpResultsSaved, "saveExtraExpResults has not been called on this TimeTests instance.");
@@ -112,6 +114,14 @@ public class TimeTests<outputType> {
   }
 
   private void timeAndCheck() throws Exception {
+    if (_parallel) {
+      timeAndCheckParallel();
+    } else {
+      timeAndCheckSequential();
+    }
+  }
+
+  private void timeAndCheckParallel() throws Exception {
     DecimalFormat df = new DecimalFormat("#.####");
     Runtime javaApp = Runtime.getRuntime();
     int nProcs = Math.max(javaApp.availableProcessors(), 1);
@@ -141,41 +151,50 @@ public class TimeTests<outputType> {
     return () -> {
       long total = 0, start;
       for (int i = 0; i < numTests; ++i) {
-        CloneableTestInputsMap inputs = _formInput.call();
-        CloneableTestInputsMap orig_inputs = new CloneableTestInputsMap();
-        inputs.forEach((name, inputType) -> orig_inputs.put(name, inputType.cloneInput()));
+        CloneableInputsMap inputs = _formInput.call();
+        CloneableInputsMap orig_inputs = new CloneableInputsMap();
+        inputs.forEach((name, inputType) -> {
+          try {
+            orig_inputs.put(name, inputType.cloneInput());
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        });
         start = System.nanoTime();
         outputType algorithmResult = _runAlgorithm.apply(inputs);
         total += System.nanoTime() - start;
-        CloneableTestInputsMap algExtraResults = _saveExtraAlgResults.apply(inputs);
+        CloneableInputsMap algExtraResults = _saveExtraAlgResults.apply(inputs);
         assert (check(orig_inputs, algorithmResult, algExtraResults));
       }
       return total;
     };
   }
 
-  public long timeAndCheckCallableOnce() throws Exception {
-    return timeAndCheckCallable(1).call();
+  public long timeAndCheckSequential() throws Exception {
+    return timeAndCheckCallable(_numTests).call();
   }
 
-  public void setKnownOutput(Function<CloneableTestInputsMap, outputType> getKnownOutput) {
+  public void setKnownOutput(Function<CloneableInputsMap, outputType> getKnownOutput) {
     _getKnownOutput = getKnownOutput;
     knownOutputSet = true;
   }
 
-  public void saveExtraAlgResults(Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraAlgResults) {
+  public void setSequential() {
+    _parallel = false;
+  }
+  public void saveExtraAlgResults(Function<CloneableInputsMap, CloneableInputsMap> saveExtraAlgResults) {
     _saveExtraAlgResults = saveExtraAlgResults;
     extraAlgResultsSaved = true;
   }
 
-  public void saveExtraExpResults(Function<CloneableTestInputsMap, CloneableTestInputsMap> saveExtraExpResults) {
+  public void saveExtraExpResults(Function<CloneableInputsMap, CloneableInputsMap> saveExtraExpResults) {
     _saveExtraExpResults = saveExtraExpResults;
     extraExpResultsSaved = true;
   }
 
-  private boolean check(CloneableTestInputsMap orig_inputs, outputType algorithmResult, CloneableTestInputsMap algExtraResults) {
+  private boolean check(CloneableInputsMap orig_inputs, outputType algorithmResult, CloneableInputsMap algExtraResults) {
     outputType expectedResult = _getKnownOutput.apply(orig_inputs);
-    CloneableTestInputsMap expectedExtraResults = _saveExtraExpResults.apply(orig_inputs);
+    CloneableInputsMap expectedExtraResults = _saveExtraExpResults.apply(orig_inputs);
     AlgCompleteData<outputType> completeData = new AlgCompleteData<>(orig_inputs, expectedResult, algorithmResult, algExtraResults, expectedExtraResults);
     boolean correct = _algChecker.apply(completeData);
     if(!correct) {
@@ -186,10 +205,10 @@ public class TimeTests<outputType> {
     return correct;
   }
 //
-//  public static abstract class InputFormer implements Callable<CloneableTestInputsMap> {
-//    protected CloneableTestInputsMap inputs;
+//  public static abstract class InputFormer implements Callable<CloneableInputsMap> {
+//    protected CloneableInputsMap inputs;
 //    public InputFormer() {
-//      inputs = new CloneableTestInputsMap();
+//      inputs = new CloneableInputsMap();
 //    }
 //  }
 //
@@ -197,7 +216,7 @@ public class TimeTests<outputType> {
 //
 //  TimeTests.InputFormer inputFormer = new TimeTests.InputFormer() {
 //    @Override
-//    public CloneableTestInputsMap call() throws Exception {
+//    public CloneableInputsMap call() throws Exception {
 //      Random rgen = new Random();
 //      ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
 //      this.inputs.addArrayList("A", A);

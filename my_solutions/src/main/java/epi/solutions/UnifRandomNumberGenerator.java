@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
@@ -36,18 +36,18 @@ public class UnifRandomNumberGenerator {
       int x = UnifRandom(a, b);
       assert(a <= x && x <= b);
     } else {
-      Callable<CloneableTestInputsMap> formInput = () -> {
+      Callable<CloneableInputsMap> formInput = () -> {
         Random rgen = new Random();
         int a = rgen.nextInt(100);
         int b = rgen.nextInt(100) + a + 1;
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addInteger("a", a);
         inputs.addInteger("b", b);
         return inputs;
       };
-      Function<CloneableTestInputsMap, Integer> runAlg = (inputs) ->
+      Function<CloneableInputsMap, Integer> runAlg = (inputs) ->
         UnifRandom(inputs.getInteger("a"), inputs.getInteger("b"));
-      BiFunction<CloneableTestInputsMap, Integer, Boolean> checkResults = (orig_input, observed) ->
+      BiFunction<CloneableInputsMap, Integer, Boolean> checkResults = (orig_input, observed) ->
               orig_input.getInteger("a") <= observed && observed <= orig_input.getInteger("b");
       Supplier<Integer> emptyOutput = () -> 0;
       TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "UnifRandomNumberGenerator");

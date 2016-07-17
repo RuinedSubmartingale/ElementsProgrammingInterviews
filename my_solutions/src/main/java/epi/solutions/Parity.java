@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
@@ -112,28 +112,32 @@ public class Parity {
       assert (p1.compute(x) == p4.compute(x));
       System.out.println("x = " + x + ", parity = " + p1.compute(x));
     } else {
-      Callable<CloneableTestInputsMap> formInput = () -> {
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      Callable<CloneableInputsMap> formInput = () -> {
+        CloneableInputsMap inputs = new CloneableInputsMap();
         Random rgen = new Random();
         inputs.addLong("x", rgen.nextLong());
         return inputs;
       };
-      Function<CloneableTestInputsMap, Short> runParity1 = (inputs) ->
+      Function<CloneableInputsMap, Short> runParity1 = (inputs) ->
               p1.compute(inputs.getLong("x"));
-      Function<CloneableTestInputsMap, Short> runParity2 = (inputs) ->
+      Function<CloneableInputsMap, Short> runParity2 = (inputs) ->
               p2.compute(inputs.getLong("x"));
-      Function<CloneableTestInputsMap, Short> runParity3 = (inputs) ->
+      Function<CloneableInputsMap, Short> runParity3 = (inputs) ->
               p3.compute(inputs.getLong("x"));
-      Function<CloneableTestInputsMap, Short> runParity4 = (inputs) ->
+      Function<CloneableInputsMap, Short> runParity4 = (inputs) ->
               p4.compute(inputs.getLong("x"));
       Supplier<Short> emptyOutput = () -> (short) 0;
       TimeTests<Short> algTimer1 = new TimeTests<>(formInput, runParity1, emptyOutput, "Parity1");
       TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, emptyOutput, "Parity2");
       TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, emptyOutput, "Parity3");
       TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, emptyOutput, "Parity4");
+//      algTimer1.setSequential();
       algTimer1.time(NUM_TESTS);
+//      algTimer2.setSequential();
       algTimer2.time(NUM_TESTS);
+//      algTimer3.setSequential();
       algTimer3.time(NUM_TESTS);
+//      algTimer4.setSequential();
       algTimer4.time(NUM_TESTS);
     }
   }

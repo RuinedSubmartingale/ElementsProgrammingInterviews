@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
@@ -41,7 +41,7 @@ public class SwapBits {
               + ", j = " + j
               + ".\nswapped_x = " + swapBits(x,i,j));
     } else {
-      Callable<CloneableTestInputsMap> formInput = () -> {
+      Callable<CloneableInputsMap> formInput = () -> {
         Random rgen = new Random();
         long x = rgen.nextLong();
         int x_num_bits = 0;
@@ -49,13 +49,13 @@ public class SwapBits {
           x_num_bits += 1;
           x >>>= 1;
         }
-        CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+        CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addLong("x", x);
         inputs.addInteger("i", rgen.nextInt(x_num_bits));
         inputs.addInteger("j", rgen.nextInt(x_num_bits));
         return inputs;
       };
-      Function<CloneableTestInputsMap, Long> runAlg = (inputs) ->
+      Function<CloneableInputsMap, Long> runAlg = (inputs) ->
               swapBits(inputs.getLong("x"), inputs.getInteger("i"), inputs.getInteger("j"));
       Supplier<Long> emptyOutput = () -> 0L;
       TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "SwapBits");

@@ -10,12 +10,11 @@ import java.util.Objects;
  * A HashMap of (name, input) that is fed to the algorithm. The inputs are required to be cloneable.
  */
 
-public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> {
-  public CloneableTestInputsMap() {
+public class CloneableInputsMap extends HashMap<String, CloneableInput> {
+  public CloneableInputsMap() {
   }
 
-  public <T extends CloneableTestInput> T get(String name, Class c) throws IllegalArgumentException {
-
+  public <T extends CloneableInput> T get(String name, Class c) throws IllegalArgumentException {
     if (!c.isInstance(this.get(name)))
       throw new IllegalArgumentException(name + " is not an instance of " + c.toString(), new Throwable(this.toString()));
     else {
@@ -29,7 +28,7 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
     this.put(name, new CloneableArrayList<>(A));
   }
   public <T> ArrayList<T> getArrayList(String name) throws IllegalArgumentException {
-    CloneableArrayList<T> result = get(name, new CloneableArrayList<T>().getType());
+    CloneableArrayList<T> result = get(name, CloneableArrayList.class);
     return result.getInput();
   }
 
@@ -65,6 +64,14 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
     return result.getInput();
   }
 
+  public void addCharSequence(String name, char[] s) {
+    this.put(name, new CloneableCharSequence(s));
+  }
+  public CharSequence getCharSequence(String name) {
+    CloneableCharSequence result = get(name, CloneableCharSequence.class);
+    return result.getInput();
+  }
+
   public void addCharArray(String name, char[] s) {
     this.put(name, new CloneableCharArray(s));
   }
@@ -75,7 +82,7 @@ public class CloneableTestInputsMap extends HashMap<String, CloneableTestInput> 
 
   public String printInputs() {
     StringBuilder sb = new StringBuilder();
-    this.forEach((name, inputType) -> sb.append("\n" + name + ": " + inputType.getInput()));
+    this.forEach((name, inputType) -> sb.append("\n").append(name).append(": ").append(inputType.getInput()));
     return sb.toString();
   }
 }

@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -140,17 +140,17 @@ public class BiggestNMinus1Product {
     Algorithm1 alg1 = new Algorithm1();
     Algorithm2 alg2 = new Algorithm2();
 
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
       Random rgen = new Random();
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
       ArrayList<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, N);
       inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableTestInputsMap, Long> runAlg1 = (inputs) -> alg1.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
-    Function<CloneableTestInputsMap, Long> runAlg2 = (inputs) -> alg2.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
+    Function<CloneableInputsMap, Long> runAlg1 = (inputs) -> alg1.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
+    Function<CloneableInputsMap, Long> runAlg2 = (inputs) -> alg2.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
     Supplier<Long> emptyOutput = () -> 0L;
-    Function<CloneableTestInputsMap, Long> getKnownOutput = (inputs) -> naiveSolution(inputs.getArrayList("A"));
+    Function<CloneableInputsMap, Long> getKnownOutput = (inputs) -> naiveSolution(inputs.getArrayList("A"));
     BiFunction<Long, Long, Boolean> checkAns = Long::equals;
 
     TimeTests<Long> alg1Timer = new TimeTests<>(formInput, runAlg1, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(n) space ]");

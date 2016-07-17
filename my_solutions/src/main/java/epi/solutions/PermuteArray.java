@@ -1,7 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Preconditions;
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 import org.jetbrains.annotations.NotNull;
@@ -101,8 +101,8 @@ public class PermuteArray {
 //      System.out.println("A: " + A + "\nP: " + P);
 //    System.out.println("A: " + A + "\nP: " + P);
 
-    Callable<CloneableTestInputsMap> formInput = () -> {
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+    Callable<CloneableInputsMap> formInput = () -> {
+      CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       List<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN);
       List<Integer> P = IntStream.range(0, A.size()).boxed().collect(Collectors.toList());
@@ -115,15 +115,15 @@ public class PermuteArray {
       inputs.addArrayList("P", P);
       return inputs;
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg1 = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg1 = (inputs) -> {
       ap1.applyPermutation(inputs.getArrayList("P"), inputs.getArrayList("A"));
       return inputs.getArrayList("A");
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg2 = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg2 = (inputs) -> {
       ap2.applyPermutation(inputs.getArrayList("P"), inputs.getArrayList("A"));
       return inputs.getArrayList("A");
     };
-    Function<CloneableTestInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
+    Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
       ArrayList<Integer> perm = inputs.getArrayList("P");
       ArrayList<Integer> A = inputs.getArrayList("A");
       // The following line took me longer to get right than I'd care to admit...
@@ -137,8 +137,8 @@ public class PermuteArray {
     TimeTests<ArrayList<Integer>> algTimer1 = new TimeTests<>(formInput, runAlg1, emptyOutput, "Permute Array: O(n) time / O(n) space");
     TimeTests<ArrayList<Integer>> algTimer2 = new TimeTests<>(formInput, runAlg2, emptyOutput, "Permute Array: O(n^2) time / O(1) space");
 
-//    CloneableTestInputsMap inputs = formInput.call();
-//    CloneableTestInputsMap orig_input = new CloneableTestInputsMap();
+//    CloneableInputsMap inputs = formInput.call();
+//    CloneableInputsMap orig_input = new CloneableInputsMap();
 //    inputs.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
 //    ArrayList<Integer> observed = runAlg1.apply(inputs);
 //    ArrayList<Integer> expected = getKnownOutput.apply(orig_input);

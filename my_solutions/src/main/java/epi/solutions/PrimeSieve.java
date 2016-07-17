@@ -1,6 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableTestInputsMap;
+import epi.solutions.helper.CloneableInputsMap;
 import epi.solutions.helper.MiscHelperMethods;
 import epi.solutions.helper.TimeTests;
 
@@ -86,17 +86,17 @@ public class PrimeSieve {
     PrimeSiever primeSiever = new PrimeSiever();
     Random rgen = new Random();
     int n = rgen.nextInt(10000) + 10000;
-    Callable<CloneableTestInputsMap> formInput = () -> {
+    Callable<CloneableInputsMap> formInput = () -> {
 //      Random rgen = new Random();
-      CloneableTestInputsMap inputs = new CloneableTestInputsMap();
+      CloneableInputsMap inputs = new CloneableInputsMap();
 //      inputs.addInteger("n", rgen.nextInt(99999) + 2); //
       inputs.addInteger("n", n);
       return inputs;
     };
 
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg1 = (inputs) ->
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg1 = (inputs) ->
             primeSieverBasic.generatePrimes(inputs.getInteger("n"));
-    Function<CloneableTestInputsMap, ArrayList<Integer>> runAlg2 = (inputs) ->
+    Function<CloneableInputsMap, ArrayList<Integer>> runAlg2 = (inputs) ->
             primeSiever.generatePrimes(inputs.getInteger("n"));
     Supplier<ArrayList<Integer>> emptyOutput = ArrayList::new;
     Function<ArrayList<Integer>, Boolean> checkResults = (observed) -> {
