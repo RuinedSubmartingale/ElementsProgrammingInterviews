@@ -10,8 +10,13 @@ import java.lang.reflect.InvocationTargetException;
  * See TimeTests for usage details.
  */
 public abstract class CloneableInput<T> implements Cloneable {
+  private T data;
+
+  public CloneableInput(T data) {
+    this.data = data;
+  }
   abstract Class getType();
-  abstract T getInput();
+  T getInput() { return this.data; }
   CloneableInput<T> cloneInput() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
     return (CloneableInput<T>) getType().getDeclaredConstructor(getInput().getClass()).newInstance(getInput());
   };

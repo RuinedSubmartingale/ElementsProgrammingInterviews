@@ -5,16 +5,11 @@ package epi.solutions.helper;
  * A CloneableInput wrapper for Longs.
  */
 public class CloneableLong extends CloneableInput<Long> {
-  private Long data;
-  CloneableLong(Long input) { data = input; }
+  CloneableLong(Long input) { super(input); }
 
   @Override
   public Class getType() {
     return this.getClass();
   }
 
-  @Override
-  Long getInput() {
-    return this.data;
-  }
 }

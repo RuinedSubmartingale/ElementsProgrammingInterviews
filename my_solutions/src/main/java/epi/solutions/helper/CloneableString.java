@@ -5,17 +5,10 @@ package epi.solutions.helper;
  * A CloneableInput wrapper for Strings.
  */
 class CloneableString extends CloneableInput<String> {
-  private String data;
-
-  CloneableString(String input) { data = input; }
+  CloneableString(String input) { super(input); }
 
   @Override
   public Class getType() {
     return this.getClass();
-  }
-
-  @Override
-  String getInput() {
-    return this.data;
   }
 }

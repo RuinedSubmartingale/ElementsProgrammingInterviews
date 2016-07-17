@@ -5,18 +5,12 @@ package epi.solutions.helper;
  * A CloneableInput wrapper for character arrays.
  */
 class CloneableCharArray extends CloneableInput<char[]> {
-  private char[] data;
-
-  CloneableCharArray(String input) { data = input.toCharArray(); }
-  CloneableCharArray(char[] input) { data = input.clone(); }
+  CloneableCharArray(String input) { super(input.toCharArray()); }
+  CloneableCharArray(char[] input) { super(input.clone()); }
 
   @Override
   public Class getType() {
     return this.getClass();
   }
 
-  @Override
-  public char[] getInput() {
-    return this.data;
-  }
 }

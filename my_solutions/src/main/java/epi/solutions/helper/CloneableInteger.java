@@ -5,16 +5,11 @@ package epi.solutions.helper;
  * A CloneableInput wrapper for Integers.
  */
 class CloneableInteger extends CloneableInput<Integer> {
-  private Integer data;
-  CloneableInteger(Integer input) { data = input; }
+  CloneableInteger(Integer input) { super(input); }
 
   @Override
   public Class getType() {
     return this.getClass();
   }
 
-  @Override
-  Integer getInput() {
-    return this.data;
-  }
 }

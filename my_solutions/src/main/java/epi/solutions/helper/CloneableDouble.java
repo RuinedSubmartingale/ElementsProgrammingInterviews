@@ -5,16 +5,11 @@ package epi.solutions.helper;
  * A CloneableInput wrapper for Doubles.
  */
 class CloneableDouble extends CloneableInput<Double> {
-  private Double data;
-  CloneableDouble(Double input) { data = input; }
+  CloneableDouble(Double input) { super(input); }
 
   @Override
   public Class getType() {
     return this.getClass();
   }
 
-  @Override
-  Double getInput() {
-    return this.data;
-  }
 }

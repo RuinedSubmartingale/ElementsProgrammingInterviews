@@ -8,22 +8,16 @@ import java.util.List;
  * A CloneableInput wrapper for ArrayLists.
  */
 class CloneableArrayList<T> extends CloneableInput<ArrayList<T>> {
-  private ArrayList<T> data;
-  CloneableArrayList() {}
+  CloneableArrayList() { super(new ArrayList<>()); }
   CloneableArrayList(List<T> input) {
-    data = new ArrayList<>(input);
+    super(new ArrayList<>(input));
   }
   CloneableArrayList(ArrayList<T> input) {
-    data = new ArrayList<>(input);
+    super(new ArrayList<>(input));
   }
 
   @Override
   public Class getType() {
     return this.getClass();
-  }
-
-  @Override
-  ArrayList<T> getInput() {
-    return this.data;
   }
 }

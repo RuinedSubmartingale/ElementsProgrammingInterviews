@@ -8,20 +8,13 @@ import java.util.HashMap;
  */
 @SuppressWarnings("ALL")
 public class CloneableHashMap<K, V> extends CloneableInput<HashMap<K,V>> {
-  private HashMap<K, V> data;
-
-  CloneableHashMap() {}
+  CloneableHashMap() { super(new HashMap<>()); }
   CloneableHashMap(HashMap<K, V> input) {
-    data = new HashMap<>(input);
+    super(new HashMap<>(input));
   }
 
   @Override
   public Class getType() {
     return this.getClass();
-  }
-
-  @Override
-  HashMap<K, V> getInput() {
-    return this.data;
   }
 }
