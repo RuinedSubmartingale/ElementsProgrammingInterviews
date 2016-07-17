@@ -1,6 +1,6 @@
 package epi.solutions.helper;
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
+import com.sun.xml.fastinfoset.util.CharArray;
 
 /**
  * Created by psingh on 5/28/16.
