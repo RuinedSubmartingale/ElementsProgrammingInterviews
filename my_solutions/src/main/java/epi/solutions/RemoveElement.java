@@ -1,9 +1,7 @@
 package epi.solutions;
 
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -32,7 +30,7 @@ public class RemoveElement {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       Random rgen = new Random();
       CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(ELEMS_BUCKET_SIZE), ARRAY_LENGTH));
@@ -55,17 +53,17 @@ public class RemoveElement {
       algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
       return algExtraResults;
     };
-    TimeTests.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableInputsMap, Boolean> checkResults =
+    AlgVerifierInterfaces.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableInputsMap, Boolean> checkResults =
             (observedResults, expectedResults, algExtraResults) -> {
               List<Integer> truncatedObservedResults = observedResults.subList(0, algExtraResults.getInteger("elemsLeft"));
               // TODO: Implement equality comparison for two generic lists
               return truncatedObservedResults.equals(expectedResults);
             };
 
-    TimeTests<ArrayList<Integer>> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "RemoveElement");
-    algTimer.setKnownOutput(getKnownOutput);
-    algTimer.saveExtraAlgResults(saveExtraResults);
-    algTimer.timeAndCheck(NUM_TESTS, checkResults);
+    AlgVerifierInterfaces< ArrayList<Integer>, CloneableInputsMap> algVerifier = new OutputOutputExtraVerifier<>(checkResults);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("RemoveElement", NUM_TESTS, formInputs, runAlg, getKnownOutput, algVerifier);
+//    algorithmFactory.setSequential();
+    algorithmFactory.run();
 
 //    ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1,2,1,5,3,4,1,8));
 //    ArrayList<Integer> copyA = new ArrayList<>(A);

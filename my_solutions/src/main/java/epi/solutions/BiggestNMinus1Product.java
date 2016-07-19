@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.io.PrintStream;
 import java.util.*;
@@ -140,7 +138,7 @@ public class BiggestNMinus1Product {
     Algorithm1 alg1 = new Algorithm1();
     Algorithm2 alg2 = new Algorithm2();
 
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       Random rgen = new Random();
       CloneableInputsMap inputs = new CloneableInputsMap();
       ArrayList<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, N);
@@ -149,19 +147,21 @@ public class BiggestNMinus1Product {
     };
     Function<CloneableInputsMap, Long> runAlg1 = (inputs) -> alg1.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
     Function<CloneableInputsMap, Long> runAlg2 = (inputs) -> alg2.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
-    Supplier<Long> emptyOutput = () -> 0L;
     Function<CloneableInputsMap, Long> getKnownOutput = (inputs) -> naiveSolution(inputs.getArrayList("A"));
-    BiFunction<Long, Long, Boolean> checkAns = Long::equals;
 
-    TimeTests<Long> alg1Timer = new TimeTests<>(formInput, runAlg1, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(n) space ]");
-    TimeTests<Long> alg2Timer = new TimeTests<>(formInput, runAlg2, emptyOutput, "BiggestProductNMinus1 [ O(n) time / O(1) space ]");
+    AlgVerifierInterfaces< Long, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Long::equals);
+    AlgorithmFactory algorithmFactory1 = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
+    AlgorithmFactory algorithmFactory2 = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlg2, getKnownOutput, algVerifier);
 
+    // checking is O(n^2) expensive
+    algorithmFactory1.runSkipVerif();
+    algorithmFactory2.runSkipVerif();
+
+    algorithmFactory1.setNumTests(1000);
+    algorithmFactory2.setNumTests(1000);
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    alg1Timer.timeAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
-    alg2Timer.timeAndCheck(1000, checkAns, getKnownOutput); // checking is O(n^2) expensive
-
+    algorithmFactory1.run();
+    algorithmFactory2.run();
     System.setOut(originalStream);
-    alg1Timer.time(NUM_TESTS);
-    alg2Timer.time(NUM_TESTS);
   }
 }

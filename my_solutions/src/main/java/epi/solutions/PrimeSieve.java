@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.io.PrintStream;
 import java.util.*;
@@ -15,7 +13,7 @@ import java.util.function.Supplier;
  * Problem 6.12
  */
 public class PrimeSieve {
-  private static final int NUM_TESTS = (int) Math.pow(10, 6);
+  private static final int NUM_TESTS = (int) Math.pow(10, 5);
 
   private static abstract class AbstractPrimeSiever {
     abstract List<Integer> generatePrimes(int n);
@@ -85,8 +83,8 @@ public class PrimeSieve {
     PrimeSieverBasic primeSieverBasic = new PrimeSieverBasic();
     PrimeSiever primeSiever = new PrimeSiever();
     Random rgen = new Random();
-    int n = rgen.nextInt(10000) + 10000;
-    Callable<CloneableInputsMap> formInput = () -> {
+    int n = rgen.nextInt(1000) + 20000;
+    Supplier<CloneableInputsMap> formInputs = () -> {
 //      Random rgen = new Random();
       CloneableInputsMap inputs = new CloneableInputsMap();
 //      inputs.addInteger("n", rgen.nextInt(99999) + 2); //
@@ -109,16 +107,24 @@ public class PrimeSieve {
     };
 
     System.out.println("For finding primes up to " + n + "...");
-    TimeTests<ArrayList<Integer>> algTimer1 = new TimeTests<>(formInput, runAlg1, emptyOutput, "Basic Prime Sieve");
-    TimeTests<ArrayList<Integer>> algTimer2 = new TimeTests<>(formInput, runAlg2, emptyOutput, "Improved Prime Sieve");
+    AlgVerifierInterfaces< ArrayList<Integer>, CloneableInputsMap> algVerifier = new DirectOutputVerification<>(checkResults);
+    AlgorithmFactory algorithmFactory1 = new AlgorithmRunnerAndVerifier<>("BasicPrimeSieve", NUM_TESTS, formInputs, runAlg1, algVerifier);
+    AlgorithmFactory algorithmFactory2 = new AlgorithmRunnerAndVerifier<>("PrimeSieve", NUM_TESTS, formInputs, runAlg2, algVerifier);
 
+    // For some reason, the algorithm is much much slower when run on parallel threads. I think it has to do with the overhead of swapping thread images...
+    algorithmFactory1.setSequential();
+    algorithmFactory2.setSequential();
+
+
+    // checking is pretty expensive
+    algorithmFactory1.runSkipVerif();
+    algorithmFactory2.runSkipVerif();
+    algorithmFactory1.setNumTests(100);
+    algorithmFactory2.setNumTests(100);
     PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    algTimer1.timeAndCheck(100, checkResults); // checking is pretty expensive
-    algTimer2.timeAndCheck(100, checkResults); // checking is pretty expensive
-
+    algorithmFactory1.run();
+    algorithmFactory2.run();
     System.setOut(originalStream);
-    algTimer1.time(NUM_TESTS);
-    algTimer2.time(NUM_TESTS);
   }
 
 }

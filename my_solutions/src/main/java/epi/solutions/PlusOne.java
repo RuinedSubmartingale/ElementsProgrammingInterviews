@@ -1,8 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Joiner;
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class PlusOne {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", randArray(ARR_LENGTH));
       return inputs;
@@ -70,10 +69,11 @@ public class PlusOne {
       }
       return expectedOutput;
     };
-    BiFunction<ArrayList<Integer>, ArrayList<Integer>, Boolean> checkResults = List::equals;
-    Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
-    TimeTests<ArrayList<Integer>> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PlusOne");
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+
+    // TODO: See if there's a way to hide AlgVerifierInterfaces from clients.
+    AlgVerifierInterfaces< ArrayList<Integer>, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(List::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algVerifier);
+//    algorithmFactory.setSequential();
+    algorithmFactory.run();
   }
 }

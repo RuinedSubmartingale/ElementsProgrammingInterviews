@@ -1,7 +1,8 @@
 package epi.solutions;
 
+import epi.solutions.helper.AlgorithmFactory;
+import epi.solutions.helper.AlgorithmRunnerAndVerifier;
 import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -45,7 +46,7 @@ public class ClosestIntSameBits {
 
   public static void main(String[] args) throws Exception {
     smallTest();
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       Random rgen = new Random();
       CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addLong("x", rgen.nextLong());
@@ -53,9 +54,9 @@ public class ClosestIntSameBits {
     };
     Function<CloneableInputsMap, Long> runAlg = (inputs) ->
             closestIntSameBitCount(inputs.getLong("x"));
-    Supplier<Long> emptyOutput = () -> 0L;
-    TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "ClosestIntegerSameBits");
-    algTimer.time(NUM_TESTS);
+
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+    algorithmFactory.run();
   }
 
 }

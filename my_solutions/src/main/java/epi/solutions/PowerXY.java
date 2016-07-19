@@ -1,7 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -32,7 +31,7 @@ public class PowerXY {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addDouble("x", rgen.nextDouble() * 10);
@@ -47,11 +46,11 @@ public class PowerXY {
       final Double diff = (observed - expected) / expected;
       return ((diff < -1.0E-9) ? 1 : (diff > 1.0e-9) ? 1 : 0) == 0;
     };
-    Supplier<Double> emptyOutput = () -> 0.0;
 
-    TimeTests<Double> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "PowerXY");
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+    AlgVerifierInterfaces< Double, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(checkResults);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("PowerXY", NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algVerifier);
+//    algorithmFactory.setSequential();
+    algorithmFactory.run();
   }
 
 }

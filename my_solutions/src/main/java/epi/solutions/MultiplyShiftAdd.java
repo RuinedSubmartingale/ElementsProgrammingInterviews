@@ -1,9 +1,7 @@
 package epi.solutions;
 
-//import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
@@ -50,7 +48,7 @@ public class MultiplyShiftAdd {
       long res = multiply(x,y);
       assert(res == (long)x*y);
     } else {
-      Callable<CloneableInputsMap> formInput = () -> {
+      Supplier<CloneableInputsMap> formInputs = () -> {
         Random rgen = new Random();
         CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addInteger("x", rgen.nextInt(MAX_INT_INPUT));
@@ -62,11 +60,10 @@ public class MultiplyShiftAdd {
       Function<CloneableInputsMap, Long> getKnownOutput = (orig_inputs) ->
               ((long) orig_inputs.getInteger("x")) *
               orig_inputs.getInteger("y");
-      BiFunction<Long, Long, Boolean> checkResults = Long::equals;
-      Supplier<Long> emptyOutput = () -> 0L;
-      TimeTests<Long> algTimer =
-              new TimeTests<>(formInput, runAlg, emptyOutput, "MultiplyShiftAdd");
-      algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+
+      AlgVerifierInterfaces< Long, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Long::equals);
+      AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("MultiplyShiftAdd", NUM_TESTS, formInputs, runAlg, getKnownOutput, algVerifier);
+      algorithmFactory.run();
     }
   }
 }

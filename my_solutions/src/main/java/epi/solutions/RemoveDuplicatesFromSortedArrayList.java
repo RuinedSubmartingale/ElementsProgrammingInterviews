@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -21,10 +19,11 @@ public class RemoveDuplicatesFromSortedArrayList {
 
   private static final int ARR_LEN = 1000;
   private static final int MAX_INT = 250;
-  private static final int NUM_TESTS = (int) Math.pow(10, 3);
+  private static final int NUM_TESTS = (int) Math.pow(10, 4);
 
   // Assumes input is already sorted by key that determines equality
   private static <T> int removeDuplicates(ArrayList<T> A) {
+    ArrayList<T> orig_A = new ArrayList<>(A);
     if (A.isEmpty()) return 0;
     int writeIdx = 0;
     for (int i=1; i < A.size(); ++i) {
@@ -47,7 +46,7 @@ public class RemoveDuplicatesFromSortedArrayList {
   }
 
   private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       ArrayList<T> A = MiscHelperMethods.randArray(randSupplier, ARR_LEN);
       Collections.sort(A);
       CloneableInputsMap inputs = new CloneableInputsMap();
@@ -59,27 +58,20 @@ public class RemoveDuplicatesFromSortedArrayList {
       inputs.addInteger("elemsLeft", elemsLeft);
       return inputs.getArrayList("A");
     };
-    Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
     Function<CloneableInputsMap, ArrayList<T>> getKnownOutput = (inputs) -> {
       ArrayList<T> unique = new ArrayList<>(new HashSet<>(inputs.getArrayList("A")));
       Collections.sort(unique);
       return unique;
     };
-    Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
-      CloneableInputsMap algExtraResults = new CloneableInputsMap();
-      algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
-      return algExtraResults;
-    };
-    TimeTests.TriFunction<ArrayList<T>, ArrayList<T>, CloneableInputsMap, Boolean> checkResults =
-            (observedResult, expectedResult, algExtraResults) -> {
-              List<T> truncatedObservedResults = observedResult.subList(0, algExtraResults.getInteger("elemsLeft"));
-              return truncatedObservedResults.equals(expectedResult);
-            };
+    AlgVerifierInterfaces.TriFunction<ArrayList<T>, ArrayList<T>, CloneableInputsMap, Boolean> checkResults =
+      (observedResult, expectedResult, algExtraResults) -> {
+        List<T> truncatedObservedResults = observedResult.subList(0, algExtraResults.getInteger("elemsLeft"));
+        return truncatedObservedResults.equals(expectedResult);
+      };
 
-    TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, testDesc);
-    algTimer.setKnownOutput(getKnownOutput);
-    algTimer.saveExtraAlgResults(saveExtraResults);
-    algTimer.timeAndCheck(NUM_TESTS, checkResults);
+    AlgVerifierInterfaces< ArrayList<T>, CloneableInputsMap> algVerifier = new OutputOutputExtraVerifier<>(checkResults);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>(testDesc, NUM_TESTS, formInputs, runAlg, getKnownOutput, algVerifier);
+    algorithmFactory.run();
   }
 
 

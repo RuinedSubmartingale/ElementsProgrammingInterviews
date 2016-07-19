@@ -1,10 +1,10 @@
 package epi.solutions;
 
+import epi.solutions.helper.AlgorithmFactory;
+import epi.solutions.helper.AlgorithmRunnerAndVerifier;
 import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 */
 @SuppressWarnings("unused")
 public class Parity {
-  private static final int NUM_TESTS = (int) Math.pow(10, 6);
+  private static final int NUM_TESTS = (int) Math.pow(10, 7);
   private static final int WORD_SIZE = 16;
   private static short[] preComputedParity;
   private static long[] testValues;
@@ -112,12 +112,6 @@ public class Parity {
       assert (p1.compute(x) == p4.compute(x));
       System.out.println("x = " + x + ", parity = " + p1.compute(x));
     } else {
-      Callable<CloneableInputsMap> formInput = () -> {
-        CloneableInputsMap inputs = new CloneableInputsMap();
-        Random rgen = new Random();
-        inputs.addLong("x", rgen.nextLong());
-        return inputs;
-      };
       Function<CloneableInputsMap, Short> runParity1 = (inputs) ->
               p1.compute(inputs.getLong("x"));
       Function<CloneableInputsMap, Short> runParity2 = (inputs) ->
@@ -126,19 +120,26 @@ public class Parity {
               p3.compute(inputs.getLong("x"));
       Function<CloneableInputsMap, Short> runParity4 = (inputs) ->
               p4.compute(inputs.getLong("x"));
-      Supplier<Short> emptyOutput = () -> (short) 0;
-      TimeTests<Short> algTimer1 = new TimeTests<>(formInput, runParity1, emptyOutput, "Parity1");
-      TimeTests<Short> algTimer2 = new TimeTests<>(formInput, runParity2, emptyOutput, "Parity2");
-      TimeTests<Short> algTimer3 = new TimeTests<>(formInput, runParity3, emptyOutput, "Parity3");
-      TimeTests<Short> algTimer4 = new TimeTests<>(formInput, runParity4, emptyOutput, "Parity4");
-//      algTimer1.setSequential();
-      algTimer1.time(NUM_TESTS);
-//      algTimer2.setSequential();
-      algTimer2.time(NUM_TESTS);
-//      algTimer3.setSequential();
-      algTimer3.time(NUM_TESTS);
-//      algTimer4.setSequential();
-      algTimer4.time(NUM_TESTS);
+
+      Supplier<CloneableInputsMap> formInputs = () -> {
+        CloneableInputsMap inputs = new CloneableInputsMap();
+        Random rgen = new Random();
+        inputs.addLong("x", rgen.nextLong());
+        return inputs;
+      };
+      AlgorithmFactory algorithmFactory;
+      algorithmFactory = new AlgorithmRunnerAndVerifier<>("Parity1", NUM_TESTS, formInputs, runParity1);
+//      algorithmFactory.setSequential();
+      algorithmFactory.run();
+      algorithmFactory = new AlgorithmRunnerAndVerifier<>("Parity2", NUM_TESTS, formInputs, runParity2);
+//      algorithmFactory.setSequential();
+      algorithmFactory.run();
+      algorithmFactory = new AlgorithmRunnerAndVerifier<>("Parity3", NUM_TESTS, formInputs, runParity3);
+//      algorithmFactory.setSequential();
+      algorithmFactory.run();
+      algorithmFactory = new AlgorithmRunnerAndVerifier<>("Parity4", NUM_TESTS, formInputs, runParity4);
+//      algorithmFactory.setSequential();
+      algorithmFactory.run();
     }
   }
 }

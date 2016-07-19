@@ -1,7 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -68,7 +67,7 @@ public class CanStringBePalindrome {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addString("s", randString(INPUT_STRING_LENGTH));
       return inputs;
@@ -77,10 +76,8 @@ public class CanStringBePalindrome {
             (inputs) -> canFormPalindromeHash(inputs.getString("s"));
     Function<CloneableInputsMap, Boolean> getKnownOutput =
             (orig_inputs) -> canFormPalindromeSorting(orig_inputs.getString("s"));
-    BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
-    Supplier<Boolean> emptyOutput = () -> true;
-    TimeTests<Boolean> algTimer =
-            new TimeTests<>(formInput, runAlgorithm, emptyOutput, "CanStringBePalindrome");
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+    AlgVerifierInterfaces< Boolean, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Boolean::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("CanStringBePalindrome", NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algVerifier);
+    algorithmFactory.run();
   }
 }

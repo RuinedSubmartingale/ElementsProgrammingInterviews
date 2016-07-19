@@ -1,9 +1,7 @@
 package epi.solutions;
 
 import com.google.common.base.Preconditions;
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class SampleOffline {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN));
@@ -56,9 +54,8 @@ public class SampleOffline {
       sampleOffline(A, k);
       return A;
     };
-    Supplier<ArrayList<Integer>> emptyOutput = ArrayList::new;
-    TimeTests<ArrayList<Integer>> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "SampleOffline (permute a random k element subset to front of A)");
-    System.out.println(String.format("Running algorithm to select %d random elements from array of length %d...", K, ARR_LEN));
-    algTimer.time(NUM_TESTS);
+
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+    algorithmFactory.run();
   }
 }

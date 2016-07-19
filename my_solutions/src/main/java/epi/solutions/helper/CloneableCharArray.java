@@ -12,5 +12,4 @@ class CloneableCharArray extends CloneableInput<char[]> {
   public Class getType() {
     return this.getClass();
   }
-
 }

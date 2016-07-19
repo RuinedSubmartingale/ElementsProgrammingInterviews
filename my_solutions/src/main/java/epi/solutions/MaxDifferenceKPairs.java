@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -88,7 +86,7 @@ public class MaxDifferenceKPairs {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       Random rgen = new Random();
       ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
       CloneableInputsMap inputs = new CloneableInputsMap();
@@ -96,17 +94,19 @@ public class MaxDifferenceKPairs {
       return inputs;
     };
     Function<CloneableInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A"), K_BUY_SELLS);
-    Supplier<Double> emptyOutput = () -> 0.0;
-    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
-    BiFunction<Double, Double, Boolean> checkAns = Double::equals;
-    TimeTests<Double> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "MaxProfit for k pairs of Buy-Sell transactions");
-    PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
-    algTimer.timeAndCheck(10000, checkAns, getKnownOutput); // checking is O(n^k) expensive
-    System.setOut(originalStream);
-    algTimer.time(NUM_TESTS);
-
     Function<CloneableInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
-    TimeTests<Double> simpleAlgTimer = new TimeTests<>(formInput, runSimpleAlg, emptyOutput, "MaxProfit for unlimited #  of Buy-Sell transactions");
-    simpleAlgTimer.time(NUM_TESTS);
+    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
+    AlgVerifierInterfaces< Double, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Double::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("MaxProfit for k pairs of Buy-Sell transactions", NUM_TESTS, formInputs, runAlg, getKnownOutput, algVerifier);
+    AlgorithmFactory simpleAlgorithmFactory = new AlgorithmRunnerAndVerifier<>("MaxProfit for unlimited # of Buy-Sell transactions", NUM_TESTS, formInputs, runSimpleAlg);
+
+    algorithmFactory.runSkipVerif();
+    simpleAlgorithmFactory.run();
+
+    // checking is O(n^k) expensive
+    algorithmFactory.setNumTests(10000);
+    PrintStream originalStream = MiscHelperMethods.setSystemOutToDummyStream();
+    algorithmFactory.run();
+    System.setOut(originalStream);
   }
 }

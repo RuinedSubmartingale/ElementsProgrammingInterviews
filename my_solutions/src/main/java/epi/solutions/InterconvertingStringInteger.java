@@ -1,7 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 import org.junit.Assert;
 
 import java.util.Random;
@@ -51,7 +50,7 @@ public class InterconvertingStringInteger {
   }
 
   private static void intToStringTest() throws Exception {
-    Callable<CloneableInputsMap> formInputs = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addInteger("x", rgen.nextInt());
@@ -61,14 +60,14 @@ public class InterconvertingStringInteger {
             intToString(inputs.getInteger("x"));
     Function<CloneableInputsMap, String> knownOutput = (inputs) ->
       String.valueOf(inputs.getInteger("x"));
-    Supplier<String> emptyOutput = String::new;
-    BiFunction<String, String, Boolean> checkAns = String::equals;
-    TimeTests<String> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "IntegerToString");
-    algTimer.timeAndCheck(NUM_TESTS, checkAns, knownOutput);
+    AlgVerifierInterfaces< String, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(String::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlg, knownOutput, algVerifier);
+    algorithmFactory.run();
+
   }
 
   private static void stringToIntTest() throws Exception {
-    Callable<CloneableInputsMap> formInputs = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       StringBuilder s = new StringBuilder();
@@ -87,10 +86,9 @@ public class InterconvertingStringInteger {
             stringToInt(inputs.getString("s"));
     Function<CloneableInputsMap, Integer> knownOutput = (inputs) ->
             Integer.parseInt(inputs.getString("s"));
-    Supplier<Integer> emptyOutput = () -> 0;
-    BiFunction<Integer, Integer, Boolean> checkAns = Integer::equals;
-    TimeTests<Integer> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "StringToInteger");
-    algTimer.timeAndCheck(NUM_TESTS, checkAns, knownOutput);
+    AlgVerifierInterfaces< Integer, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Integer::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlg, knownOutput, algVerifier);
+    algorithmFactory.run();
   }
 
   public  static void main(String[] args) throws Exception {

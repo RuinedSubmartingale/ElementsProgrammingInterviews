@@ -1,8 +1,8 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
+import java.awt.image.CropImageFilter;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.function.*;
@@ -36,7 +36,7 @@ public class UnifRandomNumberGenerator {
       int x = UnifRandom(a, b);
       assert(a <= x && x <= b);
     } else {
-      Callable<CloneableInputsMap> formInput = () -> {
+      Supplier<CloneableInputsMap> formInputs = () -> {
         Random rgen = new Random();
         int a = rgen.nextInt(100);
         int b = rgen.nextInt(100) + a + 1;
@@ -47,11 +47,12 @@ public class UnifRandomNumberGenerator {
       };
       Function<CloneableInputsMap, Integer> runAlg = (inputs) ->
         UnifRandom(inputs.getInteger("a"), inputs.getInteger("b"));
-      BiFunction<CloneableInputsMap, Integer, Boolean> checkResults = (orig_input, observed) ->
-              orig_input.getInteger("a") <= observed && observed <= orig_input.getInteger("b");
-      Supplier<Integer> emptyOutput = () -> 0;
-      TimeTests<Integer> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "UnifRandomNumberGenerator");
-      algTimer.timeAndCheck(NUM_TESTS, checkResults);
+      BiFunction<Integer, CloneableInputsMap, Boolean> checkResults = (observed, extra) ->
+              extra.getInteger("a") <= observed && observed <= extra.getInteger("b");
+
+      AlgVerifierInterfaces<Integer, CloneableInputsMap> algVerifier = new InputOutputVerifier<>(checkResults);
+      AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("UnifRandomNumberGenerator", NUM_TESTS, formInputs, runAlg, algVerifier);
+      algorithmFactory.run();
     }
 
   }

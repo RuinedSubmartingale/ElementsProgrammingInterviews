@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -82,7 +80,7 @@ public class IsPalindrome {
       System.out.println(x + " " + isPalindrome(x));
       assert (slowSolution(x) == isPalindrome(x));
     } else {
-      Callable<CloneableInputsMap> formIntegerInputs = () -> {
+      Supplier<CloneableInputsMap> formIntegerInputs = () -> {
         Random rgen = new Random();
         CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addInteger("x", rgen.nextInt(99999 * 2 + 1) - 99999);
@@ -92,14 +90,11 @@ public class IsPalindrome {
               (input) -> isPalindrome(input.getInteger("x"));
       Function<CloneableInputsMap, Boolean> integerKnownOutput =
               (orig_input) -> slowSolution(orig_input.getInteger("x"));
-      BiFunction<Boolean, Boolean, Boolean> checkResults = Boolean::equals;
-      Supplier<Boolean> emptyOutput = () -> true;
-      TimeTests<Boolean> intAlgTimer =
-              new TimeTests<>(formIntegerInputs, runIntegerAlg, emptyOutput, "IsPalindrome - Integer");
-      intAlgTimer.timeAndCheck(NUM_TESTS, checkResults, integerKnownOutput);
+      AlgVerifierInterfaces< Boolean, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Boolean::equals);
+      AlgorithmFactory intAlgorithmFactory = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formIntegerInputs, runIntegerAlg, integerKnownOutput, algVerifier);
+      intAlgorithmFactory.run();
 
-
-      Callable<CloneableInputsMap> formStringInputs = () -> {
+      Supplier<CloneableInputsMap> formStringInputs = () -> {
         Random rgen = new Random();
         CloneableInputsMap inputs = new CloneableInputsMap();
         inputs.addString("s", MiscHelperMethods.randString(() ->
@@ -112,9 +107,8 @@ public class IsPalindrome {
               (input) -> isPalindrome(input.getString("s"), isAlphaNum);
       Function<CloneableInputsMap, Boolean> stringKnownOutput = (orig_inputs) ->
               slowSolution(orig_inputs.getString("s"), isAlphaNum);
-      TimeTests<Boolean> stringAlgTimer =
-              new TimeTests<>(formStringInputs, runStringAlg, emptyOutput, "IsPalindrome - String");
-      stringAlgTimer.timeAndCheck(NUM_TESTS, checkResults, stringKnownOutput);
+      AlgorithmFactory stringAlgorithmFactory = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formStringInputs, runStringAlg, stringKnownOutput, algVerifier);
+      stringAlgorithmFactory.run();
     }
   }
 }

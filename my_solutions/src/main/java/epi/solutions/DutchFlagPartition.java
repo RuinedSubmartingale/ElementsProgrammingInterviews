@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +17,7 @@ import java.util.function.Supplier;
  */
 public class DutchFlagPartition {
 
-  private static final int NUM_TESTS = (int) Math.pow(10, 6);
+  private static final int NUM_TESTS = (int) Math.pow(10, 7);
   private static final int FLAG_LENGTH = 20;
 
   @SuppressWarnings("unused")
@@ -61,7 +59,7 @@ public class DutchFlagPartition {
   }
 
   private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) throws Exception {
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> enumVals[rgen.nextInt(enumVals.length)], FLAG_LENGTH));
@@ -79,9 +77,10 @@ public class DutchFlagPartition {
 //      System.out.println(String.format("%-20s %s", "Expected output: ", (ArrayList<Color>) orig_input));
       return result;
     };
-    BiFunction<ArrayList<T>, ArrayList<T>, Boolean> checkResults = ArrayList::equals;
-    Supplier<ArrayList<T>> emptyOutput = ArrayList::new;
-    TimeTests<ArrayList<T>> algTimer = new TimeTests<>(formInput, runAlgorithm, emptyOutput, testDesc);
-    algTimer.timeAndCheck(NUM_TESTS, checkResults, getKnownOutput);
+
+    AlgVerifierInterfaces< ArrayList<T>, CloneableInputsMap> algverifier = new OutputComparisonVerifier<>(ArrayList::equals);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>(testDesc, NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algverifier);
+    algorithmFactory.setSequential();
+    algorithmFactory.run();
   }
 }

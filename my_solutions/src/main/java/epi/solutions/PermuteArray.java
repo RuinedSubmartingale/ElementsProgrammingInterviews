@@ -1,11 +1,10 @@
 package epi.solutions;
 
 import com.google.common.base.Preconditions;
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
@@ -20,7 +19,7 @@ import java.util.stream.IntStream;
  */
 
 public class PermuteArray {
-  private static final int ARR_LEN = (int) Math.pow(10, 2);
+  private static final int ARR_LEN = (int) Math.pow(10, 1);
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
   private static abstract class AbstractArrayPermutation {
@@ -101,7 +100,7 @@ public class PermuteArray {
 //      System.out.println("A: " + A + "\nP: " + P);
 //    System.out.println("A: " + A + "\nP: " + P);
 
-    Callable<CloneableInputsMap> formInput = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       List<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN);
@@ -134,17 +133,12 @@ public class PermuteArray {
     Supplier<ArrayList<Integer>> emptyOutput = ArrayList::new;
 
     System.out.println(String.format("Running algorithms on arrays of length %d...", ARR_LEN));
-    TimeTests<ArrayList<Integer>> algTimer1 = new TimeTests<>(formInput, runAlg1, emptyOutput, "Permute Array: O(n) time / O(n) space");
-    TimeTests<ArrayList<Integer>> algTimer2 = new TimeTests<>(formInput, runAlg2, emptyOutput, "Permute Array: O(n^2) time / O(1) space");
 
-//    CloneableInputsMap inputs = formInput.call();
-//    CloneableInputsMap orig_input = new CloneableInputsMap();
-//    inputs.forEach((name, inputType) -> orig_input.put(name, inputType.cloneInput()));
-//    ArrayList<Integer> observed = runAlg1.apply(inputs);
-//    ArrayList<Integer> expected = getKnownOutput.apply(orig_input);
-//    boolean correct = checkAns.apply(expected, observed);
-//    assert(correct);
-    algTimer1.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
-    algTimer2.timeAndCheck(NUM_TESTS, checkAns, getKnownOutput);
+    AlgVerifierInterfaces< ArrayList<Integer>, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(ArrayList::equals);
+    AlgorithmFactory algorithmFactory1 = new AlgorithmRunnerAndVerifier<>("Permute Array: O(n) time / O(n) space", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
+    AlgorithmFactory algorithmFactory2 = new AlgorithmRunnerAndVerifier<>("Permute Array: O(n^2) time / O(1) space", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
+    algorithmFactory1.run();
+    algorithmFactory2.run();
+
   }
 }

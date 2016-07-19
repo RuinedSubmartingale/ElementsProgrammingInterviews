@@ -11,11 +11,13 @@ import java.util.Objects;
  */
 
 public class CloneableInputsMap extends HashMap<String, CloneableInput> {
-  public CloneableInputsMap() {
-  }
+//  public CloneableInputsMap() {
+//  }
 
   public <T extends CloneableInput> T get(String name, Class c) throws IllegalArgumentException {
-    if (!c.isInstance(this.get(name)))
+    CloneableInput input;
+    input = this.get(name);
+    if (!c.isInstance(input))
       throw new IllegalArgumentException(name + " is not an instance of " + c.toString(), new Throwable(this.toString()));
     else {
       T result = (T) this.get(name); // This unchecked type cast should be caught by the condition above.

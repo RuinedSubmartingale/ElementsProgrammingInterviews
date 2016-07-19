@@ -1,8 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.MiscHelperMethods;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -72,7 +70,7 @@ public class ReplaceAndRemove {
   }
 
   public static void main(String[] args) throws Exception {
-    Callable<CloneableInputsMap> formInputs = () -> {
+    Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       char[] s = new char[(ARR_LEN << 1) + 1];
@@ -90,26 +88,23 @@ public class ReplaceAndRemove {
       return expected.length();
     };
 
-    Supplier<Integer> emptyOutput = () -> 0;
     Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
       CloneableInputsMap extraResults = new CloneableInputsMap();
       extraResults.addCharArray("s", inputs.getCharArray("s"));
       return extraResults;
     };
-    TimeTests.QuadFunction<Integer, Integer, CloneableInputsMap, CloneableInputsMap, Boolean> checkAns =
+    AlgVerifierInterfaces.QuadFunction<Integer, Integer, CloneableInputsMap, CloneableInputsMap, Boolean> checkAns =
             (observed, expected, algExtraResults, expExtraResults) ->
-                    observed.equals(expected) && new String(algExtraResults.getCharArray("s"), 0, observed).equals(new String(expExtraResults.getCharArray("s")));
+                    observed.equals(expected)
+                            && algExtraResults.getCharArray("s").length >= observed
+                            && expExtraResults.getCharArray("s").length >= observed
+                            && String.valueOf(algExtraResults.getCharArray("s")).substring(0, observed).equals(String.valueOf(expExtraResults.getCharArray("s")).substring(0, observed));
 
-    TimeTests<Integer> algTimer = new TimeTests<>(formInputs, runAlg, emptyOutput, "Replace and Remove");
+    AlgVerifierInterfaces< Integer, CloneableInputsMap> algVerifier = new OutputOutputExtraExtraVerifier<>(checkAns);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Replace and Remove", NUM_TESTS, formInputs, runAlg, knownOutput, saveExtraResults, algVerifier);
 
     System.out.println(String.format("Running algorithms on character arrays of length %d...", ARR_LEN));
-    algTimer.saveExtraAlgResults(saveExtraResults);
-    algTimer.saveExtraExpResults(saveExtraResults);
-    algTimer.setKnownOutput(knownOutput);
-//    algTimer.setSequential();
-    algTimer.timeAndCheck(NUM_TESTS, checkAns);
-//    algTimer.timeAndCheckCallableOnce();
-//    algTimer.time(NUM_TESTS);
-
+//    algorithmFactory.setSequential();
+    algorithmFactory.run();
   }
 }

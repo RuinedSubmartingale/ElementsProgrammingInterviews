@@ -1,7 +1,6 @@
 package epi.solutions;
 
-import epi.solutions.helper.CloneableInputsMap;
-import epi.solutions.helper.TimeTests;
+import epi.solutions.helper.*;
 
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -41,7 +40,7 @@ public class SwapBits {
               + ", j = " + j
               + ".\nswapped_x = " + swapBits(x,i,j));
     } else {
-      Callable<CloneableInputsMap> formInput = () -> {
+      Supplier<CloneableInputsMap> formInputs = () -> {
         Random rgen = new Random();
         long x = rgen.nextLong();
         int x_num_bits = 0;
@@ -57,9 +56,9 @@ public class SwapBits {
       };
       Function<CloneableInputsMap, Long> runAlg = (inputs) ->
               swapBits(inputs.getLong("x"), inputs.getInteger("i"), inputs.getInteger("j"));
-      Supplier<Long> emptyOutput = () -> 0L;
-      TimeTests<Long> algTimer = new TimeTests<>(formInput, runAlg, emptyOutput, "SwapBits");
-      algTimer.time(NUM_TESTS);
+
+      AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+      algorithmFactory.run();
     }
   }
 }
