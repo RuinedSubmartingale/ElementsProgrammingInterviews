@@ -2,3 +2,8 @@ language: java
 before_install: cd ./my_solutions
 jdk:
     - oraclejdk8
+notifications:
+  on_success: change
+  on_failure: always
+git:
+  depth: 3  # default is 50 commits, which is only really useful if you're performing git operations during build
