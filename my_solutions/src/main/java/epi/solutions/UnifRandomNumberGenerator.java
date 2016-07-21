@@ -2,9 +2,7 @@ package epi.solutions;
 
 import epi.solutions.helper.*;
 
-import java.awt.image.CropImageFilter;
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.*;
 
 /**

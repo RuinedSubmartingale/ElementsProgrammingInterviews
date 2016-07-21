@@ -10,11 +10,11 @@ class CloneableCharSequence extends CloneableInput<CharSequence> {
   CloneableCharSequence(String input) { super(new CharArray(input.toCharArray(), 0, input.length(), true)); }
   CloneableCharSequence(char[] input) { super(new CharArray(input, 0, input.length, true)); }
   CloneableCharSequence(CharArray input) {
-    this(input.toString());
+    super(input);
   }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 

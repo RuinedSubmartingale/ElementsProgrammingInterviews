@@ -14,72 +14,84 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
 //  public CloneableInputsMap() {
 //  }
 
-  public <T extends CloneableInput> T get(String name, Class c) throws IllegalArgumentException {
-    CloneableInput input;
-    input = this.get(name);
-    if (!c.isInstance(input))
-      throw new IllegalArgumentException(name + " is not an instance of " + c.toString(), new Throwable(this.toString()));
-    else {
-      T result = (T) this.get(name); // This unchecked type cast should be caught by the condition above.
-      Objects.requireNonNull(result, "No input called \"" + name + "\"");
-      return result;
+  @SuppressWarnings("unchecked")
+  public <DT> DT get(String name, Class<? extends CloneableInput> c, Class<DT> dt) {
+    CloneableInput inputContainer = this.get(name);
+    try {
+      Objects.requireNonNull(inputContainer, "No input called \"" + name + "\"");
+      if (!c.isInstance(inputContainer))
+        throw new IllegalArgumentException(name + " is not an instance of " + c.toString(), new Throwable(this.toString()));
+      else {
+//      return input; // This unchecked type cast should be caught by the condition above.
+        if (!dt.isInstance(inputContainer.getInput()))
+          throw new IllegalArgumentException(name + " is a CloneableArrayList container, but its data type is not of type " + dt.toString(), new Throwable(this.toString()));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+    return (DT) inputContainer.getInput();
   }
 
   public <T> void addArrayList(String name, List<T> A) {
     this.put(name, new CloneableArrayList<>(A));
   }
-  public <T> ArrayList<T> getArrayList(String name) throws IllegalArgumentException {
-    CloneableArrayList<T> result = get(name, CloneableArrayList.class);
-    return result.getInput();
+
+  @SuppressWarnings("unchecked")
+  public <T> ArrayList<T> getArrayList(String name, Class<T> dataType) {
+    ArrayList<T> result = get(name, CloneableArrayList.class, (new ArrayList<T>()).getClass());
+    try {
+      // // The following would throw a ClassCastException if result wasn't actually of type ArrayList<T>
+      // result.toArray((T[]) Array.newInstance(dataType, 0));
+      if(!result.get(0).getClass().isAssignableFrom(dataType)) {
+        // See JumpBoardGame.main for a commented-out example of when this error would be thrown
+        throw new IllegalArgumentException(name + " is a CloneableArrayList container, but its data type is " + result.get(0).getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+      }
+    } catch (Exception e){
+      e.printStackTrace();
+    }
+    return result;
   }
 
   public void addInteger(String name, Integer x) {
     this.put(name, new CloneableInteger(x));
   }
   public Integer getInteger(String name) {
-    CloneableInteger result = get(name, CloneableInteger.class);
-    return result.getInput();
+    return get(name, CloneableInteger.class, Integer.class);
   }
 
   public void addLong(String name, Long x) {
     this.put(name, new CloneableLong(x));
   }
   public Long getLong(String name) {
-    CloneableLong result = get(name, CloneableLong.class);
-    return result.getInput();
+    return get(name, CloneableLong.class, Long.class);
   }
 
   public void addDouble(String name, Double x) {
     this.put(name, new CloneableDouble(x));
   }
   public Double getDouble(String name) {
-    CloneableDouble result = get(name, CloneableDouble.class);
-    return result.getInput();
+    return get(name, CloneableDouble.class, Double.class);
   }
 
   public void addString(String name, String s) {
     this.put(name, new CloneableString(s));
   }
   public String getString(String name) {
-    CloneableString result = get(name, CloneableString.class);
-    return result.getInput();
+    return get(name, CloneableString.class, String.class);
   }
 
   public void addCharSequence(String name, char[] s) {
     this.put(name, new CloneableCharSequence(s));
   }
   public CharSequence getCharSequence(String name) {
-    CloneableCharSequence result = get(name, CloneableCharSequence.class);
-    return result.getInput();
+    return get(name, CloneableCharSequence.class, CharSequence.class);
   }
 
   public void addCharArray(String name, char[] s) {
     this.put(name, new CloneableCharArray(s));
   }
   public char[] getCharArray(String name) {
-    CloneableCharArray result = get(name, CloneableCharArray.class);
-    return result.getInput();
+    return get(name, CloneableCharArray.class, char[].class);
   }
 
   public String printInputs() {

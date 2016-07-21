@@ -8,7 +8,7 @@ class CloneableDouble extends CloneableInput<Double> {
   CloneableDouble(Double input) { super(input); }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 

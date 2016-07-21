@@ -22,7 +22,7 @@ public class MyTests {
   private static final String[] NO_ARGS = new String[0];
 //  static final String[] SMALL_ARGS = {"10", "10"};
   private static final String[] ARGS = NO_ARGS;
-  private static long maxTimePerMethod = 1000000;
+  private static final long maxTimePerMethod = 1000000;
 
   private static final Logger logger = Logger.getLogger("");
   private static void logInfo(Description desc, String status, long nanos) {

@@ -5,7 +5,6 @@ import epi.solutions.helper.AlgorithmRunnerAndVerifier;
 import epi.solutions.helper.CloneableInputsMap;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -55,7 +54,7 @@ public class ClosestIntSameBits {
     Function<CloneableInputsMap, Long> runAlg = (inputs) ->
             closestIntSameBitCount(inputs.getLong("x"));
 
-    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("ClosestIntSameBits", NUM_TESTS, formInputs, runAlg);
     algorithmFactory.run();
   }
 

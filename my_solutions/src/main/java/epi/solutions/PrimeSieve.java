@@ -4,7 +4,6 @@ import epi.solutions.helper.*;
 
 import java.io.PrintStream;
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -16,7 +15,7 @@ public class PrimeSieve {
   private static final int NUM_TESTS = (int) Math.pow(10, 5);
 
   private static abstract class AbstractPrimeSiever {
-    abstract List<Integer> generatePrimes(int n);
+    abstract ArrayList<Integer> generatePrimes(int n);
   }
 
   /**
@@ -80,8 +79,8 @@ public class PrimeSieve {
   }
 
   public static void main(String[] args) throws Exception {
-    PrimeSieverBasic primeSieverBasic = new PrimeSieverBasic();
-    PrimeSiever primeSiever = new PrimeSiever();
+    AbstractPrimeSiever primeSieverBasic = new PrimeSieverBasic();
+    AbstractPrimeSiever primeSiever = new PrimeSiever();
     Random rgen = new Random();
     int n = rgen.nextInt(1000) + 20000;
     Supplier<CloneableInputsMap> formInputs = () -> {
@@ -96,7 +95,6 @@ public class PrimeSieve {
             primeSieverBasic.generatePrimes(inputs.getInteger("n"));
     Function<CloneableInputsMap, ArrayList<Integer>> runAlg2 = (inputs) ->
             primeSiever.generatePrimes(inputs.getInteger("n"));
-    Supplier<ArrayList<Integer>> emptyOutput = ArrayList::new;
     Function<ArrayList<Integer>, Boolean> checkResults = (observed) -> {
       for (Integer prime : observed) {
         for (int i = 2; i < prime; ++i) {

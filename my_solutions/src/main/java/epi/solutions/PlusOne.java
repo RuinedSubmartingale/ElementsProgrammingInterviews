@@ -7,8 +7,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -58,9 +56,9 @@ public class PlusOne {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlgorithm =
-            (input) -> plusOne(input.getArrayList("A"));
+            (input) -> plusOne(input.getArrayList("A", Integer.class));
     Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (orig_input) -> {
-      BigInteger B = new BigInteger(Joiner.on("").join(orig_input.getArrayList("A")));
+      BigInteger B = new BigInteger(Joiner.on("").join(orig_input.getArrayList("A", Integer.class)));
       B = B.add(BigInteger.valueOf(1));
       ArrayList<Integer> expectedOutput = new ArrayList<>();
       while (B.compareTo(BigInteger.valueOf(0)) > 0) {

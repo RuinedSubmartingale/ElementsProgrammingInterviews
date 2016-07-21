@@ -9,15 +9,22 @@ import java.lang.reflect.InvocationTargetException;
  * with the results of a known solution on a cloned version of the inputs.
  * See TimeTests for usage details.
  */
-public abstract class CloneableInput<T> implements Cloneable {
+abstract class CloneableInput<T> implements Cloneable {
   private T data;
 
-  public CloneableInput(T data) {
+  CloneableInput(T data) {
     this.data = data;
   }
-  abstract Class getType();
+  abstract Class<? extends CloneableInput> getType();
   T getInput() { return this.data; }
+
+  @SuppressWarnings("unchecked")
   CloneableInput<T> cloneInput() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-    return (CloneableInput<T>) getType().getDeclaredConstructor(getInput().getClass()).newInstance(getInput());
-  };
+    try {
+      return (CloneableInput<T>) getType().getDeclaredConstructor(getInput().getClass()).newInstance(getInput());
+    } catch (InstantiationException | SecurityException | IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException e) {
+      e.printStackTrace();
+      throw e;
+    }
+  }
 }

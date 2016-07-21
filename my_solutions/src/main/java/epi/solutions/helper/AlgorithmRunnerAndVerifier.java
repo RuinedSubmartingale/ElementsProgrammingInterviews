@@ -10,7 +10,6 @@ import java.util.function.Supplier;
 public class AlgorithmRunnerAndVerifier<outputType> extends AlgorithmFactory<CloneableInputsMap, outputType> {
   private Function<CloneableInputsMap, outputType> _knownSolution;
   private Function<CloneableInputsMap, CloneableInputsMap> _saveExtraResults;
-  private CloneableInputsMap _origInputs;
   private CloneableInputsMap _expectedInputs;
   private CloneableInputsMap _observedInputs;
   private outputType _expectedOutput;
@@ -18,8 +17,8 @@ public class AlgorithmRunnerAndVerifier<outputType> extends AlgorithmFactory<Clo
   private CloneableInputsMap _expectedExtraData;
   private CloneableInputsMap _observedExtraData;
   private Function<AlgVerificationData<outputType, CloneableInputsMap>, Boolean> _algVerifier;
-  Algorithm<CloneableInputsMap, outputType> _knownAlgInstance;
-  boolean _verifyAgainstKnownOutput;
+  private Algorithm<CloneableInputsMap, outputType> _knownAlgInstance;
+  private boolean _verifyAgainstKnownOutput;
 
 
   private AlgorithmRunnerAndVerifier(String desc, int numTests

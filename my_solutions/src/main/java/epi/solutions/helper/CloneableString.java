@@ -8,7 +8,7 @@ class CloneableString extends CloneableInput<String> {
   CloneableString(String input) { super(input); }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 }

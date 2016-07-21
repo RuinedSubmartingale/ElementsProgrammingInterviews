@@ -8,7 +8,7 @@ class CloneableInteger extends CloneableInput<Integer> {
   CloneableInteger(Integer input) { super(input); }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 

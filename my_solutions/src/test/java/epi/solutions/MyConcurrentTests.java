@@ -4,12 +4,9 @@ import net.jodah.concurrentunit.ConcurrentTestCase;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.Stopwatch;
-import org.junit.rules.Timeout;
 import org.junit.runner.Description;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 /**
@@ -19,7 +16,7 @@ public class MyConcurrentTests extends ConcurrentTestCase {
   private static final String[] NO_ARGS = new String[0];
   //  static final String[] SMALL_ARGS = {"10", "10"};
   private static final String[] ARGS = NO_ARGS;
-  private static long maxTimePerMethod = 100000;
+  private static final long maxTimePerMethod = 100000;
 
   private static final Logger logger = Logger.getLogger("");
   private static void logInfo(Description desc, String status, long nanos) {

@@ -17,7 +17,7 @@ class CloneableArrayList<T> extends CloneableInput<ArrayList<T>> {
   }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 }

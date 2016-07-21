@@ -6,8 +6,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -93,9 +91,9 @@ public class MaxDifferenceKPairs {
       inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A"), K_BUY_SELLS);
-    Function<CloneableInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A"));
-    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A"), K_BUY_SELLS);
+    Function<CloneableInputsMap, Double> runAlg = (inputs) -> maxKPairsProfits(inputs.getArrayList("A", Double.class), K_BUY_SELLS);
+    Function<CloneableInputsMap, Double> runSimpleAlg = (inputs) -> maxProfitUnlimitedPairs(inputs.getArrayList("A", Double.class));
+    Function<CloneableInputsMap, Double> getKnownOutput = (inputs) -> checkAns(inputs.getArrayList("A", Double.class), K_BUY_SELLS);
     AlgVerifierInterfaces< Double, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Double::equals);
     AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("MaxProfit for k pairs of Buy-Sell transactions", NUM_TESTS, formInputs, runAlg, getKnownOutput, algVerifier);
     AlgorithmFactory simpleAlgorithmFactory = new AlgorithmRunnerAndVerifier<>("MaxProfit for unlimited # of Buy-Sell transactions", NUM_TESTS, formInputs, runSimpleAlg);

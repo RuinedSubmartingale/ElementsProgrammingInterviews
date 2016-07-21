@@ -4,8 +4,6 @@ import epi.solutions.helper.*;
 import org.junit.Assert;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 

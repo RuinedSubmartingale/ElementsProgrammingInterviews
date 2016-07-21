@@ -9,7 +9,7 @@ class CloneableCharArray extends CloneableInput<char[]> {
   CloneableCharArray(char[] input) { super(input.clone()); }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 }

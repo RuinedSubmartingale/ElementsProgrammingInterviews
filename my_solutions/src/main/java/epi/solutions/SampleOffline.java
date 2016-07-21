@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -31,7 +30,7 @@ public class SampleOffline {
    * If we're allowed to return the result in A itself, then O(1) space.
    * Note: When k > n/2, we can optimize randomly omitting n-k elements instead.
    */
-  private static <T> void sampleOffline(@NotNull List<T> A, @NotNull int k) {
+  private static <T> void sampleOffline(@NotNull List<T> A, int k) {
     Preconditions.checkArgument(0 <= k && k <= A.size(), "Input k is not within range of [0, A.size()].");
     Random rgen = new Random();
     // Loop invariant: Every permutation of size i is equally likely to be in A[0:i]
@@ -49,13 +48,13 @@ public class SampleOffline {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
-      ArrayList<Integer> A = inputs.getArrayList("A");
+      ArrayList<Integer> A = inputs.getArrayList("A", Integer.class);
       int k = inputs.getInteger("k");
       sampleOffline(A, k);
       return A;
     };
 
-    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SampleOffline", NUM_TESTS, formInputs, runAlg);
     algorithmFactory.run();
   }
 }

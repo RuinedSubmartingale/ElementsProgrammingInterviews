@@ -20,7 +20,6 @@ public abstract class AlgorithmFactory<inputType, outputType> {
   private Supplier<inputType> _formInputs;
   Function<inputType, outputType> _algRunner;
   private inputType _inputs;
-  inputType _observedInputs;
   private final String _description;
   private boolean _parallel;
   private int _numTests;
@@ -65,8 +64,7 @@ public abstract class AlgorithmFactory<inputType, outputType> {
   }
 
   private Long runSequential() throws Exception {
-    Long totalExecTime = runCallable(_formInputs, _numTests).call();
-    return totalExecTime;
+    return runCallable(_formInputs, _numTests).call();
   }
 
 //  // TODO: consider removing this requirement. Only add to subclasses that need it in their afterRun() calls

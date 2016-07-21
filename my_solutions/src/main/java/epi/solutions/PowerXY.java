@@ -3,7 +3,6 @@ package epi.solutions;
 import epi.solutions.helper.*;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;

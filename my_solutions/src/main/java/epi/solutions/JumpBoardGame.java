@@ -5,7 +5,6 @@ import epi.solutions.helper.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -45,13 +44,16 @@ public class JumpBoardGame {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
       inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(MAX_ADVANCE_PER_STEP), BOARD_LENGTH));
+      // // If we accidentally created an ArrayList of Doubles instead of Integers here,
+      // // then CloneableInputsMap::getArrayList() should throw and catch an IllegalArgumentException
+      // inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextDouble(), BOARD_LENGTH));
       return inputs;
     };
     Function<CloneableInputsMap, Boolean> runAlg = (inputs) ->
-            isWinnable(inputs.getArrayList("A"));
+            isWinnable(inputs.getArrayList("A", Integer.class));
 
-    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("SwapBits", NUM_TESTS, formInputs, runAlg);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("JumpBoardGame", NUM_TESTS, formInputs, runAlg);
+//    algorithmFactory.setSequential();
     algorithmFactory.run();
-
   }
 }

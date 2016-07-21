@@ -14,7 +14,7 @@ public class CloneableHashMap<K, V> extends CloneableInput<HashMap<K,V>> {
   }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 }

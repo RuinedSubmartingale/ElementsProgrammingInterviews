@@ -4,10 +4,7 @@ import com.google.common.base.Preconditions;
 import epi.solutions.helper.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -115,28 +112,25 @@ public class PermuteArray {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlg1 = (inputs) -> {
-      ap1.applyPermutation(inputs.getArrayList("P"), inputs.getArrayList("A"));
-      return inputs.getArrayList("A");
+      ap1.applyPermutation(inputs.getArrayList("P", Integer.class), inputs.getArrayList("A", Integer.class));
+      return inputs.getArrayList("A", Integer.class);
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlg2 = (inputs) -> {
-      ap2.applyPermutation(inputs.getArrayList("P"), inputs.getArrayList("A"));
-      return inputs.getArrayList("A");
+      ap2.applyPermutation(inputs.getArrayList("P", Integer.class), inputs.getArrayList("A", Integer.class));
+      return inputs.getArrayList("A", Integer.class);
     };
     Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
-      ArrayList<Integer> perm = inputs.getArrayList("P");
-      ArrayList<Integer> A = inputs.getArrayList("A");
+      ArrayList<Integer> perm = inputs.getArrayList("P", Integer.class);
+      ArrayList<Integer> A = inputs.getArrayList("A", Integer.class);
       // The following line took me longer to get right than I'd care to admit...
       // This is also probably very slow since it has n calls to perm.indexOf(), each of which is O(n)
       return IntStream.range(0, A.size()).boxed().map(i -> A.get(perm.indexOf(i))).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     };
-    BiFunction<ArrayList<Integer>, ArrayList<Integer>, Boolean> checkAns = ArrayList::equals;
-    Supplier<ArrayList<Integer>> emptyOutput = ArrayList::new;
 
     System.out.println(String.format("Running algorithms on arrays of length %d...", ARR_LEN));
-
     AlgVerifierInterfaces< ArrayList<Integer>, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(ArrayList::equals);
     AlgorithmFactory algorithmFactory1 = new AlgorithmRunnerAndVerifier<>("Permute Array: O(n) time / O(n) space", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
-    AlgorithmFactory algorithmFactory2 = new AlgorithmRunnerAndVerifier<>("Permute Array: O(n^2) time / O(1) space", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
+    AlgorithmFactory algorithmFactory2 = new AlgorithmRunnerAndVerifier<>("Permute Array: O(n^2) time / O(1) space", NUM_TESTS, formInputs, runAlg2, getKnownOutput, algVerifier);
     algorithmFactory1.run();
     algorithmFactory2.run();
 

@@ -4,7 +4,6 @@ package epi.solutions;
 import epi.solutions.helper.*;
 
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -38,20 +37,14 @@ public class RemoveElement {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlg = (inputs) -> {
-      int elemsLeft = removeElement(inputs.getInteger("key"), inputs.getArrayList("A"));
+      int elemsLeft = removeElement(inputs.getInteger("key"), inputs.getArrayList("A", Integer.class));
       inputs.addInteger("elemsLeft", elemsLeft);
-      return inputs.getArrayList("A");
+      return inputs.getArrayList("A", Integer.class);
     };
-    Supplier<ArrayList<Integer>> emptyOutput = ArrayList<Integer>::new;
     Function<CloneableInputsMap, ArrayList<Integer>> getKnownOutput = (inputs) -> {
       // TODO: Try .... while(A.remove(key)) {} .... or ... A.removeAll(Collections.singleton(key))... instead of removeIf?
-      inputs.getArrayList("A").removeIf(inputs.getInteger("key")::equals);
-      return inputs.getArrayList("A");
-    };
-    Function<CloneableInputsMap, CloneableInputsMap> saveExtraResults = (inputs) -> {
-      CloneableInputsMap algExtraResults = new CloneableInputsMap();
-      algExtraResults.addInteger("elemsLeft", inputs.getInteger("elemsLeft"));
-      return algExtraResults;
+      inputs.getArrayList("A", Integer.class).removeIf(inputs.getInteger("key")::equals);
+      return inputs.getArrayList("A", Integer.class);
     };
     AlgVerifierInterfaces.TriFunction<ArrayList<Integer>, ArrayList<Integer>, CloneableInputsMap, Boolean> checkResults =
             (observedResults, expectedResults, algExtraResults) -> {

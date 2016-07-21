@@ -6,7 +6,7 @@ import java.util.function.Function;
  * Created by psingh on 7/17/16.
  */
 public class OutputOutputExtraExtraVerifier<outputType, extraType> extends AlgVerifierInterfaces<outputType, extraType> {
-  QuadFunction<outputType, outputType, extraType, extraType, Boolean> _fn;
+  private QuadFunction<outputType, outputType, extraType, extraType, Boolean> _fn;
 
   public OutputOutputExtraExtraVerifier(QuadFunction<outputType, outputType, extraType, extraType, Boolean> fn) {
     this._fn = fn;

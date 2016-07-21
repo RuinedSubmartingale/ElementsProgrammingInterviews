@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -23,7 +22,7 @@ public class RemoveDuplicatesFromSortedArrayList {
 
   // Assumes input is already sorted by key that determines equality
   private static <T> int removeDuplicates(ArrayList<T> A) {
-    ArrayList<T> orig_A = new ArrayList<>(A);
+//    ArrayList<T> orig_A = new ArrayList<>(A);
     if (A.isEmpty()) return 0;
     int writeIdx = 0;
     for (int i=1; i < A.size(); ++i) {
@@ -45,7 +44,7 @@ public class RemoveDuplicatesFromSortedArrayList {
 
   }
 
-  private static <T extends Comparable<? super T>> void runTests(Supplier<T> randSupplier, String testDesc) throws Exception {
+  private static <T extends Comparable<? super T>> void runTests(Class<T> dataClass, Supplier<T> randSupplier, String testDesc) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
       ArrayList<T> A = MiscHelperMethods.randArray(randSupplier, ARR_LEN);
       Collections.sort(A);
@@ -54,12 +53,12 @@ public class RemoveDuplicatesFromSortedArrayList {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<T>> runAlg = (inputs) -> {
-      int elemsLeft = removeDuplicates(inputs.getArrayList("A"));
+      int elemsLeft = removeDuplicates(inputs.getArrayList("A", dataClass));
       inputs.addInteger("elemsLeft", elemsLeft);
-      return inputs.getArrayList("A");
+      return inputs.getArrayList("A", dataClass);
     };
     Function<CloneableInputsMap, ArrayList<T>> getKnownOutput = (inputs) -> {
-      ArrayList<T> unique = new ArrayList<>(new HashSet<>(inputs.getArrayList("A")));
+      ArrayList<T> unique = new ArrayList<>(new HashSet<>(inputs.getArrayList("A", dataClass)));
       Collections.sort(unique);
       return unique;
     };
@@ -78,8 +77,8 @@ public class RemoveDuplicatesFromSortedArrayList {
   public static void main(String[] args) throws Exception {
     smallTest();
     Random rgen = new Random();
-    runTests(() -> rgen.nextInt(MAX_INT), "RemoveDuplicatesFromSortedArrayList - Integer array");
-    runTests(() -> new Student(
+    runTests(Integer.class, () -> rgen.nextInt(MAX_INT), "RemoveDuplicatesFromSortedArrayList - Integer array");
+    runTests(Student.class, () -> new Student(
                         Student.FNAME.values()[rgen.nextInt(Student.FNAME.values().length)].toString()
                         , Student.LNAME.values()[rgen.nextInt(Student.LNAME.values().length)].toString()
                       )
@@ -90,7 +89,7 @@ public class RemoveDuplicatesFromSortedArrayList {
 class Student implements Comparable<Student> {
   enum FNAME {
     ADAM("ADAM"), BOB("BOB"), CHARLIE("CHARLIE"), DAVID("DAVID");
-    private String fname;
+    private final String fname;
     FNAME(String name) {
       this.fname = name;
     }
@@ -101,7 +100,7 @@ class Student implements Comparable<Student> {
   }
   enum LNAME {
     JOHNSON("JOHNSON"), FIELDS("FIELDS"), ROSE("ROSE"), SMITH("SMITH");
-    private String lname;
+    private final String lname;
     LNAME(String name) {
       this.lname = name;
     }

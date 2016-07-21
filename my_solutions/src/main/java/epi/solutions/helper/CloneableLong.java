@@ -8,7 +8,7 @@ public class CloneableLong extends CloneableInput<Long> {
   CloneableLong(Long input) { super(input); }
 
   @Override
-  public Class getType() {
+  public Class<? extends CloneableInput> getType() {
     return this.getClass();
   }
 

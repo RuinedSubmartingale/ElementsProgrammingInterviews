@@ -5,9 +5,7 @@ import epi.solutions.helper.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -24,14 +22,14 @@ public class DutchFlagPartition {
   private enum Color {RED, WHITE, BLUE}
   private enum MyBoolean {FALSE, TRUE}
 
+  /**
+   * Keep the following invariants during partitioning:
+   * bottom group: A.subList(0, smaller).
+   * middle group: A.subList(smaller, equal).
+   * unclassified group: A.subList(equal, larger).
+   * top group: A.subList(larger, A.size()).
+   */
   private static void partition(Color pivot, ArrayList<Color> A) {
-    /**
-     * Keep the following invariants during partitioning:
-     * bottom group: A.subList(0, smaller).
-     * middle group: A.subList(smaller, equal).
-     * unclassified group: A.subList(equal, larger).
-     * top group: A.subList(larger, A.size()).
-     */
     int smaller = 0, equal = 0, larger = A.size();
     while (equal < larger) {
       if (A.get(equal).ordinal() < pivot.ordinal())
@@ -54,11 +52,11 @@ public class DutchFlagPartition {
   }
 
   public static void main(String[] args) throws Exception {
-    runTest(Color.values(), Color.WHITE, DutchFlagPartition::partition, "DutchFlagPartition (colors - inplace)");
-    runTest(MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans, "DutchFlagPartition (Booleans - inplace and stable)");
+    runTest(Color.class, Color.values(), Color.WHITE, DutchFlagPartition::partition, "DutchFlagPartition (colors - inplace)");
+    runTest(MyBoolean.class, MyBoolean.values(), MyBoolean.TRUE, DutchFlagPartition::partitionBooleans, "DutchFlagPartition (Booleans - inplace and stable)");
   }
 
-  private static <T extends Enum<T>> void runTest(T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) throws Exception {
+  private static <T extends Enum<T>> void runTest(Class<T> enumClass, T[] enumVals, T pivot, BiConsumer<T, ArrayList<T>> partitionMethod, String testDesc) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
@@ -66,19 +64,19 @@ public class DutchFlagPartition {
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<T>> runAlgorithm = (input) -> {
-      partitionMethod.accept(pivot, input.getArrayList("A"));
+      partitionMethod.accept(pivot, input.getArrayList("A", enumClass));
 //      System.out.println(String.format("%-20s %s", "Observed output: ", (ArrayList<Color>) input));
-      return input.getArrayList("A");
+      return input.getArrayList("A", enumClass);
     };
     Function<CloneableInputsMap, ArrayList<T>> getKnownOutput = (orig_input) -> {
       ArrayList<T> result;
-      result = orig_input.getArrayList("A");
+      result = orig_input.getArrayList("A", enumClass);
       result.sort((T t1, T t2) -> t1.ordinal() - t2.ordinal());
 //      System.out.println(String.format("%-20s %s", "Expected output: ", (ArrayList<Color>) orig_input));
       return result;
     };
 
-    AlgVerifierInterfaces< ArrayList<T>, CloneableInputsMap> algverifier = new OutputComparisonVerifier<>(ArrayList::equals);
+    AlgVerifierInterfaces<ArrayList<T>, CloneableInputsMap> algverifier = new OutputComparisonVerifier<>(ArrayList::equals);
     AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>(testDesc, NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algverifier);
     algorithmFactory.setSequential();
     algorithmFactory.run();

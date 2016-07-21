@@ -15,8 +15,8 @@ import java.util.function.Supplier;
 public class Parity {
   private static final int NUM_TESTS = (int) Math.pow(10, 7);
   private static final int WORD_SIZE = 16;
-  private static short[] preComputedParity;
-  private static long[] testValues;
+  private static final short[] preComputedParity;
+  private static final long[] testValues;
 
   private static short defaultCompute(long value) {
     short result = 0;

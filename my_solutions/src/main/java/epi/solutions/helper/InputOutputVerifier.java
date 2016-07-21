@@ -7,7 +7,7 @@ import java.util.function.Function;
  * Created by psingh on 7/17/16.
  */
 public class InputOutputVerifier<outputType, extraType> extends AlgVerifierInterfaces<outputType, extraType> {
-  BiFunction<outputType, extraType, Boolean> _fn;
+  private BiFunction<outputType, extraType, Boolean> _fn;
 
   public InputOutputVerifier(BiFunction<outputType, extraType, Boolean>  fn) {
     _fn = fn;

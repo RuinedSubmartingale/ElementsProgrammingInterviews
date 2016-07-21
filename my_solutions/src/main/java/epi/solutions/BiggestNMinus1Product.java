@@ -4,8 +4,6 @@ import epi.solutions.helper.*;
 
 import java.io.PrintStream;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -145,9 +143,9 @@ public class BiggestNMinus1Product {
       inputs.addArrayList("A", A);
       return inputs;
     };
-    Function<CloneableInputsMap, Long> runAlg1 = (inputs) -> alg1.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
-    Function<CloneableInputsMap, Long> runAlg2 = (inputs) -> alg2.findBiggestNMinusOneProduct(inputs.getArrayList("A"));
-    Function<CloneableInputsMap, Long> getKnownOutput = (inputs) -> naiveSolution(inputs.getArrayList("A"));
+    Function<CloneableInputsMap, Long> runAlg1 = (inputs) -> alg1.findBiggestNMinusOneProduct(inputs.getArrayList("A", Integer.class));
+    Function<CloneableInputsMap, Long> runAlg2 = (inputs) -> alg2.findBiggestNMinusOneProduct(inputs.getArrayList("A", Integer.class));
+    Function<CloneableInputsMap, Long> getKnownOutput = (inputs) -> naiveSolution(inputs.getArrayList("A", Integer.class));
 
     AlgVerifierInterfaces< Long, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(Long::equals);
     AlgorithmFactory algorithmFactory1 = new AlgorithmRunnerAndVerifier<>("Plus One", NUM_TESTS, formInputs, runAlg1, getKnownOutput, algVerifier);
