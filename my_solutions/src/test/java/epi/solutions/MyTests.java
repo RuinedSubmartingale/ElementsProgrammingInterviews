@@ -98,7 +98,7 @@ public class MyTests {
   @Test // 5.7
   public void PowerXY() throws Exception { PowerXY.main(ARGS); }
 
-  @Test // 5.11
+  @Test // 5.11 + 7.3
   public void isPalindrome() throws Exception { IsPalindrome.main(ARGS); }
 
   @Test // 5.12
@@ -139,6 +139,9 @@ public class MyTests {
 
   @Test // 7.2
   public void ReplaceAndRemove() throws Exception { ReplaceAndRemove.main(ARGS); }
+
+  @Test // 7.4
+  public void ReverseWords() throws Exception { ReverseWords.main(ARGS); }
 
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }

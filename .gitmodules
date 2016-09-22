@@ -1,3 +1,4 @@
-[submodule "epibook-git-repo"]
+[submodule "epibook.github.io"]
 	path = epibook.github.io
 	url = https://github.com/epibook/epibook.github.io
+	ignore = dirty
