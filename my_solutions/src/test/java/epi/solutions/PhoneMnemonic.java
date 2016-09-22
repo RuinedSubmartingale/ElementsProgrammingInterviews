@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class PhoneMnemonic {
 
   private static final int INPUT_LEN = (int) Math.pow(10, 1);
-  private static final int NUM_TESTS = (int) Math.pow(10, 4);
+  private static final int NUM_TESTS = (int) Math.pow(10, 3);
 
   // The mapping from digit to corresponding characters on a typical push-button telephone.
   private static final String[] MAPPINGS = {"0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
@@ -42,6 +42,14 @@ public class PhoneMnemonic {
   }
 
   public static void main(String[] args) throws Exception {
+    String number = "2663837";
+    List<String> anagrams = phoneMnemonic(number);
+//    anagrams.stream().filter(s -> s.startsWith("BOO")).collect(Collectors.toList())
+    assert(anagrams.contains("BOODUDS"));
+    assert(anagrams.contains("COMETES"));
+    assert(anagrams.contains("AMMETER"));
+    assert(anagrams.contains("CONEVER"));
+
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
       Random rgen = new Random();
@@ -50,7 +58,7 @@ public class PhoneMnemonic {
     };
 
     Function<CloneableInputsMap, List<String>> runAlg = (inputs) -> phoneMnemonic(inputs.getString("phoneNumber"));
-    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Compute all Mnemonics of Phone #", NUM_TESTS, formInputs, runAlg);
+    AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Compute all Mnemonics of 10-digit Phone Numbers", NUM_TESTS, formInputs, runAlg);
     algorithmFactory.run();
   }
 }

@@ -143,6 +143,12 @@ public class MyTests {
   @Test // 7.4
   public void ReverseWords() throws Exception { ReverseWords.main(ARGS); }
 
+  @Test // 7.5
+  public void PhoneMnemonic() throws Exception { PhoneMnemonic.main(ARGS); }
+
+  @Test // 7.6
+  public void LookAndSay() throws Exception { LookAndSay.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }
