@@ -1,10 +1,15 @@
 package epi.solutions.helper;
 
 import com.google.common.base.Preconditions;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.function.Supplier;
 
 /**
@@ -56,4 +61,26 @@ public class MiscHelperMethods {
     }
     return sb.toString();
   }
+
+
+  public enum CharTypes { PRINTABLE, LOWERCASE_ALPHABETIC, UPPERCASE_ALPHABETIC, NUMERIC };
+  private static final Map<CharTypes, Pair<Integer, Integer>> mapping = new HashMap<>();
+  static {
+    mapping.put(CharTypes.PRINTABLE, new ImmutablePair<>(32, 127)); // range of printable ASCII characters: [ 32 = SPACE ; 127 = DELETE ]
+    mapping.put(CharTypes.LOWERCASE_ALPHABETIC, new ImmutablePair<>(97, 122));
+    mapping.put(CharTypes.UPPERCASE_ALPHABETIC, new ImmutablePair<>(65, 90));
+    mapping.put(CharTypes.NUMERIC, new ImmutablePair<>(48, 57));
+  }
+
+  // Returns random string within range of printable ASCII characters
+  public static String randString(int len) {
+    return randString(CharTypes.PRINTABLE, len);
+  }
+
+  public static String randString(CharTypes type, int len) {
+    Pair<Integer, Integer> asciiRange = mapping.get(type);
+    Random rgen = new Random();
+    return randString(() -> (char) (rgen.nextInt(asciiRange.getRight() - asciiRange.getLeft() + 1) + asciiRange.getLeft()), len);
+  }
+
 }

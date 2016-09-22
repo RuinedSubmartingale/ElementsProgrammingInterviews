@@ -95,9 +95,7 @@ public class IsPalindrome {
       Supplier<CloneableInputsMap> formStringInputs = () -> {
         Random rgen = new Random();
         CloneableInputsMap inputs = new CloneableInputsMap();
-        inputs.addString("s", MiscHelperMethods.randString(() ->
-                (char) (rgen.nextInt(127 - 32) + 32), STRING_LEN));
-                // range of printable ASCII characters: 32 = SPACE ; 126 = ~
+        inputs.addString("s", MiscHelperMethods.randString(STRING_LEN));
         return inputs;
       };
       Predicate<Character> isAlphaNum = Character::isLetterOrDigit;

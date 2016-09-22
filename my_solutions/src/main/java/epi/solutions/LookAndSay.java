@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 
 /**
  * Created by psingh on 9/22/16.
+ * Problem 7.6
  */
 public class LookAndSay {
   private static final int NUM_TESTS = (int) Math.pow(10, 5);

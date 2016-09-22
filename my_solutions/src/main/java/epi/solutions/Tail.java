@@ -13,6 +13,7 @@ import java.util.function.Supplier;
 
 /**
  * Created by psingh on 9/22/16.
+ * Problem 7.12
  */
 public class Tail {
 
@@ -20,7 +21,7 @@ public class Tail {
   private static final int N = (int) Math.pow(10, 1);
   private static final int NUM_TESTS = (int) Math.pow(10, 4);
 
-  public static String tail(String fileName, int N) {
+  private static String tail(String fileName, int N) {
     StringBuilder tailingLines = new StringBuilder();
     try {
       RandomAccessFile filePtr = new RandomAccessFile(fileName, "r");
@@ -46,7 +47,7 @@ public class Tail {
     return tailingLines.toString();
   }
 
-  public static String tailQueued(String fileName, int N) {
+  private static String tailQueued(String fileName, int N) {
     StringBuilder tailingLines = new StringBuilder();
     try {
 
@@ -68,21 +69,20 @@ public class Tail {
 
   public static void main(String[] args) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
-    CloneableInputsMap inputs = new CloneableInputsMap();
-    try {
-      File testFile = File.createTempFile("TailTest", ".txt");
-      PrintWriter writer = new PrintWriter(testFile);
-      Random rgen = new Random();
-      for (int i = 0; i <= FILE_LINE_LENGTH; ++i) {
-        writer.println(MiscHelperMethods.randString(() -> (char) (rgen.nextInt(127 - 32) + 32), rgen.nextInt(80)));
-        // range of printable ASCII characters: 32 = SPACE ; 126 = ~)
+      CloneableInputsMap inputs = new CloneableInputsMap();
+      try {
+        File testFile = File.createTempFile("TailTest", ".txt");
+        PrintWriter writer = new PrintWriter(testFile);
+        Random rgen = new Random();
+        for (int i = 0; i <= FILE_LINE_LENGTH; ++i) {
+          writer.println(MiscHelperMethods.randString(rgen.nextInt(80)));
+        }
+        writer.close();
+        inputs.addString("fileName", testFile.getAbsolutePath());
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-      writer.close();
-      inputs.addString("fileName", testFile.getAbsolutePath());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return inputs;
+      return inputs;
     };
 
     Function<CloneableInputsMap, String> runAlg = (inputs) -> tail(inputs.getString("fileName"), N);
