@@ -149,6 +149,9 @@ public class MyTests {
   @Test // 7.6
   public void LookAndSay() throws Exception { LookAndSay.main(ARGS); }
 
+  @Test // 7.12
+  public void Tail() throws Exception { Tail.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }
