@@ -60,10 +60,10 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
     try {
       // // The following would throw a ClassCastException if result wasn't actually of type MyLinkedList<T>
       // result.toArray((T[]) Array.newInstance(dataType, 0));
-      if(!result.head.next.data.getClass().isAssignableFrom(dataType)) {
+      if(result.head != null && !result.head.data.getClass().isAssignableFrom(dataType)) {
         // See JumpBoardGame.main for a commented-out example of when this error would be thrown
         throw new IllegalArgumentException(name + " is a CloneableMyLinkedList container, but its data type is "
-                + result.head.next.data.getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+                + result.head.data.getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
       }
     } catch (Exception e){
       e.printStackTrace();

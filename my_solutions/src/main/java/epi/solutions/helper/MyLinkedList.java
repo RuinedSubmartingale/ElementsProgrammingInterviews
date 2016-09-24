@@ -8,20 +8,27 @@ import java.util.List;
  */
 public class MyLinkedList<T extends Comparable<? super T>> extends LinkedList<T> {
   public Node<T> head;
-//  public NodePtr<T> tail;
+  public Node<T> tail;
 
-  public MyLinkedList() { head = new Node<>(null, null); }
+  public MyLinkedList() { head = null; tail = null; }
 //  public MyLinkedList(Iterable<? extends T> listNode) { this(); this.addAll(listNode); } // what happens if you remove "this();" ?
   public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); }
   public MyLinkedList(LinkedList<T> list) { this(); this.addAll(list); }
 
 
-//  @Override
   public boolean add(T data) {
     final Node<T> node = new Node<>(data, null);
-    Node<T> cursor = this.head;
-    while(cursor.next != null) { cursor = cursor.next; }
-    cursor.next = node;
+    return this.add(node);
+  }
+
+  public boolean add(Node<T> node) {
+    if (this.head == null) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
     return true;
   }
 
@@ -33,23 +40,18 @@ public class MyLinkedList<T extends Comparable<? super T>> extends LinkedList<T>
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
   public boolean addAll(MyLinkedList<T> L) {
-    Node<T> thisCursor = this.head;
-    while (thisCursor.next != null) thisCursor = thisCursor.next;
-
     Node<T> otherCursor = L.head;
-    while (otherCursor.next != null) {
-      thisCursor.next = new Node<>(otherCursor.next);   // specifically, input is cloned here.
-      thisCursor = thisCursor.next;
+    while (otherCursor != null) {
+      this.add(new Node<>(otherCursor));   // specifically, input is cloned here.
       otherCursor = otherCursor.next;
     }
-
     return true;
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    Node<T> cursor = new Node<>(head.next);
+    Node<T> cursor = new Node<>(this.head);
     while (cursor != null) {
       sb.append(String.valueOf(cursor.data)).append(" -> ");
       cursor = cursor.next;

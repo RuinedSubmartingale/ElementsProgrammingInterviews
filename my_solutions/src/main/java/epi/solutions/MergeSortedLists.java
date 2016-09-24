@@ -19,23 +19,21 @@ public class MergeSortedLists {
     if (L1 == null) return L2;
     else if (L2 == null) return L1;
 
-    MyLinkedList<T> dummyHead = new MyLinkedList<>();
-    MyLinkedList.Node<T> tail = dummyHead.head;
+    MyLinkedList<T> merged = new MyLinkedList<>();
     MyLinkedList.Node<T> p1 = L1.head, p2 = L2.head;
-    while ( p1.next != null && p2.next != null) {
-      if ( p1.next.data.compareTo(p2.next.data) < 0 ) {
-        tail.next = p1.next;
-        p1.next = p1.next.next;
+    while ( p1 != null && p2 != null) {
+      if ( p1.data.compareTo(p2.data) < 0 ) {
+        merged.add(p1);
+        p1 = p1.next;
       } else {
-        tail.next = p2.next;
-        p2.next = p2.next.next;
+        merged.add(p2);
+        p2 = p2.next;
       }
-      tail = tail.next;
     }
-    tail.next = p1.next != null ? p1.next : p2.next;
+    merged.add(p1 != null ? p1 : p2);
 
-//    dummyHead.head = dummyHead.head.next;
-    return dummyHead;
+//    newList.head = newList.head.next;
+    return merged;
   }
 
   private static <T extends Comparable<? super T>> void appendNode(MyLinkedList.Node<T> node, MyLinkedList.Node<T> tail) {
@@ -50,7 +48,7 @@ public class MergeSortedLists {
     L2.add(0); L2.add(2);
     MyLinkedList<Integer> merged = mergeTwoSortedLists(L1, L2);
     System.out.println(merged);
-    MyLinkedList.Node<Integer> cursor = merged.head.next;
+    MyLinkedList.Node<Integer> cursor = merged.head;
     assert(cursor.data == -1);
     cursor = cursor.next;
     assert(cursor.data == 0);
@@ -67,7 +65,7 @@ public class MergeSortedLists {
     L1.add(-1); L1.add(1);
     merged = mergeTwoSortedLists(L1, null);
     System.out.println(merged);
-    cursor = merged.head.next;
+    cursor = merged.head;
     assert(cursor.data == -1);
     cursor = cursor.next;
     assert(cursor.data == 1);
