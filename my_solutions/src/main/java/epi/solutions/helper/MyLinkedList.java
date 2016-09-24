@@ -14,7 +14,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
 
   public MyLinkedList() { head = null; tail = null; }
   public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); }
-  public MyLinkedList(LinkedList<T> list) { this(); this.addAll(list); }
+  public MyLinkedList(List<T> list) { this(); this.addAll(list); }
 
 
   public boolean add(T data) {
@@ -50,6 +50,12 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     return true;
   }
 
+  public void replace(List<T> newList) {
+    this.head = null;
+    this.tail = null;
+    this.addAll(newList);
+  }
+
   public List<T> toList() {
     List<T> result = new ArrayList<T>();
     Node<T> cursor = this.head;
@@ -63,9 +69,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   public void sort(Comparator<? super T> c) {
     List<T> l = this.toList();
     l.sort(c);
-    this.head = null;
-    this.tail = null;
-    this.addAll(l);
+    this.replace(l);
   }
 
   public boolean equals(MyLinkedList<T> other) {
