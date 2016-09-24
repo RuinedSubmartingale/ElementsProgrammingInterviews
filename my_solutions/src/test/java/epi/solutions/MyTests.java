@@ -155,6 +155,9 @@ public class MyTests {
   @Test // 7.14
   public void RabinKarp() throws Exception { RabinKarp.main(ARGS); }
 
+  @Test // 8.1
+  public void MergeSortedLists() throws Exception { MergeSortedLists.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

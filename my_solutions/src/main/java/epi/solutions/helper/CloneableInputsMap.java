@@ -1,9 +1,6 @@
 package epi.solutions.helper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by psingh on 5/12/16.
@@ -15,7 +12,7 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
 //  }
 
   @SuppressWarnings("unchecked")
-  public <DT> DT get(String name, Class<? extends CloneableInput> c, Class<DT> dt) {
+  public <DT> DT get(String name, Class<? extends CloneableInput> c, Class<? extends DT> dt) {
     CloneableInput inputContainer = this.get(name);
     try {
       Objects.requireNonNull(inputContainer, "No input called \"" + name + "\"");
@@ -32,10 +29,10 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
     return (DT) inputContainer.getInput();
   }
 
-  public <T> void addArrayList(String name, List<T> A) {
+  public <T, E extends List<T>> void addArrayList(String name, E A) {
     this.put(name, new CloneableArrayList<>(A));
   }
-
+  // TODO: figure out if/when the following warning suppression is needed
   @SuppressWarnings("unchecked")
   public <T> ArrayList<T> getArrayList(String name, Class<T> dataType) {
     ArrayList<T> result = get(name, CloneableArrayList.class, (new ArrayList<T>()).getClass());
@@ -44,13 +41,58 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
       // result.toArray((T[]) Array.newInstance(dataType, 0));
       if(!result.get(0).getClass().isAssignableFrom(dataType)) {
         // See JumpBoardGame.main for a commented-out example of when this error would be thrown
-        throw new IllegalArgumentException(name + " is a CloneableArrayList container, but its data type is " + result.get(0).getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+        throw new IllegalArgumentException(name + " is a CloneableArrayList container, but its data type is "
+                + result.get(0).getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
       }
     } catch (Exception e){
       e.printStackTrace();
     }
     return result;
   }
+
+  public <T extends Comparable<? super T>, V extends epi.solutions.helper.MyLinkedList<T>> void addMyLinkedList(String name, V A) {
+    this.put(name, new CloneableMyLinkedList<>(A));
+  }
+  // TODO: figure out if/when the following warning suppression is needed
+  @SuppressWarnings("unchecked")
+  public <T extends Comparable<? super T>> epi.solutions.helper.MyLinkedList<T> getMyLinkedList(String name, Class<T> dataType) {
+    epi.solutions.helper.MyLinkedList<T> result = get(name, CloneableMyLinkedList.class, (new epi.solutions.helper.MyLinkedList<T>()).getClass());
+    try {
+      // // The following would throw a ClassCastException if result wasn't actually of type MyLinkedList<T>
+      // result.toArray((T[]) Array.newInstance(dataType, 0));
+      if(!result.head.next.data.getClass().isAssignableFrom(dataType)) {
+        // See JumpBoardGame.main for a commented-out example of when this error would be thrown
+        throw new IllegalArgumentException(name + " is a CloneableMyLinkedList container, but its data type is "
+                + result.head.next.data.getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+      }
+    } catch (Exception e){
+      e.printStackTrace();
+    }
+    return result;
+  }
+
+//  public <T extends Comparable<? super T>, V extends Collection<T>> void addCollection(String name, Collection<T> A, Constructor<V> constructor) {
+//    this.put(name, new CloneableCollection<>(A, constructor));
+//  }
+//  // TODO: figure out if/when the following warning suppression is needed
+//  @SuppressWarnings("unchecked")
+//  public <T extends Comparable<? super T>, V extends Collection<T>> Collection<T> getCollection(String name, Class<T> dataType, Constructor<V> constructor)
+//          throws IllegalAccessException, InvocationTargetException, InstantiationException {
+//    Collection<T> result = get(name, CloneableCollection.class, constructor.newInstance().getClass());
+//    try {
+//      // // The following would throw a ClassCastException if result wasn't actually of type MyLinkedList<T>
+//      // result.toArray((T[]) Array.newInstance(dataType, 0));
+//
+//      if(!result.iterator().next().getClass().isAssignableFrom(dataType)) {
+//        // See JumpBoardGame.main for a commented-out example of when this error would be thrown
+//        throw new IllegalArgumentException(name + " is a CloneableMyLinkedList container, but its data type is "
+//                + result.iterator().next().getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+//      }
+//    } catch (Exception e){
+//      e.printStackTrace();
+//    }
+//    return result;
+//  }
 
   public void addInteger(String name, Integer x) {
     this.put(name, new CloneableInteger(x));
