@@ -49,7 +49,7 @@ public class MergeSortedLists {
     MyLinkedList<Integer> L2 = new MyLinkedList<>();
     L2.add(0); L2.add(2);
     MyLinkedList<Integer> merged = mergeTwoSortedLists(L1, L2);
-    merged.print();
+    System.out.println(merged);
     MyLinkedList.Node<Integer> cursor = merged.head.next;
     assert(cursor.data == -1);
     cursor = cursor.next;
@@ -66,7 +66,7 @@ public class MergeSortedLists {
     L1 = new MyLinkedList<>();
     L1.add(-1); L1.add(1);
     merged = mergeTwoSortedLists(L1, null);
-    merged.print();
+    System.out.println(merged);
     cursor = merged.head.next;
     assert(cursor.data == -1);
     cursor = cursor.next;

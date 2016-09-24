@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by psingh on 9/22/16.
  */
-public class MyLinkedList<T extends Comparable<? super T>> extends java.util.LinkedList<T> {
+public class MyLinkedList<T extends Comparable<? super T>> extends LinkedList<T> {
   public Node<T> head;
 //  public NodePtr<T> tail;
 
@@ -14,7 +14,6 @@ public class MyLinkedList<T extends Comparable<? super T>> extends java.util.Lin
 //  public MyLinkedList(Iterable<? extends T> listNode) { this(); this.addAll(listNode); } // what happens if you remove "this();" ?
   public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); }
   public MyLinkedList(LinkedList<T> list) { this(); this.addAll(list); }
-//  public MyLinkedList(T data, Node<T> next) { this.head = new Node<>(data, next); }
 
 
 //  @Override
@@ -47,7 +46,8 @@ public class MyLinkedList<T extends Comparable<? super T>> extends java.util.Lin
     return true;
   }
 
-  public void print() {
+  @Override
+  public String toString() {
     StringBuilder sb = new StringBuilder();
     Node<T> cursor = new Node<>(head.next);
     while (cursor != null) {
@@ -55,7 +55,7 @@ public class MyLinkedList<T extends Comparable<? super T>> extends java.util.Lin
       cursor = cursor.next;
     }
     sb.append("null");
-    System.out.println(sb.toString());
+    return sb.toString();
   }
 
   public static class Node<E extends Comparable<? super E>> {
