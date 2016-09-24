@@ -1,17 +1,18 @@
 package epi.solutions.helper;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by psingh on 9/22/16.
  */
-public class MyLinkedList<T extends Comparable<? super T>> extends LinkedList<T> {
+public class MyLinkedList<T extends Comparable<? super T>> {
   public Node<T> head;
   public Node<T> tail;
 
   public MyLinkedList() { head = null; tail = null; }
-//  public MyLinkedList(Iterable<? extends T> listNode) { this(); this.addAll(listNode); } // what happens if you remove "this();" ?
   public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); }
   public MyLinkedList(LinkedList<T> list) { this(); this.addAll(list); }
 
@@ -39,13 +40,36 @@ public class MyLinkedList<T extends Comparable<? super T>> extends LinkedList<T>
 
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
+  // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
   public boolean addAll(MyLinkedList<T> L) {
-    Node<T> otherCursor = L.head;
-    while (otherCursor != null) {
-      this.add(new Node<>(otherCursor));   // specifically, input is cloned here.
-      otherCursor = otherCursor.next;
+    Node<T> cursor = L.head;
+    while (cursor != null) {
+      this.add(new Node<>(cursor));   // specifically, input is cloned here.
+      cursor = cursor.next;
     }
     return true;
+  }
+
+  public List<T> toList() {
+    List<T> result = new ArrayList<T>();
+    Node<T> cursor = this.head;
+    while (cursor != null) {
+      result.add(cursor.data);
+      cursor = cursor.next;
+    }
+    return result;
+  }
+
+  public void sort(Comparator<? super T> c) {
+    List<T> l = this.toList();
+    l.sort(c);
+    this.head = null;
+    this.tail = null;
+    this.addAll(l);
+  }
+
+  public boolean equals(MyLinkedList<T> other) {
+    return this.toList().equals(other.toList());
   }
 
   @Override

@@ -105,7 +105,7 @@ public class MergeSortedLists {
       merged.sort(Integer::compareTo);
       return merged;
     };
-    AlgVerifierInterfaces<MyLinkedList<Integer>, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(MyLinkedList<Integer>::equals);
+    AlgVerifierInterfaces<MyLinkedList<Integer>, CloneableInputsMap> algVerifier = new OutputComparisonVerifier<>(MyLinkedList::equals);
     AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>("Merge two sorted lists", NUM_TESTS, formInputs, runAlg, knownOutput, algVerifier);
 //    algorithmFactory.setSequential();
     algorithmFactory.run();
