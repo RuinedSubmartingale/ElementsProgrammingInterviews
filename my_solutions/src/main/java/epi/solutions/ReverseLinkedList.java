@@ -109,7 +109,7 @@ public class ReverseLinkedList {
     AlgorithmFactory recursiveAlgFactory = new AlgorithmRunnerAndVerifier<>("Reverse SLL of length " + String.valueOf(LIST_LEN) + " recursively in O(n) time + O(n) space"
             , NUM_TESTS, formInputs, runRecursiveAlg, knownSolution, algVerifier);
     AlgorithmFactory iterativeAlgFactory = new AlgorithmRunnerAndVerifier<>("Reverse SLL of length " + String.valueOf(LIST_LEN) + " iteratively in O(n) time + O(1) space"
-            , NUM_TESTS, formInputs, runRecursiveAlg, knownSolution, algVerifier);
+            , NUM_TESTS, formInputs, runIterativeAlg, knownSolution, algVerifier);
 
     recursiveAlgFactory.run();
     iterativeAlgFactory.run();

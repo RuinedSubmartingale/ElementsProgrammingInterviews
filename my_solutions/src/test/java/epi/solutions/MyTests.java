@@ -158,6 +158,9 @@ public class MyTests {
   @Test // 8.1
   public void MergeSortedLists() throws Exception { MergeSortedLists.main(ARGS); }
 
+  @Test // 8.2
+  public void ReverseLinkedList() throws Exception { ReverseLinkedList.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }
