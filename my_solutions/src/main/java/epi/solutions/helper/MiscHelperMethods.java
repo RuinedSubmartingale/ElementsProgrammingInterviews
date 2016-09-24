@@ -63,7 +63,7 @@ public class MiscHelperMethods {
   }
 
 
-  public enum CharTypes { PRINTABLE, LOWERCASE_ALPHABETIC, UPPERCASE_ALPHABETIC, NUMERIC };
+  public enum CharTypes { PRINTABLE, LOWERCASE_ALPHABETIC, UPPERCASE_ALPHABETIC, NUMERIC }
   private static final Map<CharTypes, Pair<Integer, Integer>> mapping = new HashMap<>();
   static {
     mapping.put(CharTypes.PRINTABLE, new ImmutablePair<>(32, 127)); // range of printable ASCII characters: [ 32 = SPACE ; 127 = DELETE ]

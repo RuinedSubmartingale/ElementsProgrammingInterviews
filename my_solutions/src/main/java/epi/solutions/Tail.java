@@ -60,7 +60,7 @@ public class Tail {
       br.close();
 
       int numLines = linesQueue.size();
-      while (numLines-- > 0) tailingLines.append(linesQueue.remove() + "\n");
+      while (numLines-- > 0) tailingLines.append(linesQueue.remove()).append("\n");
     } catch (IOException e) {
       e.printStackTrace();
     }

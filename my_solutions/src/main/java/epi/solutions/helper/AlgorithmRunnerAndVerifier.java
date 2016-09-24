@@ -99,7 +99,14 @@ public class AlgorithmRunnerAndVerifier<outputType> extends AlgorithmFactory<Clo
   }
 
   private Boolean testCorrectness(AlgVerificationData<outputType, CloneableInputsMap> algVerificationData) {
-    return _algVerifier.apply(algVerificationData);
+    Boolean result = _algVerifier.apply(algVerificationData);
+    if (!result) {
+      System.out.println("Observed output: " + algVerificationData.getObservedOutput().toString());
+      System.out.println("Expected output: " + algVerificationData.getExpectedOutput().toString());
+      System.out.println("Observed extra results: " + algVerificationData.getObservedExtraResults().toString());
+      System.out.println("Expected extra results: " + algVerificationData.getExpectedExtraResults().toString());
+    }
+    return result;
   }
 
   private CloneableInputsMap cloneInputs(CloneableInputsMap inputs) {

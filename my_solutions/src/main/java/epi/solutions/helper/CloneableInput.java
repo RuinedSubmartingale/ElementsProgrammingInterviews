@@ -1,5 +1,6 @@
 package epi.solutions.helper;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -9,11 +10,18 @@ import java.lang.reflect.InvocationTargetException;
  * with the results of a known solution on a cloned version of the inputs.
  * See TimeTests for usage details.
  */
-abstract class CloneableInput<T> implements Cloneable {
+abstract class CloneableInput<T> {
   private T data;
 
   CloneableInput(T data) {
     this.data = data;
+  }
+  CloneableInput(T data, Constructor<? extends T> constructor) {
+    try {
+      this.data = constructor.newInstance(data);
+    } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+      e.printStackTrace();
+    }
   }
   abstract Class<? extends CloneableInput> getType();
   T getInput() { return this.data; }
