@@ -572,8 +572,8 @@ jQuery.cookie = function(name, value, options) {
 <body>
 <div id="container">
 <div id="header">
-<div class="time">1 m 46 s</div>
-<h1>MyTests: <strong><span class="total">20 total, </span><span class="passed">20 passed</span></strong>
+<div class="time">4 m 11 s</div>
+<h1>MyTests: <strong><span class="total">28 total, </span><span class="passed">28 passed</span></strong>
 </h1>
 <div id="treecontrol">
 <ul>
@@ -591,288 +591,416 @@ jQuery.cookie = function(name, value, options) {
 <ul id="tree">
 <li class="level test">
 <span><em class="time">
-<div class="time">2.00 s</div>
+<div class="time">6.33 s</div>
 </em><em class="status">passed</em>MyTests.ReplaceAndRemove</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>Running algorithms on character arrays of length 100...<br/>DEBUG:                                  Replace and Remove  took 1009.6613 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running algorithms on character arrays of length 100...<br/>Running Replace and Remove with verification - 1.0 million tests in parallel...<br/>DEBUG:                                  Replace and Remove  took 369.251 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:08 AM java.util.logging.LogManager$RootLogger log<br/>INFO: ReplaceAndRemove(epi.solutions.MyTests) : status succeeded : 1988 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:28:04 PM java.util.logging.LogManager$RootLogger log<br/>INFO: ReplaceAndRemove(epi.solutions.MyTests) : status succeeded : 6320 milliseconds<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">654 ms</div>
+<div class="time">12.36 s</div>
+</em><em class="status">passed</em>MyTests.ReverseLinkedList</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Reverse SLL of length 100 recursively in O(n) time + O(n) space with verification - 1.0 million tests in parallel...<br/>DEBUG:  Reverse SLL of length 100 recursively in O(n) time + O(n) space  took 387.1198 nanoseconds on average for 1.0 million tests<br/>Running Reverse SLL of length 100 iteratively in O(n) time + O(1) space with verification - 1.0 million tests in parallel...<br/>DEBUG:  Reverse SLL of length 100 iteratively in O(n) time + O(1) space  took 233.4834 nanoseconds on average for 1.0 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">12.76 s</div>
 </em><em class="status">passed</em>MyTests.Parity</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                                             Parity1  took 179.8265 nanoseconds on average for 1.0 million tests<br/>DEBUG:                                             Parity2  took 98.7902 nanoseconds on average for 1.0 million tests<br/>DEBUG:                                             Parity3  took 66.1287 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:08 AM java.util.logging.LogManager$RootLogger log<br/>INFO: Parity(epi.solutions.MyTests) : status succeeded : 654 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:28:17 PM java.util.logging.LogManager$RootLogger log<br/>INFO: ReverseLinkedList(epi.solutions.MyTests) : status succeeded : 12356 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                                             Parity4  took 59.5687 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">Running Parity1 - 10.0 million tests in parallel...<br/>DEBUG:                                             Parity1  took 113.2729 nanoseconds on average for 10.0 million tests<br/>Running Parity2 - 10.0 million tests in parallel...<br/>DEBUG:                                             Parity2  took 58.4016 nanoseconds on average for 10.0 million tests<br/>Running Parity3 - 10.0 million tests in parallel...<br/>DEBUG:                                             Parity3  took 54.6429 nanoseconds on average for 10.0 million tests<br/>Running Parity4 - 10.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:28:30 PM java.util.logging.LogManager$RootLogger log<br/>INFO: Parity(epi.solutions.MyTests) : status succeeded : 12755 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                                             Parity4  took 45.079 nanoseconds on average for 10.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">1.81 s</div>
+<div class="time">6.64 s</div>
 </em><em class="status">passed</em>MyTests.CanStringBePalindrome</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                               CanStringBePalindrome  took 2577.0095 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running CanStringBePalindrome with verification - 1.0 million tests in parallel...<br/>DEBUG:                               CanStringBePalindrome  took 1952.06 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">391 ms</div>
+<div class="time">1.29 s</div>
 </em><em class="status">passed</em>MyTests.MultiplyShiftAdd</span>
 <ul>
 <li class="text">
 <span class="stdout">timeout (in msec) = 1000000<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:10 AM java.util.logging.LogManager$RootLogger log<br/>INFO: CanStringBePalindrome(epi.solutions.MyTests) : status succeeded : 1808 milliseconds<br/>Jul 17, 2016 4:22:10 AM java.util.logging.LogManager$RootLogger log<br/>INFO: MultiplyShiftAdd(epi.solutions.MyTests) : status succeeded : 390 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:28:36 PM java.util.logging.LogManager$RootLogger log<br/>INFO: CanStringBePalindrome(epi.solutions.MyTests) : status succeeded : 6636 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                                    MultiplyShiftAdd  took 790.3986 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">Running MultiplyShiftAdd with verification - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:28:38 PM java.util.logging.LogManager$RootLogger log<br/>INFO: MultiplyShiftAdd(epi.solutions.MyTests) : status succeeded : 1293 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                                    MultiplyShiftAdd  took 549.6467 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">1.25 s</div>
+<div class="time">2.44 s</div>
 </em><em class="status">passed</em>MyTests.InterconvertingStringInteger</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                                     IntegerToString  took 147.9526 nanoseconds on average for 1.0 million tests<br/>DEBUG:                                     StringToInteger  took 229.4104 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Plus One with verification - 1.0 million tests in parallel...<br/>DEBUG:                                            Plus One  took 116.5577 nanoseconds on average for 1.0 million tests<br/>Running Plus One with verification - 1.0 million tests in parallel...<br/>DEBUG:                                            Plus One  took 86.8217 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">206 ms</div>
+<div class="time">3.97 s</div>
+</em><em class="status">passed</em>MyTests.MergeSortedLists</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>-1 -&gt; 0 -&gt; 1 -&gt; 2 -&gt; null<br/>-1 -&gt; 1 -&gt; null<br/>Running Merge two sorted lists with verification - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:28:44 PM java.util.logging.LogManager$RootLogger log<br/>INFO: MergeSortedLists(epi.solutions.MyTests) : status succeeded : 3967 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                              Merge two sorted lists  took 218.7528 nanoseconds on average for 1.0 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">692 ms</div>
 </em><em class="status">passed</em>MyTests.JumpBoardGame</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running JumpBoardGame - 1.0 million tests in parallel...<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:12 AM java.util.logging.LogManager$RootLogger log<br/>INFO: InterconvertingStringInteger(epi.solutions.MyTests) : status succeeded : 1250 milliseconds<br/>Jul 17, 2016 4:22:12 AM java.util.logging.LogManager$RootLogger log<br/></span>
+<span class="stderr">Sep 24, 2016 11:28:45 PM java.util.logging.LogManager$RootLogger log<br/>INFO: JumpBoardGame(epi.solutions.MyTests) : status succeeded : 692 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                                       JumpBoardGame  took 99.6386 nanoseconds on average for 1.0 million tests<br/></span>
-</li>
-<li class="text">
-<span class="stderr">INFO: JumpBoardGame(epi.solutions.MyTests) : status succeeded : 205 milliseconds<br/></span>
+<span class="stdout">DEBUG:                                       JumpBoardGame  took 79.6815 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">4.02 s</div>
+<div class="time">3.27 s</div>
+</em><em class="status">passed</em>MyTests.RabinKarp</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running RabinKarp Substring Search with verification - 0.1 million tests in parallel...<br/>DEBUG:                          RabinKarp Substring Search  took 6533.5857 nanoseconds on average for 0.1 million tests<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:28:48 PM java.util.logging.LogManager$RootLogger log<br/>INFO: RabinKarp(epi.solutions.MyTests) : status succeeded : 3268 milliseconds<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">18.95 s</div>
 </em><em class="status">passed</em>MyTests.isPalindrome</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                              IsPalindrome - Integer  took 116.3303 nanoseconds on average for 10.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Plus One with verification - 10.0 million tests in parallel...<br/>DEBUG:                                            Plus One  took 97.4319 nanoseconds on average for 10.0 million tests<br/>Running Plus One with verification - 10.0 million tests in parallel...<br/>DEBUG:                                            Plus One  took 178.6437 nanoseconds on average for 10.0 million tests<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:16 AM java.util.logging.LogManager$RootLogger log<br/>INFO: isPalindrome(epi.solutions.MyTests) : status succeeded : 4021 milliseconds<br/></span>
-</li>
-<li class="text">
-<span class="stdout">DEBUG:                               IsPalindrome - String  took 213.5357 nanoseconds on average for 10.0 million tests<br/></span>
+<span class="stderr">Sep 24, 2016 11:29:07 PM java.util.logging.LogManager$RootLogger log<br/>INFO: isPalindrome(epi.solutions.MyTests) : status succeeded : 18949 milliseconds<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">14.63 s</div>
+<div class="time">42.63 s</div>
 </em><em class="status">passed</em>MyTests.MaxDifferenceKPairs</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:      MaxProfit for k pairs of Buy-Sell transactions  took 2029.0886 nanoseconds on average for 0.01 million tests<br/>DEBUG:  MaxProfit for unlimited #  of Buy-Sell transactions  took 1357.4559 nanoseconds on average for 0.01 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running MaxProfit for k pairs of Buy-Sell transactions with verification - 0.01 million tests in parallel...<br/>DEBUG:      MaxProfit for k pairs of Buy-Sell transactions  took 4596.3423 nanoseconds on average for 0.01 million tests<br/>Running MaxProfit for unlimited # of Buy-Sell transactions - 0.01 million tests in parallel...<br/>DEBUG:  MaxProfit for unlimited # of Buy-Sell transactions  took 480.0207 nanoseconds on average for 0.01 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">250 ms</div>
+<div class="time">414 ms</div>
 </em><em class="status">passed</em>MyTests.SwapBits</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running SwapBits - 1.0 million tests in parallel...<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:31 AM java.util.logging.LogManager$RootLogger log<br/>INFO: MaxDifferenceKPairs(epi.solutions.MyTests) : status succeeded : 14632 milliseconds<br/>Jul 17, 2016 4:22:31 AM java.util.logging.LogManager$RootLogger log<br/>INFO: SwapBits(epi.solutions.MyTests) : status succeeded : 249 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:29:49 PM java.util.logging.LogManager$RootLogger log<br/>INFO: MaxDifferenceKPairs(epi.solutions.MyTests) : status succeeded : 42627 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                                            SwapBits  took 109.8291 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">DEBUG:                                            SwapBits  took 83.2773 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">1.01 s</div>
+<div class="time">4.04 s</div>
+</em><em class="status">passed</em>MyTests.Tail</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running UNIX tail command with verification - 0.01 million tests in parallel...<br/>DEBUG:                                   UNIX tail command  took 215854.7802 nanoseconds on average for 0.01 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">40.79 s</div>
 </em><em class="status">passed</em>MyTests.DutchFlagPartition</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:               DutchFlagPartition (colors - inplace)  took 322.0453 nanoseconds on average for 1.0 million tests<br/>DEBUG:  DutchFlagPartition (Booleans - inplace and stable)  took 331.4329 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running DutchFlagPartition (colors - inplace) with verification - 10.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:29:54 PM java.util.logging.LogManager$RootLogger log<br/>INFO: Tail(epi.solutions.MyTests) : status succeeded : 4039 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:               DutchFlagPartition (colors - inplace)  took 268.1533 nanoseconds on average for 10.0 million tests<br/>Running DutchFlagPartition (Booleans - inplace and stable) with verification - 10.0 million tests in parallel...<br/>DEBUG:  DutchFlagPartition (Booleans - inplace and stable)  took 214.8368 nanoseconds on average for 10.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">1.16 s</div>
+<div class="time">2.79 s</div>
+</em><em class="status">passed</em>MyTests.ReverseWords</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running algorithms on character arrays of length 100...<br/>Running Reverse Words in String with verification - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:30:35 PM java.util.logging.LogManager$RootLogger log<br/>INFO: DutchFlagPartition(epi.solutions.MyTests) : status succeeded : 40791 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                             Reverse Words in String  took 240.2042 nanoseconds on average for 1.0 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">757 ms</div>
+</em><em class="status">passed</em>MyTests.ReverseSublist</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:30:37 PM java.util.logging.LogManager$RootLogger log<br/>INFO: ReverseWords(epi.solutions.MyTests) : status succeeded : 2791 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">Running Reverse sublist (s,f) of SLL of length 100 in O(f) time with verification - 0.1 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:30:38 PM java.util.logging.LogManager$RootLogger log<br/>INFO: ReverseSublist(epi.solutions.MyTests) : status succeeded : 757 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:  Reverse sublist (s,f) of SLL of length 100 in O(f) time  took 219.5081 nanoseconds on average for 0.1 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">4.44 s</div>
 </em><em class="status">passed</em>MyTests.RemoveElement</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                                       RemoveElement  took 483.6307 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running RemoveElement with verification - 1.0 million tests in parallel...<br/>DEBUG:                                       RemoveElement  took 364.2523 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">4.49 s</div>
+<div class="time">14.73 s</div>
 </em><em class="status">passed</em>MyTests.SampleOffline</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>Running algorithm to select 100 random elements from array of length 1000...<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:33 AM java.util.logging.LogManager$RootLogger log<br/>INFO: RemoveElement(epi.solutions.MyTests) : status succeeded : 1159 milliseconds<br/>Jul 17, 2016 4:22:37 AM java.util.logging.LogManager$RootLogger log<br/></span>
+<span class="stderr">Sep 24, 2016 11:30:43 PM java.util.logging.LogManager$RootLogger log<br/>INFO: RemoveElement(epi.solutions.MyTests) : status succeeded : 4441 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:  SampleOffline (permute a random k element subset to front of A)  took 1558.4412 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">Running SampleOffline - 1.0 million tests in parallel...<br/></span>
 </li>
 <li class="text">
-<span class="stderr">INFO: SampleOffline(epi.solutions.MyTests) : status succeeded : 4488 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:30:57 PM java.util.logging.LogManager$RootLogger log<br/>INFO: SampleOffline(epi.solutions.MyTests) : status succeeded : 14726 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                                       SampleOffline  took 1405.5757 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">5.58 s</div>
+<div class="time">14.95 s</div>
 </em><em class="status">passed</em>MyTests.BiggestNMinus1Product</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:    BiggestProductNMinus1 [ O(n) time / O(n) space ]  took 14012.9097 nanoseconds on average for 0.01 million tests<br/>DEBUG:    BiggestProductNMinus1 [ O(n) time / O(1) space ]  took 5850.013 nanoseconds on average for 0.01 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Plus One with verification - 0.01 million tests in parallel...<br/>DEBUG:                                            Plus One  took 17624.5317 nanoseconds on average for 0.01 million tests<br/>Running Plus One with verification - 0.01 million tests in parallel...<br/>DEBUG:                                            Plus One  took 7384.0433 nanoseconds on average for 0.01 million tests<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:43 AM java.util.logging.LogManager$RootLogger log<br/></span>
-</li>
-<li class="text">
-<span class="stdout"></span>
-</li>
-<li class="text">
-<span class="stderr">INFO: BiggestNMinus1Product(epi.solutions.MyTests) : status succeeded : 5578 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:31:12 PM java.util.logging.LogManager$RootLogger log<br/>INFO: BiggestNMinus1Product(epi.solutions.MyTests) : status succeeded : 14945 milliseconds<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">650 ms</div>
+<div class="time">6.21 s</div>
 </em><em class="status">passed</em>MyTests.RemoveDuplicatesFromSortedArrayList</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:  RemoveDuplicatesFromSortedArrayList - Integer array  took 51147.596 nanoseconds on average for 0.001 million tests<br/>DEBUG:  RemoveDuplicatesFromSortedArrayList - Students array  took 39662.831 nanoseconds on average for 0.001 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running RemoveDuplicatesFromSortedArrayList - Integer array with verification - 0.01 million tests in parallel...<br/>DEBUG:  RemoveDuplicatesFromSortedArrayList - Integer array  took 4916.1583 nanoseconds on average for 0.01 million tests<br/>Running RemoveDuplicatesFromSortedArrayList - Students array with verification - 0.01 million tests in parallel...<br/>DEBUG:  RemoveDuplicatesFromSortedArrayList - Students array  took 9940.4001 nanoseconds on average for 0.01 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">41.02 s</div>
+<div class="time">37.46 s</div>
 </em><em class="status">passed</em>MyTests.PrimeSieve</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>For finding primes up to 11561...<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:22:44 AM java.util.logging.LogManager$RootLogger log<br/>INFO: RemoveDuplicatesFromSortedArrayList(epi.solutions.MyTests) : status succeeded : 649 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:31:19 PM java.util.logging.LogManager$RootLogger log<br/>INFO: RemoveDuplicatesFromSortedArrayList(epi.solutions.MyTests) : status succeeded : 6206 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                                   Basic Prime Sieve  took 114629.2507 nanoseconds on average for 1.0 million tests<br/></span>
-</li>
-<li class="text">
-<span class="stderr">Jul 17, 2016 4:23:25 AM java.util.logging.LogManager$RootLogger log<br/>INFO: PrimeSieve(epi.solutions.MyTests) : status succeeded : 41016 milliseconds<br/></span>
-</li>
-<li class="text">
-<span class="stdout">DEBUG:                                Improved Prime Sieve  took 42896.3552 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">For finding primes up to 20150...<br/>Running BasicPrimeSieve with verification - 0.1 million tests...<br/>DEBUG:                                     BasicPrimeSieve  took 186683.5617 nanoseconds on average for 0.1 million tests<br/>Running PrimeSieve with verification - 0.1 million tests...<br/>DEBUG:                                          PrimeSieve  took 80433.132 nanoseconds on average for 0.1 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">24.86 s</div>
+<div class="time">4.71 s</div>
 </em><em class="status">passed</em>MyTests.PermuteArray</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>Running algorithms on arrays of length 100...<br/>DEBUG:               Permute Array: O(n) time / O(n) space  took 1543.2912 nanoseconds on average for 1.0 million tests<br/>DEBUG:             Permute Array: O(n^2) time / O(1) space  took 2662.108 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:31:56 PM java.util.logging.LogManager$RootLogger log<br/>INFO: PrimeSieve(epi.solutions.MyTests) : status succeeded : 37459 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">Running algorithms on arrays of length 10...<br/>Running Permute Array: O(n) time / O(n) space with verification - 1.0 million tests in parallel...<br/>DEBUG:               Permute Array: O(n) time / O(n) space  took 264.2667 nanoseconds on average for 1.0 million tests<br/>Running Permute Array: O(n^2) time / O(1) space with verification - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:32:01 PM java.util.logging.LogManager$RootLogger log<br/>INFO: PermuteArray(epi.solutions.MyTests) : status succeeded : 4708 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:             Permute Array: O(n^2) time / O(1) space  took 243.2067 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">1.06 s</div>
+<div class="time">3.61 s</div>
 </em><em class="status">passed</em>MyTests.PlusOne</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/></span>
-</li>
-<li class="text">
-<span class="stderr">Jul 17, 2016 4:23:50 AM java.util.logging.LogManager$RootLogger log<br/>INFO: PermuteArray(epi.solutions.MyTests) : status succeeded : 24858 milliseconds<br/>Jul 17, 2016 4:23:51 AM java.util.logging.LogManager$RootLogger log<br/>INFO: PlusOne(epi.solutions.MyTests) : status succeeded : 1065 milliseconds<br/></span>
-</li>
-<li class="text">
-<span class="stdout">DEBUG:                                             PlusOne  took 86.3607 nanoseconds on average for 0.1 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Plus One with verification - 0.1 million tests in parallel...<br/>DEBUG:                                            Plus One  took 96.9048 nanoseconds on average for 0.1 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">221 ms</div>
+<div class="time">833 ms</div>
 </em><em class="status">passed</em>MyTests.PowerXY</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                                             PowerXY  took 116.4041 nanoseconds on average for 1.0 million tests<br/></span>
-</li>
-</ul>
-</li>
-<li class="level test">
-<span><em class="time">
-<div class="time">705 ms</div>
-</em><em class="status">passed</em>MyTests.UnifRandomNumberGenerator</span>
-<ul>
-<li class="text">
 <span class="stdout">timeout (in msec) = 1000000<br/></span>
 </li>
 <li class="text">
-<span class="stderr">Jul 17, 2016 4:23:51 AM java.util.logging.LogManager$RootLogger log<br/>INFO: PowerXY(epi.solutions.MyTests) : status succeeded : 221 milliseconds<br/></span>
+<span class="stderr">Sep 24, 2016 11:32:04 PM java.util.logging.LogManager$RootLogger log<br/>INFO: PlusOne(epi.solutions.MyTests) : status succeeded : 3607 milliseconds<br/></span>
 </li>
 <li class="text">
-<span class="stdout">DEBUG:                           UnifRandomNumberGenerator  took 2054.1202 nanoseconds on average for 1.0 million tests<br/></span>
-</li>
-<li class="text">
-<span class="stderr">Jul 17, 2016 4:23:52 AM java.util.logging.LogManager$RootLogger log<br/></span>
-</li>
-<li class="text">
-<span class="stdout"></span>
-</li>
-<li class="text">
-<span class="stderr">INFO: UnifRandomNumberGenerator(epi.solutions.MyTests) : status succeeded : 703 milliseconds<br/></span>
+<span class="stdout">Running PowerXY with verification - 1.0 million tests in parallel...<br/>DEBUG:                                             PowerXY  took 93.6722 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
 <li class="level test">
 <span><em class="time">
-<div class="time">121 ms</div>
+<div class="time">832 ms</div>
+</em><em class="status">passed</em>MyTests.UnifRandomNumberGenerator</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running UnifRandomNumberGenerator with verification - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:32:05 PM java.util.logging.LogManager$RootLogger log<br/>INFO: PowerXY(epi.solutions.MyTests) : status succeeded : 833 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                           UnifRandomNumberGenerator  took 398.8854 nanoseconds on average for 1.0 million tests<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:32:06 PM java.util.logging.LogManager$RootLogger log<br/>INFO: UnifRandomNumberGenerator(epi.solutions.MyTests) : status succeeded : 831 milliseconds<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">727 ms</div>
+</em><em class="status">passed</em>MyTests.PhoneMnemonic</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Compute all Mnemonics of 10-digit Phone Numbers - 0.001 million tests in parallel...<br/>DEBUG:     Compute all Mnemonics of 10-digit Phone Numbers  took 719696.458 nanoseconds on average for 0.001 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">1.77 s</div>
+</em><em class="status">passed</em>MyTests.LookAndSay</span>
+<ul>
+<li class="text">
+<span class="stdout">timeout (in msec) = 1000000<br/>Running Look &amp; Say Numbers - 0.1 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:32:07 PM java.util.logging.LogManager$RootLogger log<br/>INFO: PhoneMnemonic(epi.solutions.MyTests) : status succeeded : 726 milliseconds<br/>Sep 24, 2016 11:32:09 PM java.util.logging.LogManager$RootLogger log<br/>INFO: LookAndSay(epi.solutions.MyTests) : status succeeded : 1773 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                                  Look &amp; Say Numbers  took 16825.8367 nanoseconds on average for 0.1 million tests<br/></span>
+</li>
+</ul>
+</li>
+<li class="level test">
+<span><em class="time">
+<div class="time">286 ms</div>
 </em><em class="status">passed</em>MyTests.ClosestIntSameBits</span>
 <ul>
 <li class="text">
-<span class="stdout">timeout (in msec) = 1000000<br/>DEBUG:                              ClosestIntegerSameBits  took 69.5971 nanoseconds on average for 1.0 million tests<br/></span>
+<span class="stdout">timeout (in msec) = 1000000<br/>Running ClosestIntSameBits - 1.0 million tests in parallel...<br/></span>
+</li>
+<li class="text">
+<span class="stderr">Sep 24, 2016 11:32:09 PM java.util.logging.LogManager$RootLogger log<br/>INFO: ClosestIntSameBits(epi.solutions.MyTests) : status succeeded : 285 milliseconds<br/></span>
+</li>
+<li class="text">
+<span class="stdout">DEBUG:                                  ClosestIntSameBits  took 54.5004 nanoseconds on average for 1.0 million tests<br/></span>
 </li>
 </ul>
 </li>
@@ -880,7 +1008,7 @@ jQuery.cookie = function(name, value, options) {
 </div>
 </div>
 <div id="footer">
-<p>Generated by IntelliJ IDEA on 7/17/16 4:24 AM</p>
+<p>Generated by IntelliJ IDEA on 9/24/16 11:34 PM</p>
 </div>
 </body>
 </html>
