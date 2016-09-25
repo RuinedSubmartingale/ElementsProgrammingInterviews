@@ -1,5 +1,8 @@
 package epi.solutions.helper;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +15,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   public Node<T> tail;
 
   public MyLinkedList() { head = null; tail = null; }
-  public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); }
+  public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); } // called by CloneableInput.cloneInput()
   public MyLinkedList(List<T> list) { this(); this.addAll(list); }
 
 
@@ -40,6 +43,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
   // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
+  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
   public boolean addAll(MyLinkedList<T> L) {
     Node<T> cursor = L.head;
     while (cursor != null) {
@@ -55,6 +59,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     this.addAll(newList);
   }
 
+  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
   public List<T> toList() {
     List<T> result = new ArrayList<T>();
     Node<T> cursor = this.head;
@@ -71,11 +76,14 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     this.replace(l);
   }
 
+  // TODO: think about using Node's hashCode/equals relations to determine whether the entire lists are equivalent
   public boolean equals(MyLinkedList<T> other) {
     return this.toList().equals(other.toList());
   }
 
+
   @Override
+  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
   public String toString() {
     StringBuilder sb = new StringBuilder();
     Node<T> cursor = new Node<>(this.head);
@@ -94,6 +102,20 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     Node(E data) { this.data = data; this.next = null; }
     Node(Node<E> node) { this.data = node.data; this.next = node.next; }
     public Node(E data, Node<E> next) { this.data = data; this.next = next; }
+
+    @Override
+    public int hashCode() {
+      HashCodeBuilder hb = new HashCodeBuilder(41, 59); // 2 randomly chosen primes
+      return hb.append(data).append(next).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (obj == null || !(obj instanceof Node)) return false;
+      if (this == obj) return true;
+      Node that = (Node) obj;
+      return new EqualsBuilder().append(this.data, that.data).append(this.next, that.next).isEquals();
+    }
 
 //    void set(Node<E> node) {
 //      this.data = node.data;

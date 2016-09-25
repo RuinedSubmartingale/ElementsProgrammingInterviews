@@ -14,7 +14,7 @@ import java.util.function.Supplier;
  */
 public class ReverseSublist {
   private static final int LIST_LEN = (int) Math.pow(10, 2);
-  private static final int NUM_TESTS = (int) Math.pow(10, 5);
+  private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
   /**
    * @Problem
