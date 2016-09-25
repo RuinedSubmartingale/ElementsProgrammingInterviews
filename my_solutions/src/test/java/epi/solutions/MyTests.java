@@ -164,6 +164,10 @@ public class MyTests {
   @Test // 8.3
   public void ReverseSublist() throws Exception { ReverseSublist.main(ARGS); }
 
+
+  @Test // 8.5
+  public void CheckingListCyclicity() throws Exception { CheckingListCyclicity.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

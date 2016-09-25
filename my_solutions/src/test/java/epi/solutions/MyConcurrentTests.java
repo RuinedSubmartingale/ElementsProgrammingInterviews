@@ -1,7 +1,10 @@
 package epi.solutions;
 
 import net.jodah.concurrentunit.ConcurrentTestCase;
-import org.junit.*;
+import org.junit.AssumptionViolatedException;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
