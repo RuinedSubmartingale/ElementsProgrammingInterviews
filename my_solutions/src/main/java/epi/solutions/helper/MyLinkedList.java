@@ -1,10 +1,10 @@
 package epi.solutions.helper;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -43,10 +43,13 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
   // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
-  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
+  // Note that this gets stuck in the loop if the list has a cycle.
   public boolean addAll(MyLinkedList<T> L) {
+    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
     Node<T> cursor = L.head;
-    while (cursor != null) {
+    // TODO: Ask codereview.stackexchange if this is a good (or even valid) approach. Also used in toList() & toString(),
+    while (cursor != null && !visitedNodes.contains(cursor)) {
+      visitedNodes.add(cursor);
       this.add(new Node<>(cursor));   // specifically, input is cloned here.
       cursor = cursor.next;
     }
@@ -59,11 +62,13 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     this.addAll(newList);
   }
 
-  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
+  // Note that this gets stuck in the loop if the list has a cycle.
   public List<T> toList() {
+    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
     List<T> result = new ArrayList<T>();
     Node<T> cursor = this.head;
-    while (cursor != null) {
+    while (cursor != null && !visitedNodes.contains(cursor)) {
+      visitedNodes.add(cursor);
       result.add(cursor.data);
       cursor = cursor.next;
     }
@@ -83,11 +88,13 @@ public class MyLinkedList<T extends Comparable<? super T>> {
 
 
   @Override
-  // Note that this gets stuck in the loop if the list has a cycle. TODO: refactor for cyclic SLLs
+  // Note that this gets stuck in the loop if the list has a cycle.
   public String toString() {
+    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
     StringBuilder sb = new StringBuilder();
     Node<T> cursor = new Node<>(this.head);
-    while (cursor != null) {
+    while (cursor != null && !visitedNodes.contains(cursor)) {
+      visitedNodes.add(cursor);
       sb.append(String.valueOf(cursor.data)).append(" -> ");
       cursor = cursor.next;
     }
@@ -103,11 +110,12 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     Node(Node<E> node) { this.data = node.data; this.next = node.next; }
     public Node(E data, Node<E> next) { this.data = data; this.next = next; }
 
-    @Override
-    public int hashCode() {
-      HashCodeBuilder hb = new HashCodeBuilder(41, 59); // 2 randomly chosen primes
-      return hb.append(data).append(next).toHashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//      HashCodeBuilder hb = new HashCodeBuilder(41, 59); // 2 randomly chosen primes
+//      return hb.append(data).toHashCode();
+//      // can't add on .append(next), since that will result in infinite loop for cyclic lists
+//    }
 
     @Override
     public boolean equals(Object obj) {
