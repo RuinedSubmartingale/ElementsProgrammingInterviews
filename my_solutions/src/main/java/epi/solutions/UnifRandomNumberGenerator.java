@@ -3,7 +3,9 @@ package epi.solutions;
 import epi.solutions.helper.*;
 
 import java.util.Random;
-import java.util.function.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Created by psingh on 5/12/16.
