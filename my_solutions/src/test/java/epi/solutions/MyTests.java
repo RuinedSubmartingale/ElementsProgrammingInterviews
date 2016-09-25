@@ -161,6 +161,9 @@ public class MyTests {
   @Test // 8.2
   public void ReverseLinkedList() throws Exception { ReverseLinkedList.main(ARGS); }
 
+  @Test // 8.3
+  public void ReverseSublist() throws Exception { ReverseSublist.main(ARGS); }
+
   @Test // 13.2
   public void CanStringBePalindrome() throws Exception { CanStringBePalindrome.main(ARGS); }
 }

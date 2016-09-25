@@ -78,7 +78,7 @@ public class DutchFlagPartition {
 
     AlgVerifierInterfaces<ArrayList<T>, CloneableInputsMap> algverifier = new OutputComparisonVerifier<>(ArrayList::equals);
     AlgorithmFactory algorithmFactory = new AlgorithmRunnerAndVerifier<>(testDesc, NUM_TESTS, formInputs, runAlgorithm, getKnownOutput, algverifier);
-    algorithmFactory.setSequential();
+//    algorithmFactory.setSequential();
     algorithmFactory.run();
   }
 }
