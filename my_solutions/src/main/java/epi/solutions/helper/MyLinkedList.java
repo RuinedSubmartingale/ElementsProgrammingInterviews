@@ -2,15 +2,12 @@ package epi.solutions.helper;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by psingh on 9/22/16.
  */
-public class MyLinkedList<T extends Comparable<? super T>> {
+public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T> {
   public Node<T> head;
   public Node<T> tail;
 
@@ -36,7 +33,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   }
 
   public boolean addAll(List<? extends T> L) {
-    L.forEach(this::add);
+    L.forEach(this::add); // input is cloned by this.add() here.
     return true;
   }
 
@@ -45,14 +42,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
   // Note that this gets stuck in the loop if the list has a cycle.
   public boolean addAll(MyLinkedList<T> L) {
-    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
-    Node<T> cursor = L.head;
-    // TODO: Ask codereview.stackexchange if this is a good (or even valid) approach. Also used in toList() & toString(),
-    while (cursor != null && !visitedNodes.contains(cursor)) {
-      visitedNodes.add(cursor);
-      this.add(new Node<>(cursor));   // specifically, input is cloned here.
-      cursor = cursor.next;
-    }
+    L.forEach(this::add); // input is cloned by this.add() here.
     return true;
   }
 
@@ -64,14 +54,8 @@ public class MyLinkedList<T extends Comparable<? super T>> {
 
   // Note that this gets stuck in the loop if the list has a cycle.
   public List<T> toList() {
-    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
-    List<T> result = new ArrayList<T>();
-    Node<T> cursor = this.head;
-    while (cursor != null && !visitedNodes.contains(cursor)) {
-      visitedNodes.add(cursor);
-      result.add(cursor.data);
-      cursor = cursor.next;
-    }
+    List<T> result = new ArrayList<>();
+    this.forEach(result::add);
     return result;
   }
 
@@ -79,6 +63,12 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     List<T> l = this.toList();
     l.sort(c);
     this.replace(l);
+  }
+
+  public int length() {
+    int length = 0;
+    for (T elem : this) { length += 1; }
+    return length;
   }
 
   // TODO: think about using Node's hashCode/equals relations to determine whether the entire lists are equivalent
@@ -90,17 +80,23 @@ public class MyLinkedList<T extends Comparable<? super T>> {
   @Override
   // Note that this gets stuck in the loop if the list has a cycle.
   public String toString() {
-    LinkedHashSet<Node<T>> visitedNodes = new LinkedHashSet<>();
     StringBuilder sb = new StringBuilder();
-    Node<T> cursor = new Node<>(this.head);
-    while (cursor != null && !visitedNodes.contains(cursor)) {
-      visitedNodes.add(cursor);
-      sb.append(String.valueOf(cursor.data)).append(" -> ");
-      cursor = cursor.next;
-    }
+    this.forEach((elem) -> sb.append(String.valueOf(elem)).append(" -> "));
     sb.append("null");
     return sb.toString();
   }
+
+  @Override
+  public Iterator<T> iterator() {
+    return new Itr<>(this.head);
+  }
+
+
+  // TODO: Iterable interface says that the default implementation should usually be overridden. Figure out if and how you should.
+  //  @Override
+  //  public Spliterator<T> spliterator() {
+  //    return null;
+  //  }
 
   public static class Node<E extends Comparable<? super E>> {
     public E data;
@@ -131,4 +127,34 @@ public class MyLinkedList<T extends Comparable<? super T>> {
 //    }
   }
 
+  private static class Itr<E extends Comparable<? super E>> implements Iterator<E> {
+    private Node<E> nextNode;
+    private LinkedHashSet<Node<E>> visitedNodes;
+    // TODO: Ask codereview.stackexchange if the above hash is a good (or even valid) approach to deal with cyclic lists.
+    // Also consider the trade-offs: hasNext() returns false once cycle has been all covered. do we always want this?
+
+    Itr(Node<E> head) {
+      this.nextNode = head;
+      this.visitedNodes = new LinkedHashSet<>();
+    }
+
+    @Override
+    public boolean hasNext() {
+      return (nextNode != null && !visitedNodes.contains(nextNode));
+    }
+
+    @Override
+    public E next() {
+      if (!this.hasNext()) throw new NoSuchElementException();
+      E result = nextNode.data;
+      visitedNodes.add(nextNode);
+      nextNode = nextNode.next;
+      return result;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
+  }
 }
