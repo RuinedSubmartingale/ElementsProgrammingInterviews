@@ -19,7 +19,7 @@ public class IsPalindrome {
   private static final int STRING_LEN = 10;
 
   /**
-   * @problem 5.11
+   * <u><b>Problem</b></u> 5.11
    * Write a program that takes an integer and determines if that integer's
    * representation as a decimal string is a palindrome.
    */
@@ -40,7 +40,7 @@ public class IsPalindrome {
   }
 
   /**
-   * @problem 7.3
+   * <u><b>Problem</b></u> 7.3
    * Write a program that takes determines if a given string is a palindrome.
    * Ignore non-alphanumeric characters and case. e.g. "Race! Car!" should return true.
    */

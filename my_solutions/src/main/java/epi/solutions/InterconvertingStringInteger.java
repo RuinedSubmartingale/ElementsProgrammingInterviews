@@ -13,7 +13,7 @@ import java.util.function.Supplier;
  *
  * @summary Interconvert strings and integers.
  *
- * @problem
+ * <u><b>Problem</b></u>
  * Take a string representing an integer and return the corresponding integer, and vice versa.
  * Properly handle negative integers.
  */

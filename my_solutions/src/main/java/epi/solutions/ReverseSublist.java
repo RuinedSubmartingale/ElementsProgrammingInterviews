@@ -17,13 +17,13 @@ public class ReverseSublist {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
   /**
-   * @Problem
+   * <u><b>Problem</b></u>
    * Given a SLL and two integers s and f, reverse the order of the nodes from the s-th node to the f-th node, both inclusive.
    * The nodes in the list are numbered starting with 1, i.e. the head node is the first node.
    * Perform the reversal in a single pass. Do not allocate additional nodes.
    * Assume that the list has at least f nodes.
    *
-   * @Strategy
+   * <u><b>Strategy</b></u>
    * We can use solution 8.2 ReverseLinkedList; however, it requires 2 passes over the sublist.
    * We can solve it in one pass by using an iteration to get node `s` and its predecessor.
    * Once we reach `s`, we start reversing until we reach node `f`, and then we link the

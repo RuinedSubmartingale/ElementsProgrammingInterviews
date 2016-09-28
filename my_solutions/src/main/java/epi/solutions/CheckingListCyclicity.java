@@ -18,11 +18,13 @@ public class CheckingListCyclicity {
   private static final int NUM_TESTS = (int) Math.pow(10, 6);
 
   /**
+   * <pre>
    * O(n) time + O(1) space
    * Uses a pair of iterators to traverse list at different speeds.
    * More succinct solution than hasCycle2() that doesn't explicitly count the length of the cycle.
+   * Assumes list does not keep track of its tail. Otherwise, tail.next == null would be a simple check.
    *
-   * @Strategy
+   * <u><b>Strategy</b></u>
    * Let F = # nodes from the head of the list till the start of the cycle.
    * Let C = # nodes in the cycle.
    * Suppose `slow` and `fast` meet at some position 0 <= i < C in the cycle.
@@ -39,12 +41,12 @@ public class CheckingListCyclicity {
    * after the F steps. Since they couldn't possibly meet before `slow` takes F steps and reaches the cycle,
    * the first node of the cycle will be the first time they meet again. So we don't need to know the value
    * of F beforehand, instead we can just wait for them to meet again.
-   *
+   * </pre>
    * @param list SLL whose cyclicity is to be determined
    * @return first node in the cycle, or nullptr if no cycle exists
    */
   // consider changing parameter from (MLL) list to (MLL.Node) head
-  private static <T extends Comparable<? super T>> MyLinkedList.Node<T> hasCycle1(MyLinkedList<T> list) {
+  static <T extends Comparable<? super T>> MyLinkedList.Node<T> hasCycle1(MyLinkedList<T> list) {
     MyLinkedList.Node<T> slow = list.head;
     MyLinkedList.Node<T> fast = slow;
     while (fast != null && fast.next != null && fast.next.next != null) {
@@ -64,14 +66,17 @@ public class CheckingListCyclicity {
 
 
   /**
+   * <pre>
    * O(n) time + O(1) space
    * Uses a pair of iterators to traverse list at different speeds.
    * Explicily counts length of the cycle.
+   * Assumes list does not keep track of its tail. Otherwise, tail.next == null would be a simple check.
+   * </pre>
    * @param list SLL whose cyclicity is to be determined
    * @return first node in the cycle, or nullptr if no cycle exists
    */
   // consider changing parameter from (MLL) list to (MLL.Node) head
-  private static <T extends Comparable<? super T>> MyLinkedList.Node<T> hasCycle2(MyLinkedList<T> list) {
+  static <T extends Comparable<? super T>> MyLinkedList.Node<T> hasCycle2(MyLinkedList<T> list) {
     MyLinkedList.Node<T> slow = list.head;
     MyLinkedList.Node<T> fast = slow;
     while(fast != null && fast.next != null && fast.next.next != null) {
@@ -100,9 +105,11 @@ public class CheckingListCyclicity {
   }
 
   /**
+   * <pre>
    * O(n) time + O(n) space
    * Straight-forward approach of caching the nodes in a hash as we traverse the list. If we re-encounter a hashed node,
    * then it's the first node of the cycle. If we run out of nodes before such an event, then there's no cycle.
+   * </pre>
    * @param list SLL whose cyclicity is to be determined
    * @return first node in the cycle, or nullptr if no cycle exists
    */

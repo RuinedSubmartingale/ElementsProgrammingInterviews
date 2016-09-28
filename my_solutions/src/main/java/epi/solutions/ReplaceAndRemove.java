@@ -12,7 +12,7 @@ import java.util.function.Supplier;
  *
  * @summary Delete each "b" and replace each "a" with a "dd" in a given character array.
  *
- * @strategy
+ * <u><b>Strategy</b></u>
  * 1) On the first pass, count the number of non-"b" characters and the number of "a", using the variables
  * writeIdx and aCnt, respectively. For each non-"b" character, write it to writeIdx on the first pass.
  *
