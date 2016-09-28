@@ -7,9 +7,9 @@ import java.util.*;
 /**
  * Created by psingh on 9/22/16.
  */
-public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T> {
+public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<MyLinkedList.Node<T>> {
   public Node<T> head;
-  public Node<T> tail;
+  public Node<T> tail;    // TODO: figure out what to do with this for cyclical lists
 
   public MyLinkedList() { head = null; tail = null; }
   public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); } // called by CloneableInput.cloneInput()
@@ -40,7 +40,6 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
   // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
-  // Note that this gets stuck in the loop if the list has a cycle.
   public boolean addAll(MyLinkedList<T> L) {
     L.forEach(this::add); // input is cloned by this.add() here.
     return true;
@@ -55,7 +54,7 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
   // Note that this gets stuck in the loop if the list has a cycle.
   public List<T> toList() {
     List<T> result = new ArrayList<>();
-    this.forEach(result::add);
+    this.forEach((node) -> result.add(node.data));
     return result;
   }
 
@@ -67,7 +66,7 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
 
   public int length() {
     int length = 0;
-    for (T elem : this) { length += 1; }
+    for (Node<T> node : this) { length += 1; }
     return length;
   }
 
@@ -78,23 +77,29 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
 
 
   @Override
-  // Note that this gets stuck in the loop if the list has a cycle.
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    this.forEach((elem) -> sb.append(String.valueOf(elem)).append(" -> "));
-    sb.append("null");
+
+    //
+    if (this.tail != null && this.tail.next != null) { // cyclical list
+      this.forEach((node) -> sb.append(node).append(" [@").append(String.valueOf(node.hashCode())).append("]").append(" - > "));
+      sb.append(this.tail.next).append(" [@").append(String.valueOf(this.tail.next.hashCode())).append("]");
+    } else { // acyclical list
+      this.forEach((node) -> sb.append(node).append(" -> "));
+      sb.append("null");
+    }
     return sb.toString();
   }
 
   @Override
-  public Iterator<T> iterator() {
+  public Iterator<Node<T>> iterator() {
     return new Itr<>(this.head);
   }
 
 
   // TODO: Iterable interface says that the default implementation should usually be overridden. Figure out if and how you should.
   //  @Override
-  //  public Spliterator<T> spliterator() {
+  //  public Spliterator<Node<T>> spliterator() {
   //    return null;
   //  }
 
@@ -121,13 +126,13 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
       return new EqualsBuilder().append(this.data, that.data).append(this.next, that.next).isEquals();
     }
 
-//    void set(Node<E> node) {
-//      this.data = node.data;
-//      this.next = node.next;
-//    }
+    @Override
+    public String toString() {
+      return String.valueOf(this.data);
+    }
   }
 
-  private static class Itr<E extends Comparable<? super E>> implements Iterator<E> {
+  private static class Itr<E extends Comparable<? super E>> implements Iterator<Node<E>> {
     private Node<E> nextNode;
     private LinkedHashSet<Node<E>> visitedNodes;
     // TODO: Ask codereview.stackexchange if the above hash is a good (or even valid) approach to deal with cyclic lists.
@@ -144,9 +149,9 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
     }
 
     @Override
-    public E next() {
+    public Node<E> next() {
       if (!this.hasNext()) throw new NoSuchElementException();
-      E result = nextNode.data;
+      Node<E> result = nextNode;
       visitedNodes.add(nextNode);
       nextNode = nextNode.next;
       return result;
