@@ -6,6 +6,7 @@ import epi.solutions.helper.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -35,10 +36,23 @@ public class PlusOne {
     return A;
   }
 
+  private static ArrayList<Integer> randArray(int len) {
+    ArrayList<Integer> A = new ArrayList<>();
+    if (len == 0) return A;
+    Random rgen = new Random();
+    A.add(rgen.nextInt(9) + 1);
+    --len;
+    while (len != 0) {
+      A.add(rgen.nextInt(10));
+      --len;
+    }
+    return A;
+  }
+
   public static void main(String[] args) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      inputs.addArrayList("A", MiscHelperMethods.randNumberArray(Integer.class, ARR_LENGTH));
+      inputs.addArrayList("A", randArray(ARR_LENGTH));
       return inputs;
     };
     Function<CloneableInputsMap, ArrayList<Integer>> runAlgorithm =
