@@ -9,7 +9,9 @@ import java.util.*;
  */
 public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<MyLinkedList.Node<T>> {
   public Node<T> head;
-  public Node<T> tail;    // TODO: figure out what to do with this for cyclical lists
+  public Node<T> tail;
+  // TODO: figure out what to with `tail` field for cyclical lists. Currently, it's needed for telling Itr how to iterate.
+  // It's terribly inefficient to check for repeated nodes in Itr if we know the list is acyclical
 
   public MyLinkedList() { head = null; tail = null; }
   public MyLinkedList(MyLinkedList<T> list) { this(); this.cloneAll(list); } // called by CloneableInput.cloneInput()
@@ -97,7 +99,7 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
 
   @Override
   public Iterator<Node<T>> iterator() {
-    return new Itr<>(this.head);
+    return new Itr<>(this.head, this.tail.next != null);
   }
 
 
@@ -139,24 +141,32 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
   private static class Itr<E extends Comparable<? super E>> implements Iterator<Node<E>> {
     private Node<E> nextNode;
     private LinkedHashSet<Node<E>> visitedNodes;
+    private boolean hasCycle;
     // TODO: Ask codereview.stackexchange if the above hash is a good (or even valid) approach to deal with cyclic lists.
     // Also consider the trade-offs: hasNext() returns false once cycle has been all covered. do we always want this?
 
-    Itr(Node<E> head) {
+    Itr(Node<E> head, boolean hasCycle) {
       this.nextNode = head;
-      this.visitedNodes = new LinkedHashSet<>();
+      this.hasCycle = hasCycle;
+      if (this.hasCycle) {
+        this.visitedNodes = new LinkedHashSet<>();
+      }
     }
 
     @Override
     public boolean hasNext() {
-      return (nextNode != null && !visitedNodes.contains(nextNode));
+      boolean result = (nextNode != null);
+      if (this.hasCycle)
+        result = result && !visitedNodes.contains(nextNode);
+      return result;
     }
 
     @Override
     public Node<E> next() {
       if (!this.hasNext()) throw new NoSuchElementException();
       Node<E> result = nextNode;
-      visitedNodes.add(nextNode);
+      if (this.hasCycle)
+        visitedNodes.add(nextNode);
       nextNode = nextNode.next;
       return result;
     }
