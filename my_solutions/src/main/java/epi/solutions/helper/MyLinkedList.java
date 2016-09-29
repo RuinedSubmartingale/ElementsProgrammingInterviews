@@ -12,7 +12,7 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
   public Node<T> tail;    // TODO: figure out what to do with this for cyclical lists
 
   public MyLinkedList() { head = null; tail = null; }
-  public MyLinkedList(MyLinkedList<T> list) { this(); this.addAll(list); } // called by CloneableInput.cloneInput()
+  public MyLinkedList(MyLinkedList<T> list) { this(); this.cloneAll(list); } // called by CloneableInput.cloneInput()
   public MyLinkedList(List<T> list) { this(); this.addAll(list); }
 
 
@@ -37,11 +37,15 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
     return true;
   }
 
+  public boolean cloneAll(MyLinkedList<T> L) {
+    L.forEach((node) -> this.add(node.data));
+    return true;
+  }
+
   // Note this creates a clone of the entire input MyLinkedList. This is necessary for this function to be properly used
   // by CloneableMyLinkedList(MyLinkedList<T> input) constructor, which is in turn called by CloneableInput.cloneInput() method
-  // TODO: either rename to cloneAll() or figure out a way around cloning here. The cloning should really only happen in/for said constructor
   public boolean addAll(MyLinkedList<T> L) {
-    L.forEach(this::add); // input is cloned by this.add() here.
+    L.forEach(this::add);
     return true;
   }
 
