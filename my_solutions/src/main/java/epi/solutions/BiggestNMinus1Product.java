@@ -6,7 +6,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -140,9 +139,8 @@ public class BiggestNMinus1Product {
     Algorithm2 alg2 = new Algorithm2();
 
     Supplier<CloneableInputsMap> formInputs = () -> {
-      Random rgen = new Random();
       CloneableInputsMap inputs = new CloneableInputsMap();
-      ArrayList<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, N);
+      ArrayList<Integer> A = MiscHelperMethods.randNumberArray(Integer.class, N);
       inputs.addArrayList("A", A);
       return inputs;
     };

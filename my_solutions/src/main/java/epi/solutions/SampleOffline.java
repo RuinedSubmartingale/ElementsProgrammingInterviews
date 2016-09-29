@@ -45,8 +45,7 @@ public class SampleOffline {
   public static void main(String[] args) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      Random rgen = new Random();
-      inputs.addArrayList("A", MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN));
+      inputs.addArrayList("A", MiscHelperMethods.randNumberArray(Integer.class, ARR_LEN));
       inputs.addInteger("k", K);
       return inputs;
     };

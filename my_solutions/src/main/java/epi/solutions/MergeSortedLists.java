@@ -3,7 +3,6 @@ package epi.solutions;
 import epi.solutions.helper.*;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -77,10 +76,9 @@ public class MergeSortedLists {
     simpleTest();
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      Random rgen = new Random();
-      List<Integer> t1 = MiscHelperMethods.randArray(rgen::nextInt, LIST_LEN);
+      List<Integer> t1 = MiscHelperMethods.randNumberArray(Integer.class, LIST_LEN);
       t1.sort(Integer::compareTo);
-      List<Integer> t2 = MiscHelperMethods.randArray(rgen::nextInt, LIST_LEN);
+      List<Integer> t2 = MiscHelperMethods.randNumberArray(Integer.class, LIST_LEN);
       t2.sort(Integer::compareTo);
 
       MyLinkedList<Integer> L1 = new MyLinkedList<>();

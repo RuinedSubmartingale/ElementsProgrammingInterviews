@@ -77,6 +77,7 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
   }
 
   // TODO: think about using Node's hashCode/equals relations to determine whether the entire lists are equivalent
+  // TODO: Even better, use MLL's iterable capabilities to iterate in tandem over the two lists and check Node::equals() for each pair of nodes.
   public boolean equals(MyLinkedList<T> other) {
     return this.toList().equals(other.toList());
   }
@@ -124,6 +125,8 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<M
 //      // can't add on .append(next), since that will result in infinite loop for cyclic lists
 //    }
 
+    // Currently, this is not needed as `data` and `next` are the only fields of a Node object. It'll be useful if we
+    // later decide to add an extraneous Node field that we don't want to affect the equality criteria.
     @Override
     public boolean equals(Object obj) {
       if (obj == null || !(obj instanceof Node)) return false;

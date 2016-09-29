@@ -45,8 +45,7 @@ public class JumpBoardGame {
     smallTest();
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      Random rgen = new Random();
-      inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextInt(MAX_ADVANCE_PER_STEP), BOARD_LENGTH));
+      inputs.addArrayList("A", MiscHelperMethods.randNumberArray(Integer.class, BOARD_LENGTH, 0, MAX_ADVANCE_PER_STEP));
       // // If we accidentally created an ArrayList of Doubles instead of Integers here,
       // // then CloneableInputsMap::getArrayList() should throw and catch an IllegalArgumentException
       // inputs.addArrayList("A", MiscHelperMethods.randArray(() -> rgen.nextDouble(), BOARD_LENGTH));

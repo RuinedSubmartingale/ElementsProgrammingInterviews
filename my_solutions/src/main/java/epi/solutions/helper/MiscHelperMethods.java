@@ -6,17 +6,52 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by psingh on 5/20/16.
  *
  */
 public class MiscHelperMethods {
+
+  private static final Map<Class<? extends Number>, Stream<? extends Number>> map = new HashMap<>();
+  static {
+    Random rgen = new Random();
+    map.put(Integer.class, rgen.ints().boxed());
+    map.put(Double.class, rgen.doubles().boxed());
+    map.put(Long.class, rgen.longs().boxed());
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends Number> Stream<T> randNumberStream(Class<T> numberClass, int len, T... range) {
+    try {
+      T minInclusive = range.length > 0 ? range[0] : (T) numberClass.getDeclaredField("MIN_VALUE").get(null);
+      T maxExclusive = range.length > 1 ? range[1] : (T) numberClass.getDeclaredField("MAX_VALUE").get(null);
+      Random rgen = new Random();
+      if (numberClass == Integer.class) {
+        return (Stream<T>) rgen.ints(len, (Integer) minInclusive, (Integer) maxExclusive).boxed();
+      } else if (numberClass == Double.class) {
+        return (Stream<T>) rgen.doubles(len, (Double) minInclusive, (Double) maxExclusive).boxed();
+      } else if (numberClass == Long.class) {
+        return (Stream<T>) rgen.longs(len, (Long) minInclusive, (Long) maxExclusive).boxed();
+      } else {
+        throw new IllegalArgumentException();
+      }
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @SafeVarargs
+  public static <T extends Number> ArrayList<T> randNumberArray(Class<T> numberClass, int len, T... range) {
+    Stream<T> stream = randNumberStream(numberClass, len, range);
+    assert(stream != null);
+    return stream.collect(Collectors.toCollection(ArrayList::new));
+  }
 
   public static <T> ArrayList<T> randArray(Supplier<T> randSupplier, int len) {
     ArrayList<T> result = new ArrayList<>(len);

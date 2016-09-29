@@ -4,7 +4,6 @@ import epi.solutions.helper.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -82,9 +81,7 @@ public class ReverseLinkedList {
 
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      // TODO: find a way to abstract out rgen into MiscHelperMethods so as to not have to repeat this code for each algorithm
-      Random rgen = new Random();
-      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randArray(rgen::nextInt, LIST_LEN));
+      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randNumberArray(Integer.class, LIST_LEN));
       inputs.addMyLinkedList("l", L);
       return inputs;
     };

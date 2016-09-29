@@ -85,8 +85,7 @@ public class MaxDifferenceKPairs {
 
   public static void main(String[] args) throws Exception {
     Supplier<CloneableInputsMap> formInputs = () -> {
-      Random rgen = new Random();
-      ArrayList<Double> A = MiscHelperMethods.randArray(rgen::nextDouble, ARR_LEN);
+      ArrayList<Double> A = MiscHelperMethods.randNumberArray(Double.class, ARR_LEN);
       CloneableInputsMap inputs = new CloneableInputsMap();
       inputs.addArrayList("A", A);
       return inputs;

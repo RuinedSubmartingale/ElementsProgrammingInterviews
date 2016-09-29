@@ -147,8 +147,8 @@ public class CheckingListCyclicity {
 //    simpleTest();
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
+      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randNumberArray(Integer.class, LIST_LEN));
       Random rgen = new Random();
-      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randArray(rgen::nextInt, LIST_LEN));
       if(rgen.nextInt(2) > 0) {
         int F = rgen.nextInt(LIST_LEN);
         MyLinkedList.Node<Integer> cursor = L.head;

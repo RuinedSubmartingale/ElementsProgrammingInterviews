@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -102,8 +101,7 @@ public class PermuteArray {
 
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      Random rgen = new Random();
-      List<Integer> A = MiscHelperMethods.randArray(rgen::nextInt, ARR_LEN);
+      List<Integer> A = MiscHelperMethods.randNumberArray(Integer.class, ARR_LEN);
       List<Integer> P = IntStream.range(0, A.size()).boxed().collect(Collectors.toList());
       Collections.shuffle(A);
       Collections.shuffle(P);

@@ -71,9 +71,9 @@ public class ReverseSublist {
 //    simpleTest();
     Supplier<CloneableInputsMap> formInputs = () -> {
       CloneableInputsMap inputs = new CloneableInputsMap();
-      Random rgen = new Random();
-      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randArray(rgen::nextInt, LIST_LEN));
+      MyLinkedList<Integer> L = new MyLinkedList<Integer>(MiscHelperMethods.randNumberArray(Integer.class, LIST_LEN));
       inputs.addMyLinkedList("L", L);
+      Random rgen = new Random();
       int f = rgen.nextInt(LIST_LEN) + 1;
       inputs.addInteger("f", f);
       inputs.addInteger("s", rgen.nextInt(f) + 1);
