@@ -1,5 +1,4 @@
-my_solutions/target/**
-.idea/**
-out/**
-my_solutions_cpp/.idea/**
-epibook-solutions/solutions/java/target/**
+epibook.github.io/
+.idea/
+lib/
+my_solutions/target/
