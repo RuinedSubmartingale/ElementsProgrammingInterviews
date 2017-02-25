@@ -78,7 +78,7 @@ public class MyTests {
 //    FileHandler fh;
     String timeoutString = System.getProperty("timeout");
     if (timeoutString != null) {
-      globalTimeout = new Timeout(new Long(timeoutString), TimeUnit.MILLISECONDS);
+      globalTimeout = new Timeout(Long.parseLong(timeoutString), TimeUnit.MILLISECONDS);
       System.out.println("timeout (in msec) = " + timeoutString);
     } else System.out.println("timeout (in msec) = " + maxTimePerMethod);
   }

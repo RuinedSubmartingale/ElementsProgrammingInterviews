@@ -45,7 +45,7 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
       if(!result.get(0).getClass().isAssignableFrom(dataType)) {
         // See JumpBoardGame.main for a commented-out example of when this error would be thrown
         throw new IllegalArgumentException(name + " is a CloneableArrayList container, but its data type is "
-                + result.get(0).getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+                + result.get(0).getClass() + "...we expected " + dataType.toString(), new Throwable(this.toString()));
       }
     } catch (Exception e){
       e.printStackTrace();
@@ -66,7 +66,7 @@ public class CloneableInputsMap extends HashMap<String, CloneableInput> {
       if(result.head != null && !result.head.data.getClass().isAssignableFrom(dataType)) {
         // See JumpBoardGame.main for a commented-out example of when this error would be thrown
         throw new IllegalArgumentException(name + " is a CloneableMyLinkedList container, but its data type is "
-                + result.head.data.getClass() + "...we expected" + dataType.toString(), new Throwable(this.toString()));
+                + result.head.data.getClass() + "...we expected " + dataType.toString(), new Throwable(this.toString()));
       }
     } catch (Exception e){
       e.printStackTrace();
